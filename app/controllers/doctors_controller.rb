@@ -8,7 +8,7 @@ class DoctorsController < ApplicationController
     # GET /doctors/:id
     def show
         doctor = Doctor.find_by(id: params[:id])
-        render json: doctor
+        render json: doctor, serializer: SingleDoctorSerializer
     end
 
     # POST /doctors
