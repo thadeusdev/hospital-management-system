@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2022_12_23_212149) do
   create_table "diagnostics", force: :cascade do |t|
     t.string "notes"
     t.integer "disease_id"
-    t.string "patient_id"
+    t.integer "patient_id"
     t.datetime "diagnosed_on"
     t.integer "pulse"
     t.decimal "sugar"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2022_12_23_212149) do
   create_table "medicines", force: :cascade do |t|
     t.string "name"
     t.integer "patient_id"
-    t.string "disease_id"
+    t.integer "disease_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
