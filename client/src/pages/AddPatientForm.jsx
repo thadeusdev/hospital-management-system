@@ -1,36 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function AddPatientForm() {
+    const [patients, setPatients] = useState([]);
+
+    function handleAddPatient(event) {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const patient = {
+        full_name: formData.get('name'),
+        address: formData.get('address'),
+        visiting_date: formData.get('visiting date'),
+        visit_no: formData.get('visit no')
+      };
+  
+      fetch('/patients', {
+        method: 'POST',
+        body: JSON.stringify(patient),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(newPatient => {
+          setPatients([...patients, newPatient]);
+        });
+    }
   return (
     <div>
-        <form className='form'>            
+        <form onSubmit={handleAddPatient} className='form'>            
             <h1 className='title'>Add new patient</h1>
             <div className='form-inputs'>
-                <label className='form-inputs'>First Name</label>
+                <label className='form-inputs'>Full Name</label>
                 <input 
                     className='form-input'
                     type="text"
-                    name='first name'
-                    placeholder='Enter first name' 
-                />
-            </div>
-            <div className='form-inputs'>
-                <label className='form-inputs'>Last Name</label>
-                <input 
-                    className='form-input'
-                    type="text"
-                    name='last name'
-                    placeholder='Enter last name' 
-                />
-            </div>
-            <div className='form-inputs'>
-                <label className='form-inputs'>City</label>
-                <input 
-                    className='form-input'
-                    type="text"
-                    name='city'
-                    placeholder='Enter city' 
+                    name='name'
+                    placeholder='Enter full name' 
                 />
             </div>
             <div className='form-inputs'>
@@ -43,23 +49,23 @@ function AddPatientForm() {
                 />
             </div>
             <div className='form-inputs'>
-                <label className='form-inputs'>Username</label>
+                <label className='form-inputs'>Visiting date</label>
                 <input 
                     className='form-input'
-                    type="text"
-                    name='username'
-                    placeholder='Enter username' 
+                    type="datetime-local"
+                    name='visiting date'
+                    placeholder='Enter visiting date' 
                 />
             </div>
             <div className='form-inputs'>
-                <label className='form-inputs'>Password</label>
+                <label className='form-inputs'>Visit No.</label>
                 <input 
                     className='form-input'
-                    type="text"
-                    name='password'
-                    placeholder='Enter password' 
+                    type="visit"
+                    name='visit no.'
+                    placeholder='Enter visit no.' 
                 />
-            </div>            
+            </div>                      
             <button className='form-input-btn' type='submit'>
                 Add Patient
             </button>

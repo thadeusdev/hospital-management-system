@@ -8,6 +8,8 @@ import PatientsTable from './pages/PatientsTable';
 import AddDoctorForm from './pages/AddDoctorForm';
 import AddPatientForm from './pages/AddPatientForm';
 import DiseasesTable from './pages/DiseasesTable';
+import AddDiseasesForm from './pages/AddDiseasesForm';
+import MedicinesTable from './pages/MedicinesTable';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
@@ -23,6 +25,8 @@ const App = () => {
           <Route path="/addDoctor" element={<AddDoctorForm />} />
           <Route path="/addPatient" element={<AddPatientForm />} />
           <Route path="/diseases" element={<DiseasesTable />} />
+          <Route path="/addDisease" element={<AddDiseasesForm />} />
+          <Route path="/medicines" element={<MedicinesTable />} />
           <Route path="/logout" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>        

@@ -11,16 +11,11 @@ function PatientsTable() {
         .then(patients => setPatients(patients))
     },[])
 
-    function handleClick({props}){
-        return (
-            <table className='Appointments'>
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                    </tr>
-                </thead>
-            </table>
-        )
+    function handleDelete(id){
+        fetch(`patients/${id}`,{
+         method: "DELETE"
+        })
+        setPatients(patients.filter((patient)=> patient.id !== id))
     }
 
   return (
@@ -52,9 +47,9 @@ function PatientsTable() {
                             <td>{patient.visiting_date}</td>
                             <td>{patient.visit_no}</td>
                             <td>
-                                <i className="far fa-eye" onClick={handleClick} />
+                                <i className="far fa-eye" />
                                 <i className="far fa-edit" />
-                                <i className="far fa-trash-alt" />
+                                <i onClick={()=>handleDelete(patient.id)} className="far fa-trash-alt" />
                             </td>
                         </tr> 
                     ))}                              
