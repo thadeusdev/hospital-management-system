@@ -10,6 +10,13 @@ function DoctorsTable() {
         .then(res => res.json())
         .then((doctors => setDoctors(doctors)))
     }, [])
+
+    function handleDelete(id){
+        fetch(`doctors/${id}`,{
+         method: "DELETE"
+        })
+        setDoctors(doctors.filter((doctor)=> doctor.id !== id))
+    }
     
   return (
     <div className="tables">        
@@ -40,7 +47,7 @@ function DoctorsTable() {
                             <td>
                                 <i className="far fa-eye" />
                                 <i className="far fa-edit" />
-                                <i className="far fa-trash-alt" />
+                                <i onClick={()=>handleDelete(doctor.id)} className="far fa-trash-alt" />
                             </td>
                         </tr> 
                     ))}                              

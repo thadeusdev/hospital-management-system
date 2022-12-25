@@ -1,7 +1,7 @@
 *{
   margin:0;
   padding:0;
-  text-decoration: none;
+  text-decoration: none; 
 }
 .container{
   display:flex;
@@ -53,12 +53,13 @@ main{
 
 .tables{
   width: calc(100% - 200px);
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  grid-gap: 20px;
+  display: flex;
+  /* display: grid; */
+  /* grid-template-columns: 4fr 1fr; */
+  /* grid-gap: 20px; */
   align-items: self-start;
   padding: 0 20px 20px 20px;
-  margin-left: 200px;
+  margin-left: auto;
 }
 
 .last-appointments{

@@ -3,9 +3,10 @@ import {
     FaTh,
     FaHospitalSymbol,
     FaBars,
-    FaUserAlt,
-    FaRegChartBar,
+    FaUserMd,
+    FaWheelchair,
     FaDisease,
+    FaTablets,
     FaSignOutAlt
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
@@ -23,12 +24,12 @@ const Sidebar = ({children}) => {
         {
             path:"/doctors",
             name:"Doctors",
-            icon:<FaUserAlt/>
+            icon:<FaUserMd/>
         },
         {
             path:"/patients",
             name:"Patients",
-            icon:<FaRegChartBar/>
+            icon:<FaWheelchair/>
         },
         {
             path:"/diseases",
@@ -36,15 +37,15 @@ const Sidebar = ({children}) => {
             icon:<FaDisease/>
         },
         {
+            path:"/medicines",
+            name:"Medicines",
+            icon:<FaTablets/>
+        },
+        {
             path:"/logout",
             name:"Logout",
             icon:<FaSignOutAlt/>
-        },
-        // {
-        //     path:"/product",
-        //     name:"Product",
-        //     icon:<FaShoppingBag/>
-        // },
+        },        
         // {
         //     path:"/productList",
         //     name:"Product List",
