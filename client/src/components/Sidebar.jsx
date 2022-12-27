@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {
     FaTh,
     FaHospitalSymbol,
+    FaCalendarAlt,
+    FaMicroscope,
     FaBars,
     FaUserMd,
     FaWheelchair,
@@ -22,6 +24,11 @@ const Sidebar = ({children}) => {
             icon:<FaTh/>
         },
         {
+            path:"/doctorAppointment",
+            name:"Appointment",
+            icon:<FaCalendarAlt/>
+        },
+        {
             path:"/doctors",
             name:"Doctors",
             icon:<FaUserMd/>
@@ -37,6 +44,11 @@ const Sidebar = ({children}) => {
             icon:<FaDisease/>
         },
         {
+            path:"/diagnoses",
+            name:"Diagnoses",
+            icon:<FaMicroscope/>
+        },
+        {
             path:"/medicines",
             name:"Medicines",
             icon:<FaTablets/>
@@ -45,12 +57,7 @@ const Sidebar = ({children}) => {
             path:"/logout",
             name:"Logout",
             icon:<FaSignOutAlt/>
-        },        
-        // {
-        //     path:"/productList",
-        //     name:"Product List",
-        //     icon:<FaThList/>
-        // }
+        } 
     ]
     return (
         <div className="container">

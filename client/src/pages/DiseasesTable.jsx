@@ -25,6 +25,7 @@ function DiseasesTable() {
                 <h2>Diseases</h2>
                 <Link to="/addDisease">
                     <button className="btn">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
                         Add Disease
                     </button>
                 </Link>                

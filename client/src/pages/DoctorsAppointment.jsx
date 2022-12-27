@@ -1,56 +1,49 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-function DoctorsTable() {
-    const [doctors, setDoctors] = useState([])
+function DoctorsAppointment() {
+    const [appointments, setAppointments] = useState([])
 
     useEffect(() => {
-        fetch('/doctors')
+        fetch('/doctor_appointments')
         .then(res => res.json())
-        .then((doctors => setDoctors(doctors)))
+        .then((appointments => setAppointments(appointments)))
     }, [])
-
-    function handleDelete(id){
-        fetch(`doctors/${id}`,{
-         method: "DELETE"
-        })
-        setDoctors(doctors.filter((doctor)=> doctor.id !== id))
-    }
-    
   return (
     <div className="tables">        
         <div className="last-appointments">
             <div className="heading">
-                <h2>Doctors</h2>
+                <h2>Appointments</h2>
                 <Link to="/addDoctor">
                     <button className="btn">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                        Add Doctor
+                        Add Appointment
                     </button>
                 </Link>                
             </div>            
             <table className="appointments">
                 <thead>
                     <tr>
-                        <th>Full Name</th>
-                        <th>Primary Practice</th>
-                        <th>Secondary Practice</th>
+                        <th>Notes</th>
+                        <th>Doctor</th>
+                        <th>Patient</th>
+                        <th>Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>                 
                 <tbody>
-                    {doctors.map((doctor) => (
-                        <tr key={doctor.id}>                        
-                            <td>{doctor.full_name}</td>
-                            <td>{doctor.primary_practice}</td>
-                            <td>{doctor.secondary_practice}</td>
+                    {appointments.map((appointment) => (
+                        <tr key={appointment.id}>                        
+                            <td>{appointment.notes}</td>
+                            <td>{appointment.doctor.full_name}</td>
+                            <td>{appointment.patient.full_name}</td>
+                            <td>{appointment.patient.visiting_date}</td>
                             <td>
                                 <i className="far fa-eye" />
                                 <Link to="/updateDoctor">
                                     <i className="far fa-edit" />
                                 </Link>                                
-                                <i onClick={()=>handleDelete(doctor.id)} className="far fa-trash-alt" />
+                                <i className="far fa-trash-alt" />
                             </td>
                         </tr> 
                     ))}                              
@@ -62,4 +55,4 @@ function DoctorsTable() {
   )
 }
 
-export default DoctorsTable
+export default DoctorsAppointment

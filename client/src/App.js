@@ -6,10 +6,13 @@ import Dashboard from './pages/Dashboard.jsx';
 import DoctorsTable from './pages/DoctorsTable';
 import PatientsTable from './pages/PatientsTable';
 import AddDoctorForm from './pages/AddDoctorForm';
+import UpdateDoctorsForm from './pages/UpdateDoctorsForm';
 import AddPatientForm from './pages/AddPatientForm';
 import DiseasesTable from './pages/DiseasesTable';
 import AddDiseasesForm from './pages/AddDiseasesForm';
 import MedicinesTable from './pages/MedicinesTable';
+import DoctorsAppointment from './pages/DoctorsAppointment';
+import DiagnosesTable from './pages/DiagnosesTable';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
@@ -27,6 +30,9 @@ const App = () => {
           <Route path="/diseases" element={<DiseasesTable />} />
           <Route path="/addDisease" element={<AddDiseasesForm />} />
           <Route path="/medicines" element={<MedicinesTable />} />
+          <Route path="/updateDoctor" element={<UpdateDoctorsForm />} />
+          <Route path='/doctorAppointment' element={<DoctorsAppointment />} />
+          <Route path='/diagnoses' element={<DiagnosesTable />} />
           <Route path="/logout" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>        
