@@ -3,13 +3,14 @@ import "./topbar.css"
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import LanguageIcon from '@mui/icons-material/Language';
 import SettingsIcon from '@mui/icons-material/Settings';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 
 const Topbar = () => {
   return (
     <div className='topbar'>
         <div className="topbarWrapper">
             <div className="topLeft">
-                <span className="logo">Legend</span>
+                <span className="logo">H<LocalHospitalIcon/>SPITALE</span>
             </div>
             <div className="topRight">
                 <div className="topbarIconContainer">
