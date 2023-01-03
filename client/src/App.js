@@ -1,41 +1,30 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import Dashboard from './pages/Dashboard.jsx';
-import DoctorsTable from './pages/DoctorsTable';
-import PatientsTable from './pages/PatientsTable';
-import AddDoctorForm from './pages/AddDoctorForm';
-import UpdateDoctorsForm from './pages/UpdateDoctorsForm';
-import AddPatientForm from './pages/AddPatientForm';
-import DiseasesTable from './pages/DiseasesTable';
-import AddDiseasesForm from './pages/AddDiseasesForm';
-import MedicinesTable from './pages/MedicinesTable';
-import DoctorsAppointment from './pages/DoctorsAppointment';
-import DiagnosesTable from './pages/DiagnosesTable';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
+import Sidebar from './components/sidebar/Sidebar';
+import Topbar from './components/topbar/Topbar';
+import AppointmentList from './pages/appointmentList/AppointmentList';
+import Dashboard from './pages/dashboard/Dashboard';
+import DiagnoseList from './pages/diagnoseList/DiagnoseList';
+import DiseaseList from './pages/diseaseList/DiseaseList';
+import DoctorList from './pages/doctorList/DoctorList';
+import MedicineList from './pages/medicineList/MedicineList';
+import PatientList from './pages/patientList/PatientList';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Sidebar>
+    <Topbar/>
+      <Sidebar>      
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/doctors" element={<DoctorsTable />} />
-          <Route path="/patients" element={<PatientsTable />} />
-          <Route path="/addDoctor" element={<AddDoctorForm />} />
-          <Route path="/addPatient" element={<AddPatientForm />} />
-          <Route path="/diseases" element={<DiseasesTable />} />
-          <Route path="/addDisease" element={<AddDiseasesForm />} />
-          <Route path="/medicines" element={<MedicinesTable />} />
-          <Route path="/updateDoctor" element={<UpdateDoctorsForm />} />
-          <Route path='/doctorAppointment' element={<DoctorsAppointment />} />
-          <Route path='/diagnoses' element={<DiagnosesTable />} />
-          <Route path="/logout" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Routes>        
+          <Route path="/appointment" element={<AppointmentList />} />
+          <Route path="/doctors" element={<DoctorList />} />
+          <Route path="/patients" element={<PatientList />} />
+          <Route path="/diseases" element={<DiseaseList />} />
+          <Route path="/diagnoses" element={<DiagnoseList />} />
+          <Route path="/medicines" element={<MedicineList />} />
+        </Routes>
       </Sidebar>
     </BrowserRouter>
   );
