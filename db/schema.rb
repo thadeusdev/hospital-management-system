@@ -51,6 +51,10 @@ ActiveRecord::Schema.define(version: 2022_12_23_212149) do
 
   create_table "medicines", force: :cascade do |t|
     t.string "name"
+    t.string "description"
+    t.string "category"
+    t.boolean "is_acidic"
+    t.boolean "infant_safe"
     t.integer "patient_id"
     t.integer "disease_id"
     t.datetime "created_at", precision: 6, null: false

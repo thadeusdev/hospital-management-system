@@ -34,7 +34,17 @@ diseases.each{|disease| Disease.create(disease)}
 
 DoctorAppointment.create(notes: "Normal checkup", patient_id: 1, doctor_id: 1)
 
-Medicine.create(name: "Asprine", patient_id: 1, disease_id: 1)
+medicines = [
+    {name: "Asprine", description: "for headache", category: "Tablet", is_acidic: true, infant_safe: true, patient_id: 1, disease_id: 1},
+    {name: "Asprine", description: "for headache", category: "Tablet", is_acidic: true, infant_safe: true, patient_id: 1, disease_id: 1},
+    {name: "Asprine", description: "for headache", category: "Tablet", is_acidic: true, infant_safe: true, patient_id: 1, disease_id: 1},
+    {name: "Asprine", description: "for headache", category: "Tablet", is_acidic: true, infant_safe: true, patient_id: 1, disease_id: 1},
+    {name: "Asprine", description: "for headache", category: "Tablet", is_acidic: true, infant_safe: true, patient_id: 1, disease_id: 1},
+]
+
+puts " creating medicines..."
+
+medicines.each{|medicine| Medicine.create(medicine)}
 
 Diagnostic.create(notes: "Chronic condition", disease_id: 1, patient_id: 1, diagnosed_on: DateTime.new(2009,9,1,17), pulse: 72, sugar: 0.231, temperature: 36.1, pressure: 121.7)
 
