@@ -1,0 +1,19 @@
+.patientList{
+    flex: 4;
+    height: 520px;
+}
+
+.patientListEdit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.patientListDelete{
+    color: red;
+    cursor: pointer;
+}
