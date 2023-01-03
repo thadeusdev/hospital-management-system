@@ -3,7 +3,7 @@ import "./sidebar.css"
 import {
     FaTh,
     FaBars,
-    FaCalendarAlt,
+    FaCalendarPlus,
     FaUserMd,
     FaWheelchair,
     FaDisease,
@@ -26,7 +26,7 @@ const Sidebar = ({children}) => {
         {
             path:"/appointment",
             name:"Appointment",
-            icon:<FaCalendarAlt/>
+            icon:<FaCalendarPlus/>
         },
         {
             path:"/doctors",

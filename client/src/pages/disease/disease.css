@@ -1,0 +1,130 @@
+.disease{
+    flex: 4;
+    padding: 20px;
+}
+
+.diseaseTitleContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.diseaseAddButton{
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: teal;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.diseaseContainer{
+    display: flex;
+    margin-top: 20px;
+}
+
+.diseaseShow{
+    flex: 1;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+}
+
+.diseaseUpdate{
+    flex: 2;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+    margin-left: 20px;
+}
+
+.diseaseShowTop{
+    display: flex;
+    align-items: center;
+}
+
+.diseaseShowTopTitle{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.diseaseShowDiseasename{
+    font-weight: 600;
+}
+
+.diseaseShowDiseaseTitle{
+    font-weight: 300;
+}
+
+.diseaseShowBottom{
+    margin-top: 20px;
+}
+
+.diseaseShowTitle{
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(175, 170, 170);
+}
+
+.diseaseShowInfo{
+    display: flex;
+    align-items: center;
+    margin: 20px 40px;
+    color: #444;
+}
+
+.diseaseShowIcon{
+    font-size: 16px !important;
+}
+
+.diseaseShowInfoTitle{
+    margin-left: 10px;
+}
+
+.diseaseUpdateTitle{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.diseaseUpdateForm{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.diseaseUpdateItem{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.diseaseUpdateItem>label{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.diseaseUpdateInput{
+    border: none;
+    width: 250px;
+    height: 30px;
+    border-bottom: 1px solid grey;
+}
+
+.diseaseUpdateRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.diseaseUpdateButton{
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    background-color: darkblue;
+    color: white;
+    font-weight: 600;
+}
