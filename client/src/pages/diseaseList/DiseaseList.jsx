@@ -38,6 +38,7 @@ const DiseaseList = () => {
 
   return (
     <div className='diseaseList'>
+      <h3 className="diseaseTitle">Diseases</h3>
       <DataGrid
       rows={diseases}
       columns={columns}

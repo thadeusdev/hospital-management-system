@@ -17,3 +17,8 @@
     color: red;
     cursor: pointer;
 }
+
+.diseaseTitle{
+    font-size: 22px;
+    font-weight: 600;
+}

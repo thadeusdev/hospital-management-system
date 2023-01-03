@@ -17,3 +17,8 @@
     color: red;
     cursor: pointer;
 }
+
+.doctorTitle{
+    font-size: 22px;
+    font-weight: 600;
+}

@@ -36,6 +36,7 @@ const AppointmentList = () => {
 
   return (
     <div className='appointmentList'>
+      <h3 className="appointmentTitle">Appointments</h3>
       <DataGrid
       rows={appointments}
       columns={columns}

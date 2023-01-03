@@ -41,6 +41,7 @@ const DiagnoseList = () => {
 
   return (
     <div className='diagnoseList'>
+      <h3 className="diagnoseTitle">Diagnoses</h3>
       <DataGrid
       rows={diagnoses}
       columns={columns}
