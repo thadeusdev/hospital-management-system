@@ -11,6 +11,10 @@ import Doctor from './pages/doctor/Doctor';
 import DoctorList from './pages/doctorList/DoctorList';
 import Medicine from './pages/medicine/Medicine';
 import MedicineList from './pages/medicineList/MedicineList';
+import NewDisease from './pages/newDisease/NewDisease';
+import NewDoctor from './pages/newDoctor/NewDoctor';
+import NewMedicine from './pages/newMedicine/NewMedicine';
+import NewPatient from './pages/newPatient/NewPatient';
 import Patient from './pages/patient/Patient';
 import PatientList from './pages/patientList/PatientList';
 
@@ -32,6 +36,10 @@ const App = () => {
           <Route path="/patient/:patientId" element={<Patient />} />
           <Route path="/disease/:diseaseId" element={<Disease />} />
           <Route path="/medicine/:medicineId" element={<Medicine />} />
+          <Route path="/newDoctor" element={<NewDoctor />} />
+          <Route path="/newPatient" element={<NewPatient />} />
+          <Route path="/newDisease" element={<NewDisease />} />
+          <Route path="/newMedicine" element={<NewMedicine />} />
         </Routes>
       </Sidebar>
     </BrowserRouter>
