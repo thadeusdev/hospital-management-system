@@ -1,4 +1,4 @@
-import React, {  useState, useEffect } from 'react'
+import React, {  useState, useEffect, Component } from 'react'
 import "./medicine.css"
 import CoronavirusIcon from '@mui/icons-material/Coronavirus';
 import PublishIcon from '@mui/icons-material/Publish';
@@ -27,7 +27,8 @@ const Medicine = () => {
         setMedicineedit({...medicineedit, [e.target.name] : e.target.value})
     }
 
-    function handleMedicineupdate(e){        
+    function handleMedicineupdate(e){    
+
         e.preventDefault();
         fetch(`/medicines/${id}`, {
             method: "PATCH",
@@ -36,7 +37,7 @@ const Medicine = () => {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                img: e.target.file.value,
+                img: e.target.img.value,
                 name: e.target.name.value,
                 description: e.target.description.value,
                 category: e.target.category.value,
@@ -45,9 +46,14 @@ const Medicine = () => {
                 patient_id: e.target.patient_id.value,
                 disease_id: e.target.disease_id.value,
             }),
-        })
+        },[])
         .then((r) => r.json())
         .then((data) => console.log(data))
+    }
+    
+    const fileSelectedHandler=(e)=>{
+        console.log(e.target.files[0])
+        this.setState({state: e.target.files[0]})
     }
 
   return (
@@ -129,7 +135,7 @@ const Medicine = () => {
                         <div className="medicineUpdateUpload">
                             <img className="medicineUpdateImg" src={medicineedit.img} alt="" />
                             <label htmlFor="file"><PublishIcon className='medicineUpdateIcon' /></label>
-                            <input type="file" id='file' style={{display: "none"}}  name="file" src={medicineedit.img} onChange={(e) => handleEdit(e)} />
+                            <input type="file" id='file' style={{display: "none"}}  name="img" src={medicineedit.img} onChange={(e)=>fileSelectedHandler(e)} />
                         </div>
                         <button className="medicineUpdateButton">Update</button>
                     </div>
