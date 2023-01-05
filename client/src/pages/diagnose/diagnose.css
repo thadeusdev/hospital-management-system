@@ -1,15 +1,15 @@
-.doctor{
+.diagnose{
     flex: 4;
     padding: 20px;
 }
 
-.doctorTitleContainer{
+.diagnoseTitleContainer{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.doctorAddButton{
+.diagnoseAddButton{
     width: 80px;
     border: none;
     padding: 5px;
@@ -20,19 +20,19 @@
     font-size: 16px;
 }
 
-.doctorContainer{
+.diagnoseContainer{
     display: flex;
     margin-top: 20px;
 }
 
-.doctorShow{
+.diagnoseShow{
     flex: 1;
     padding: 20px;
     -webkit-box-shadow: 0px 0px 11px -1px #000000; 
     box-shadow: 0px 0px 11px -1px #000000;
 }
 
-.doctorUpdate{
+.diagnoseUpdate{
     flex: 2;
     padding: 20px;
     -webkit-box-shadow: 0px 0px 11px -1px #000000; 
@@ -40,110 +40,42 @@
     margin-left: 20px;
 }
 
-.doctorShowTop{
-    display: flex;
-    align-items: center;
-}
-
-.doctorShowImg{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.doctorShowTopTitle{
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-}
-
-.doctorShowDoctorname{
-    font-weight: 600;
-}
-
-.doctorShowDoctorTitle{
-    font-weight: 300;
-}
-
-.doctorShowBottom{
-    margin-top: 20px;
-}
-
-.doctorShowTitle{
-    font-size: 14px;
-    font-weight: 600;
-    color: rgb(175, 170, 170);
-}
-
-.doctorShowInfo{
-    display: flex;
-    align-items: center;
-    margin: 20px 40px;
-    color: #444;
-}
-
-.doctorShowIcon{
-    font-size: 16px !important;
-}
-
-.doctorShowInfoTitle{
-    margin-left: 10px;
-}
-
-.doctorUpdateTitle{
+.diagnoseUpdateTitle{
     font-size: 24px;
     font-weight: 600;
 }
 
-.doctorUpdateForm{
+.diagnoseUpdateForm{
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-.doctorUpdateItem{
+.diagnoseUpdateItem{
     display: flex;
     flex-direction: column;
     margin-top: 10px;
 }
 
-.doctorUpdateItem>label{
+.diagnoseUpdateItem>label{
     margin-bottom: 5px;
     font-size: 14px;
 }
 
-.doctorUpdateInput{
+.diagnoseUpdateInput{
     border: none;
     width: 250px;
     height: 30px;
     border-bottom: 1px solid grey;
 }
 
-.doctorUpdateRight{
+.diagnoseUpdateRight{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.doctorUpdateUpload{
-    display: flex;
-    align-items: center;
-}
-
-.doctorUpdateImg{
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    object-fit: cover;
-    margin-right: 20px;
-}
-
-.doctorUpdateIcon{
-    cursor: pointer;
-}
-
-.doctorUpdateButton{
+.diagnoseUpdateButton{
     border-radius: 5px;
     border: none;
     padding: 5px;

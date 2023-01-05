@@ -111,16 +111,18 @@ const Medicine = () => {
                             <input type="text" name="category" placeholder='Tablet' className='medicineUpdateInput' value={medicineedit.category} onChange={(e) => handleEdit(e)} />
                         </div> 
                         <div className="medicineUpdateItem">
-                            <input type="checkbox" name="yes" value="true"/>
-                            <label for="yes"> acidic</label><br/>
-                            <input type="checkbox" name="no" value="false"/>
-                            <label for="no"> not acidic</label><br/>
+                            <label>Acidic?</label>
+                            <select name="acidic" id="acidic" className="newMedicineSelect">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
                         </div> 
                         <div className="medicineUpdateItem">
-                            <input type="checkbox" name="yes" value="true"/>
-                            <label for="yes"> infant safe</label><br/>
-                            <input type="checkbox" name="no" value="false"/>
-                            <label for="no"> not infant safe</label><br/>
+                           <label>Acidic?</label>
+                            <select name="acidic" id="acidic" className="newMedicineSelect">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
                         </div> 
                         <div className="medicineUpdateItem">
                             <label>Patient Name</label>

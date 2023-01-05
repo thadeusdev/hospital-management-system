@@ -4,6 +4,7 @@ import Sidebar from './components/sidebar/Sidebar';
 import Topbar from './components/topbar/Topbar';
 import AppointmentList from './pages/appointmentList/AppointmentList';
 import Dashboard from './pages/dashboard/Dashboard';
+import Diagnose from './pages/diagnose/Diagnose';
 import DiagnoseList from './pages/diagnoseList/DiagnoseList';
 import Disease from './pages/disease/Disease';
 import DiseaseList from './pages/diseaseList/DiseaseList';
@@ -11,6 +12,7 @@ import Doctor from './pages/doctor/Doctor';
 import DoctorList from './pages/doctorList/DoctorList';
 import Medicine from './pages/medicine/Medicine';
 import MedicineList from './pages/medicineList/MedicineList';
+import NewDiagnose from './pages/newDiagnose/NewDiagnose';
 import NewDisease from './pages/newDisease/NewDisease';
 import NewDoctor from './pages/newDoctor/NewDoctor';
 import NewMedicine from './pages/newMedicine/NewMedicine';
@@ -35,11 +37,13 @@ const App = () => {
           <Route path="/doctor/:id" element={<Doctor />} />
           <Route path="/patient/:id" element={<Patient />} />
           <Route path="/disease/:id" element={<Disease />} />
+          <Route path="/diagnose/:id" element={<Diagnose />} />
           <Route path="/medicine/:id" element={<Medicine />} />
           <Route path="/newDoctor" element={<NewDoctor />} />
           <Route path="/newPatient" element={<NewPatient />} />
           <Route path="/newDisease" element={<NewDisease />} />
           <Route path="/newMedicine" element={<NewMedicine />} />
+          <Route path="/newDiagnose" element={<NewDiagnose />} />
         </Routes>
       </Sidebar>
     </BrowserRouter>

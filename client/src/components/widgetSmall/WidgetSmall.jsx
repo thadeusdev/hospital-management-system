@@ -3,7 +3,7 @@ import "./widgetSmall.css"
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useEffect, useState } from 'react'
 
-const WidgetSmall = () => {
+const WidgetSmall = ({id}) => {
     const [doctors, setDoctors] = useState([])
 
     useEffect(() => {

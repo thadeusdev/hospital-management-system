@@ -6,41 +6,61 @@ const Chart = () => {
     const data = [
         {
           name: 'Jan',
-          "Active User": 4000,
+          "Patients": 4000,
         },
         {
           name: 'Feb',
-          "Active User": 3000,
+          "Patients": 3000,
         },
         {
           name: 'Mar',
-          "Active User": 2000,
+          "Patients": 2000,
         },
         {
           name: 'Apr',
-          "Active User": 2780,
+          "Patients": 2780,
         },
         {
           name: 'May',
-          "Active User": 1890,
+          "Patients": 1890,
         },
         {
           name: 'June',
-          "Active User": 2390,
+          "Patients": 2390,
         },
         {
           name: 'Jul',
-          "Active User": 3490,
+          "Patients": 3490,
+        },
+        {
+          name: 'Aug',
+          "Patients": 3040,
+        },
+        {
+          name: 'Sep',
+          "Patients": 2490,
+        },
+        {
+          name: 'Oct',
+          "Patients": 2000,
+        },
+        {
+          name: 'Nov',
+          "Patients": 3490,
+        },
+        {
+          name: 'Dec',
+          "Patients": 1780,
         },
       ];
 
   return (
     <div className='chart'>
-        <h3 className="chartTitle">User Analytics</h3>
+        <h3 className="chartTitle">Patient Analytics</h3>
         <ResponsiveContainer aspect={4 / 1}>
             <LineChart data={data}>
                 <XAxis dataKey="name" stroke='#5550bd' />
-                <Line type="monotone" dataKey="Active User" stroke='#5550bd' />
+                <Line type="monotone" dataKey="Patients" stroke='#5550bd' />
                 <Tooltip />
                 <Legend />
                 <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 5" />

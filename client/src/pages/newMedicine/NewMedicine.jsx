@@ -7,6 +7,10 @@ const NewMedicine = () => {
         <h1 className="newMedicineTitle">New Medicine</h1>
         <form className="newMedicineForm">
             <div className="newMedicineItem">
+                <label>Image</label>
+                <input type="text" placeholder='url' />
+            </div>
+            <div className="newMedicineItem">
                 <label>Name</label>
                 <input type="text" placeholder='Asprine' />
             </div>
