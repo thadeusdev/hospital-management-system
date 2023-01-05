@@ -2,7 +2,7 @@ import React from 'react'
 import "./medicineList.css"
 import { DataGrid } from '@mui/x-data-grid';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 
 const MedicineList = () => {
@@ -20,9 +20,9 @@ const MedicineList = () => {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/medicine/"+params.row.id}>
-              <button className="medicineListEdit">Edit</button>
-            </Link>                       
+            <NavLink to={"/medicine/"+params.row.id}>
+              <button className="medicineListEdit">Detail</button>
+            </NavLink>                       
               <DeleteOutlineIcon className="medicineListDelete" />
           </>
         )

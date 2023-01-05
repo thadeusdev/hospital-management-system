@@ -32,10 +32,10 @@ const App = () => {
           <Route path="/diseases" element={<DiseaseList />} />
           <Route path="/diagnoses" element={<DiagnoseList />} />
           <Route path="/medicines" element={<MedicineList />} />
-          <Route path="/doctor/:doctorId" element={<Doctor />} />
-          <Route path="/patient/:patientId" element={<Patient />} />
-          <Route path="/disease/:diseaseId" element={<Disease />} />
-          <Route path="/medicine/:medicineId" element={<Medicine />} />
+          <Route path="/doctor/:id" element={<Doctor />} />
+          <Route path="/patient/:id" element={<Patient />} />
+          <Route path="/disease/:id" element={<Disease />} />
+          <Route path="/medicine/:id" element={<Medicine />} />
           <Route path="/newDoctor" element={<NewDoctor />} />
           <Route path="/newPatient" element={<NewPatient />} />
           <Route path="/newDisease" element={<NewDisease />} />
