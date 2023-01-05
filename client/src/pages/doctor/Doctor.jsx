@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import "./doctor.css"
 import BadgeIcon from '@mui/icons-material/Badge';
 import AccessibleIcon from '@mui/icons-material/Accessible';
+import PublishIcon from '@mui/icons-material/Publish';
 import { FaCalendarPlus }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
 const Doctor = () => {
-    const [doctoredit, setDoctoredit] = useState({full_name:'', primary_practice:'', secondary_practice:''})
+    const [doctoredit, setDoctoredit] = useState({img:'', full_name:'', primary_practice:'', secondary_practice:''})
     const history = useNavigate()
     const {id} = useParams();    
 
@@ -36,6 +37,7 @@ const Doctor = () => {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
+                img: e.target.img.value,
                 full_name: e.target.full_name.value,
                 primary_practice: e.target.primary_practice.value,
                 secondary_practice: e.target.secondary_practice.value
@@ -56,6 +58,7 @@ const Doctor = () => {
         <div className="doctorContainer">
             <div className="doctorShow">
                 <div className="doctorShowTop">
+                    <img src={doctoredit.img} alt="" className="doctorShowImg" />
                     <div className="doctorShowTopTitle">
                         <span className="doctorShowDoctorname">{doctoredit.full_name}</span>
                         <span className="doctorShowDoctorTitle">{doctoredit.primary_practice}</span>
@@ -101,6 +104,11 @@ const Doctor = () => {
                         </div>                        
                     </div>
                     <div className="doctorUpdateRight">
+                        <div className="doctorUpdateUpload">
+                            <img className="doctorUpdateImg" src={doctoredit.img} alt="" />
+                            <label htmlFor="file"><PublishIcon className='doctorUpdateIcon' /></label>
+                            <input type="file" id='file' style={{display: "none"}}  name="img" src={doctoredit.img} onChange={(e) => handleEdit(e)} />
+                        </div>
                         <button className="doctorUpdateButton">Update</button>
                     </div>
                 </form>

@@ -45,6 +45,13 @@
     align-items: center;
 }
 
+.doctorShowImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .doctorShowTopTitle{
     display: flex;
     flex-direction: column;
@@ -117,6 +124,23 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.doctorUpdateUpload{
+    display: flex;
+    align-items: center;
+}
+
+.doctorUpdateImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.doctorUpdateIcon{
+    cursor: pointer;
 }
 
 .doctorUpdateButton{

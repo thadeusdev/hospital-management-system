@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import "./patient.css"
 import PlaceIcon from '@mui/icons-material/Place';
-import CoronavirusIcon from '@mui/icons-material/Coronavirus';
+import PublishIcon from '@mui/icons-material/Publish';
 import { NavLink } from 'react-router-dom';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaCalendarAlt } from 'react-icons/fa';
 
 const Patient = () => {
-    const [patientedit, setPatientedit] = useState({full_name:'', address:'', visiting_date:'', visit_no:''})
+    const [patientedit, setPatientedit] = useState({img:'', full_name:'', address:'', visiting_date:'', visit_no:''})
     const history = useNavigate()
     const {id} = useParams();
 
@@ -36,6 +36,7 @@ const Patient = () => {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
+                img: e.target.img.value,
                 full_name: e.target.full_name.value,
                 address: e.target.address.value,
                 visiting_date: e.target.visiting_date.value,
@@ -57,6 +58,7 @@ const Patient = () => {
         <div className="patientContainer">
             <div className="patientShow">
                 <div className="patientShowTop">
+                    <img src={patientedit.img} alt="" className="patientShowImg" />
                     <div className="patientShowTopTitle">
                         <span className="patientShowPatientname">{patientedit.full_name}</span>
                         <span className="patientShowPatientTitle">{patientedit.visit_no}</span>
@@ -97,6 +99,11 @@ const Patient = () => {
                         </div>                       
                     </div>
                     <div className="patientUpdateRight">
+                        <div className="patientUpdateUpload">
+                            <img className="patientUpdateImg" src={patientedit.img} alt="" />
+                            <label htmlFor="file"><PublishIcon className='patientUpdateIcon' /></label>
+                            <input type="file" id='file' style={{display: "none"}}  name="img" src={patientedit.img} onChange={(e) => handleEdit(e)} />
+                        </div>
                         <button className="patientUpdateButton">Update</button>
                     </div>
                 </form>

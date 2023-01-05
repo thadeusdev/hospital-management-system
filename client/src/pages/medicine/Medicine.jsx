@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, {  useState, useEffect } from 'react'
 import "./medicine.css"
 import CoronavirusIcon from '@mui/icons-material/Coronavirus';
+import PublishIcon from '@mui/icons-material/Publish';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { NavLink } from 'react-router-dom';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
 const Medicine = () => {
-    const [medicineedit, setMedicineedit] = useState({name:'', description:'', category:'', is_acidic:'', infant_safe:'', patient_id:'', disease_id:''})
+    const [medicineedit, setMedicineedit] = useState({img:'', name:'', description:'', category:'', is_acidic:'', infant_safe:'', patient_id:'', disease_id:''})
     const history = useNavigate()
-    const {id} = useParams();    
+    const {id} = useParams(); 
 
     // console.log(id)
 
@@ -35,6 +36,7 @@ const Medicine = () => {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
+                img: e.target.file.value,
                 name: e.target.name.value,
                 description: e.target.description.value,
                 category: e.target.category.value,
@@ -59,6 +61,7 @@ const Medicine = () => {
         <div className="medicineContainer">
             <div className="medicineShow">
                 <div className="medicineShowTop">
+                    <img src={medicineedit.img} alt="" className="medicineShowImg" />
                     <div className="medicineShowTopTitle">
                         <span className="medicineShowMedicinename">{medicineedit.name}</span>
                         <span className="medicineShowMedicineTitle">{medicineedit.patient_id}</span>
@@ -123,6 +126,11 @@ const Medicine = () => {
                         </div>                                                 
                     </div>
                     <div className="medicineUpdateRight">
+                        <div className="medicineUpdateUpload">
+                            <img className="medicineUpdateImg" src={medicineedit.img} alt="" />
+                            <label htmlFor="file"><PublishIcon className='medicineUpdateIcon' /></label>
+                            <input type="file" id='file' style={{display: "none"}}  name="file" src={medicineedit.img} onChange={(e) => handleEdit(e)} />
+                        </div>
                         <button className="medicineUpdateButton">Update</button>
                     </div>
                 </form>
