@@ -3,6 +3,19 @@
     height: 520px;
 }
 
+.patientListName{
+    display: flex;
+    align-items: center;
+}
+
+.patientListImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
 .patientListEdit{
     border: none;
     border-radius: 10px;

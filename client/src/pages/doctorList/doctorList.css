@@ -3,6 +3,19 @@
     height: 520px;
 }
 
+.doctorListName{
+    display: flex;
+    align-items: center;
+}
+
+.doctorListImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
 .doctorListEdit{
     border: none;
     border-radius: 10px;

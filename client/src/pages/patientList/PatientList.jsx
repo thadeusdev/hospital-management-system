@@ -8,7 +8,14 @@ import { useEffect, useState } from 'react'
 const DoctorList = () => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'full_name', headerName: 'Full Name', width: 200 },
+    { field: 'full_name', headerName: 'Full Name', width: 200, renderCell: (params) => {
+      return (
+          <div className='patientListName'>
+              <img className='patientListImg' src={params.row.img} alt="" />
+              {params.row.full_name}
+          </div>
+      )
+  } },
     { field: 'address', headerName: 'Address', width: 200 },
     { field: 'visiting_date', headerName: 'Visit Date', width: 200 },
     { field: 'visit_no', headerName: 'Visit Number', width: 200 },
