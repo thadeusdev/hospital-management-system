@@ -28,7 +28,7 @@ const DoctorList = () => {
             <NavLink to={"/doctor/"+params.row.id}>
               <button className="doctorListEdit">Detail</button>
             </NavLink>                       
-              <DeleteOutlineIcon className="doctorListDelete" />
+              <DeleteOutlineIcon className="doctorListDelete" onClick={() => handleDelete(params.row.id)} />
           </>
         )
       }
@@ -42,6 +42,16 @@ const DoctorList = () => {
         .then(res => res.json())
         .then((doctors => setDoctors(doctors)))
     }, [])
+
+    const handleDelete = (id) => {
+      async function deleteDoctor(){
+        await fetch(`doctors/${id}`, {
+          method: 'DELETE',
+        })
+        setDoctors(doctors.filter((doctor) => doctor.id !== id))
+      }
+      deleteDoctor()
+    }
 
   return (
     <div className='doctorList'>
