@@ -41,19 +41,14 @@ const Medicine = () => {
                 name: e.target.name.value,
                 description: e.target.description.value,
                 category: e.target.category.value,
-                // is_acidic: e.target.is_acidic.value,
-                // infant_safe: e.target.infant_safe.value,
+                is_acidic: e.target.is_acidic.value,
+                infant_safe: e.target.infant_safe.value,
                 patient_id: e.target.patient_id.value,
                 disease_id: e.target.disease_id.value,
             }),
         },[])
         .then((r) => r.json())
         .then((data) => console.log(data))
-    }
-    
-    const fileSelectedHandler=(e)=>{
-        console.log(e.target.files[0])
-        this.setState({state: e.target.files[0]})
     }
 
   return (
@@ -86,12 +81,14 @@ const Medicine = () => {
                     </div> 
                     <span className="medicineShowTitle">Is acidic</span> 
                     <div className="medicineShowInfo">
+                        <VerifiedIcon className="medicineShowIcon" />
                         <span className="medicineShowInfoTitle">{medicineedit.is_acidic}</span>
                     </div> 
                     <span className="medicineShowTitle">Infant safe</span> 
                     <div className="medicineShowInfo">
+                        <VerifiedIcon className="medicineShowIcon" />
                         <span className="medicineShowInfoTitle">{medicineedit.infant_safe}</span>
-                    </div>                 
+                    </div>           
                 </div>
             </div>
             <div className="medicineUpdate">
@@ -112,16 +109,16 @@ const Medicine = () => {
                         </div> 
                         <div className="medicineUpdateItem">
                             <label>Acidic?</label>
-                            <select name="acidic" id="acidic" className="newMedicineSelect">
-                                <option value="true">True</option>
-                                <option value="false">False</option>
+                            <select name="is_acidic" id="acidic" className="newMedicineSelect">
+                                <option name="is_acidic" value={medicineedit.is_acidic} onChange={(e) => handleEdit(e)}>True</option>
+                                <option name="is_acidic" value={medicineedit.is_acidic} onChange={(e) => handleEdit(e)}>False</option>
                             </select>
                         </div> 
                         <div className="medicineUpdateItem">
-                           <label>Acidic?</label>
-                            <select name="acidic" id="acidic" className="newMedicineSelect">
-                                <option value="true">True</option>
-                                <option value="false">False</option>
+                           <label>Infant safe?</label>
+                            <select name="infant_safe" id="infant_safe" className="newMedicineSelect">
+                                <option name="infant_safe" value={medicineedit.infant_safe} onChange={(e) => handleEdit(e)}>True</option>
+                                <option name="infant_safe" value={medicineedit.infant_safe} onChange={(e) => handleEdit(e)}>False</option>
                             </select>
                         </div> 
                         <div className="medicineUpdateItem">
@@ -137,7 +134,7 @@ const Medicine = () => {
                         <div className="medicineUpdateUpload">
                             <img className="medicineUpdateImg" src={medicineedit.img} alt="" />
                             <label htmlFor="file"><PublishIcon className='medicineUpdateIcon' /></label>
-                            <input type="file" id='file' style={{display: "none"}}  name="img" src={medicineedit.img} onChange={(e)=>fileSelectedHandler(e)} />
+                            <input type="file" id='file' style={{display: "none"}}  name="img" src={medicineedit.img} onChange={(e) => handleEdit(e)} />
                         </div>
                         <button className="medicineUpdateButton">Update</button>
                     </div>
