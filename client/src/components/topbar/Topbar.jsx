@@ -11,7 +11,7 @@ const Topbar = () => {
         <div className="topbarWrapper">
             <div className="topLeft">
                 <span className="logo">
-                    <img src="img/HealthCareLogo.png" alt="" />
+                    <img src={require("../../img/HealthCareLogo.png")} />
                 </span>
             </div>
             <div className="topRight">
