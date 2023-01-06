@@ -10,7 +10,9 @@ const Topbar = () => {
     <div className='topbar'>
         <div className="topbarWrapper">
             <div className="topLeft">
-                <span className="logo">H<LocalHospitalIcon/>SPITALE</span>
+                <span className="logo">
+                    <img src="img/HealthCareLogo.png" alt="" />
+                </span>
             </div>
             <div className="topRight">
                 <div className="topbarIconContainer">

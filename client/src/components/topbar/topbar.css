@@ -21,6 +21,11 @@
     font-size: 30px;
     cursor: pointer;
 }
+.logo>img{
+    height: 70px;
+    width: 70px;
+    margin-top: 20px;
+}
 
 .topRight{
     display: flex;
