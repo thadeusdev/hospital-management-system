@@ -1,0 +1,155 @@
+.medicine{
+    flex: 4;
+    padding: 20px;
+}
+
+.medicineTitleContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: capitalize;
+}
+
+.medicineAddButton{
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: teal;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.medicineContainer{
+    display: flex;
+    margin-top: 20px;
+}
+
+.medicineShow{
+    flex: 1;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+}
+
+.medicineUpdate{
+    flex: 2;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+    margin-left: 20px;
+}
+
+.medicineShowTop{
+    display: flex;
+    align-items: center;
+}
+
+.medicineShowImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.medicineShowTopTitle{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.medicineShowMedicinename{
+    font-weight: 600;
+}
+
+.medicineShowMedicineTitle{
+    font-weight: 300;
+}
+
+.medicineShowBottom{
+    margin-top: 20px;
+}
+
+.medicineShowTitle{
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(175, 170, 170);
+}
+
+.medicineShowInfo{
+    display: flex;
+    align-items: center;
+    margin: 20px 40px;
+    color: #444;
+}
+
+.medicineShowIcon{
+    font-size: 16px !important;
+}
+
+.medicineShowInfoTitle{
+    margin-left: 10px;
+}
+
+.medicineUpdateTitle{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.medicineUpdateForm{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.medicineUpdateItem{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.medicineUpdateItem>label{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.medicineUpdateInput{
+    border: none;
+    width: 250px;
+    height: 30px;
+    border-bottom: 1px solid grey;
+}
+
+.medicineUpdateRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.medicineUpdateUpload{
+    display: flex;
+    align-items: center;
+}
+
+.medicineUpdateImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.medicineUpdateIcon{
+    cursor: pointer;
+}
+
+.medicineUpdateButton{
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    background-color: rgb(21, 142, 218);
+    color: white;
+    font-weight: 600;
+}

@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2022_12_23_212149) do
   end
 
   create_table "doctors", force: :cascade do |t|
+    t.string "img"
     t.string "full_name"
     t.string "primary_practice"
     t.string "secondary_practice"
@@ -50,7 +51,12 @@ ActiveRecord::Schema.define(version: 2022_12_23_212149) do
   end
 
   create_table "medicines", force: :cascade do |t|
+    t.string "img"
     t.string "name"
+    t.string "description"
+    t.string "category"
+    t.boolean "is_acidic"
+    t.boolean "infant_safe"
     t.integer "patient_id"
     t.integer "disease_id"
     t.datetime "created_at", precision: 6, null: false
@@ -58,6 +64,7 @@ ActiveRecord::Schema.define(version: 2022_12_23_212149) do
   end
 
   create_table "patients", force: :cascade do |t|
+    t.string "img"
     t.string "full_name"
     t.string "address"
     t.datetime "visiting_date"

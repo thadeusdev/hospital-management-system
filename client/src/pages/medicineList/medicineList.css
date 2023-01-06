@@ -1,0 +1,37 @@
+.medicineList{
+    flex: 4;
+    height: 520px;
+}
+
+.medicineListName{
+    display: flex;
+    align-items: center;
+}
+
+.medicineListImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.medicineListEdit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.medicineListDelete{
+    color: red;
+    cursor: pointer;
+}
+
+.medicineTitle{
+    font-size: 22px;
+    font-weight: 600;
+}

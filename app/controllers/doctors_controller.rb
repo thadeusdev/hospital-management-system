@@ -42,6 +42,6 @@ class DoctorsController < ApplicationController
     private
 
     def doctor_params
-        params.permit(:full_name, :primary_practice, :secondary_practice)
+        params.permit(:img, :full_name, :primary_practice, :secondary_practice)
     end
 end
