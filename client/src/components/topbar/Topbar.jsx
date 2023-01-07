@@ -7,7 +7,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { Link } from 'react-router-dom';
 
 const Topbar = () => {
-    const [notifyItems, setNotifyItems] = useState([0])
+    const [notifyItems, setNotifyItems] = useState(0)
 
     useEffect(() => {
         fetch("/doctor_appointments")
