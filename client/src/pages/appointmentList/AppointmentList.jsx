@@ -9,6 +9,8 @@ const AppointmentList = () => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'notes', headerName: 'Notes', width: 200 },
+    { field: 'patient_id', headerName: 'Patient Id', width: 120 },
+    { field: 'doctor_id', headerName: 'Doctor Id', width: 120 },
     { 
       field: 'action',
       headerName: 'Action',

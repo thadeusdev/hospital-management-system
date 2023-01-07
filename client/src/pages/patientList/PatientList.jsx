@@ -5,7 +5,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 
-const DoctorList = () => {
+const PatientList = () => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'full_name', headerName: 'Full Name', width: 200, renderCell: (params) => {
@@ -56,7 +56,13 @@ const DoctorList = () => {
 
   return (
     <div className='patientList'>
+      <div className="patientTitleContainer">
       <h3 className="patientTitle">Patients</h3>
+        <NavLink to="/newPatient">
+          <button className="patientAddButton">Create</button>
+        </NavLink>            
+      </div>
+
       <DataGrid
       rows={patients}
       columns={columns}
@@ -69,4 +75,4 @@ const DoctorList = () => {
   )
 }
 
-export default DoctorList
+export default PatientList

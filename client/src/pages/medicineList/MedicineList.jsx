@@ -57,7 +57,13 @@ const MedicineList = () => {
 
   return (
     <div className='medicineList'>
+      <div className="medicineTitleContainer">
       <h3 className="medicineTitle">Medicines</h3>
+        <NavLink to="/newMedicine">
+          <button className="medicineAddButton">Create</button>
+        </NavLink>            
+      </div>
+
       <DataGrid
       rows={medicines}
       columns={columns}
