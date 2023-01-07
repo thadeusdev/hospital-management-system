@@ -3,11 +3,10 @@ import "./appointment.css"
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { NavLink } from 'react-router-dom';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Appointment = () => {
     const [appointmentedit, setAppointmentedit] = useState({notes:'', patient_id:'', doctor_id:''})
-    const history = useNavigate()
     const {id} = useParams(); 
 
     // console.log(id)

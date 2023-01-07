@@ -2,7 +2,6 @@ import React from 'react'
 import "./featuredInfo.css"
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { ArrowUpward } from '@mui/icons-material';
-import HotelIcon from '@mui/icons-material/Hotel';
 
 const FeaturedInfo = () => {
   return (

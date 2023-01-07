@@ -2,7 +2,7 @@ import React, { useState} from 'react'
 import "./newDisease.css"
 
 const NewDisease = () => {
-    const [diseases, setDiseases] = useState([]);
+    const [setDiseases] = useState([]);
 
     function handleAddDisease(event) {
       event.preventDefault();

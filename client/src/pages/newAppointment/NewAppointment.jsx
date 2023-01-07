@@ -2,7 +2,7 @@ import React, { useState} from 'react'
 import "./newAppointment.css"
 
 const NewAppointment = () => {
-    const [appointments, setAppointments] = useState([]);
+    const [setAppointments] = useState([]);
 
     function handleAddappointment(event) {
       event.preventDefault();

@@ -38,7 +38,7 @@ const DiseaseList = () => {
 
     const handleDelete = (id) => {
       async function deleteDisease(){
-        await fetch(`diseases/${id}`, {
+        await fetch(`/diseases/${id}`, {
           method: 'DELETE',
         })
         setDiseases(diseases.filter((disease) => disease.id !== id))

@@ -45,7 +45,7 @@ const DoctorList = () => {
 
     const handleDelete = (id) => {
       async function deleteDoctor(){
-        await fetch(`doctors/${id}`, {
+        await fetch(`/doctors/${id}`, {
           method: 'DELETE',
         })
         setDoctors(doctors.filter((doctor) => doctor.id !== id))

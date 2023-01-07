@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
 import "./topbar.css"
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import LanguageIcon from '@mui/icons-material/Language';
@@ -6,20 +7,35 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { Link } from 'react-router-dom';
 
 const Topbar = () => {
+    const [notifyItems, setNotifyItems] = useState([0])
+
+    useEffect(() => {
+        fetch("/doctor_appointments")
+        .then(r => r.json())
+        .then(notifyItems => setNotifyItems(notifyItems))
+    }, [])
+
+    useEffect(() => {
+        if (notifyItems > 0) {
+            toast.success(`${notifyItems} appointments addesuccessfully`, {
+                position: toast.POSITION.BOTTOM_RIGHT
+            })
+        }
+    }, [notifyItems])
   return (
     <div className='topbar'>
         <div className="topbarWrapper">
             <div className="topLeft">
             <Link to="/" className="logoLink">
                 <span className="logo">                    
-                    <img src={require("../../img/HealthCareLogo.png")} />
+                    <img src={require("../../img/HealthCareLogo.png")} alt="" />
                 </span>
             </Link>
             </div>
             <div className="topRight">
                 <div className="topbarIconContainer">
                     <NotificationsNoneIcon className='icon'/>
-                    <span className="topIconBadge">2</span>
+                    <span className="topIconBadge">{notifyItems.length}</span>
                 </div>
                 <div className="topbarIconContainer">
                     <LanguageIcon className='icon'/>

@@ -21,7 +21,7 @@ const AppointmentList = () => {
             <NavLink to={"/appointment/"+params.row.id}>
               <button className="appointmentListEdit">Detail</button>
             </NavLink>                       
-              <DeleteOutlineIcon className="appointmentListDelete" />
+              <DeleteOutlineIcon className="appointmentListDelete" onClick={() => handleDelete(params.row.id)} />
           </>
         )
       }
@@ -36,9 +36,25 @@ const AppointmentList = () => {
         .then((appointments => setAppointments(appointments)))
     }, [])
 
+    const handleDelete = (id) => {
+      async function deleteAppointment(){
+        await fetch(`/doctor_appointments/${id}`, {
+          method: 'DELETE',
+        })
+        setAppointments(appointments.filter((appointment) => appointment.id !== id))
+      }
+      deleteAppointment()
+    }
+
   return (
     <div className='appointmentList'>
-      <h3 className="appointmentTitle">Appointments</h3>
+      <div className="appointmentTitleContainer">
+        <h3 className="appointmentTitle">Appointments</h3>
+        <NavLink to="/newappointment">
+          <button className="appointmentAddButton">Create</button>
+        </NavLink>            
+      </div>
+
       <DataGrid
       rows={appointments}
       columns={columns}
