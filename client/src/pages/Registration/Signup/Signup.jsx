@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
-import { borderRadius } from '@mui/system';
+
 
 const Signup = () => {
     const [username, setUsername] = useState('');
@@ -42,7 +42,7 @@ const Signup = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            
+
             <Box display="flex"
                 flexDirection={"column"}
                 maxWidth={400} alignItems="center"
@@ -55,31 +55,42 @@ const Signup = () => {
                 sx={{
                     ":hover": {
                         boxShadow: "10px 20px #ccc",
-                               },
-                           }}
+                    },
+                }}
             >
-                
-                
+
+
 
                 <Typography variant="h2" padding={3} textAlign="center">
 
                     Signup</Typography>
                 < TextField margin="normal"
-                        type={"text"}
-                        variant='outlined'
-                        placeholder='Username' />
-                
+                    label="Username"
+                    value={username}
+                    onChange={(event) => setUsername(event.target.value)}
+                    type={"text"}
+                    variant='outlined'
+                    placeholder='Username' />
+
 
                 <TextField margin="normal"
+                    label="Email"
                     type={"email"}
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
                     variant='outlined'
                     placeholder='Email' />
 
                 <TextField margin="normal"
+                    label="Password"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
                     type={"password"} variant='outlined'
                     placeholder='password' />
+                <br />
+                {error && <p>{error}</p>}
 
-                <Button sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>Signup</Button>
+                <Button type="submit" sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>Signup</Button>
                 <Button
                     onClick={() => setIsSignupSuccess(!isSignupSuccess)}
                     sx={{ marginTop: 3, borderRadius: 3 }} >
@@ -87,7 +98,7 @@ const Signup = () => {
                 </Button>
 
             </Box>
-                       
+
         </form>
     );
 };
