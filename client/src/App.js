@@ -21,6 +21,7 @@ import Patient from './pages/patient/Patient';
 import PatientList from './pages/patientList/PatientList';
 import Signup from './pages/Registration/Signup/Signup';
 import Login from './pages/Registration/Login/Login';
+import Logout from './pages/Registration/Logout';
 
 const App = () => {
   return (
@@ -47,7 +48,8 @@ const App = () => {
           <Route path="/newMedicine" element={<NewMedicine />} />
           <Route path="/newDiagnose" element={<NewDiagnose />} />
           <Route path="/Signup" element={<Signup/>}/>
-          <Route path="/Login" element={<Login/>}/>
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Logout" element={<Logout />} />
           
 
         </Routes>
