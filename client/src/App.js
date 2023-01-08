@@ -19,7 +19,8 @@ import NewMedicine from './pages/newMedicine/NewMedicine';
 import NewPatient from './pages/newPatient/NewPatient';
 import Patient from './pages/patient/Patient';
 import PatientList from './pages/patientList/PatientList';
-import register from './pages/registration/register';
+import Signup from './pages/Registration/Signup/Signup';
+import Login from './pages/Registration/Login/Login';
 
 const App = () => {
   return (
@@ -45,7 +46,10 @@ const App = () => {
           <Route path="/newDisease" element={<NewDisease />} />
           <Route path="/newMedicine" element={<NewMedicine />} />
           <Route path="/newDiagnose" element={<NewDiagnose />} />
-          <Route path="/register" element={<register/>}/>
+          <Route path="/Signup" element={<Signup/>}/>
+          <Route path="/Login" element={<Login/>}/>
+          
+
         </Routes>
       </Sidebar>
     </BrowserRouter>
