@@ -23,4 +23,4 @@ Things you may want to cover:
 
 * ...
 # Hospital-system
-![Alt text](/client/src/img/ERD - Hospital_Management_System.png "Optional title")
+![Alt text](/client/src/img/ERD-Hospital_Management_System.png "Optional title")
