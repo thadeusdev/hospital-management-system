@@ -39,26 +39,26 @@ const FeaturedInfo = () => {
   return (
     <div className='featured'>
         <div className="featuredItem">
-            <span className="featuredTitle">Revenue</span>
-            <div className="featuredMoneyContainer">
-                <span className="featuredMoney">$2,415</span>
-                <span className="featuredMoneyRate">-11.4 <ArrowDownwardIcon className='featuredIcon negative'/></span>
+            <span className="featuredTitle">Diseases</span>
+            <div className="featuredShowContainer">
+                <span className="featuredShow">5</span>
+                <span className="featuredShowRate">-11.4 <ArrowDownwardIcon className='featuredIcon negative'/></span>
             </div>
             <span className="featuredSub">Currently recorded</span>
         </div>
         <div className="featuredItem">
             <span className="featuredTitle">Medicines</span>
-            <div className="featuredMoneyContainer">
-                <span className="featuredMoney">{notifyMedicines.length}</span>
-                <span className="featuredMoneyRate">-1.4 <ArrowDownwardIcon className='featuredIcon negative'/></span>
+            <div className="featuredShowContainer">
+                <span className="featuredShow">{notifyMedicines.length}</span>
+                <span className="featuredShowRate">-1.4 <ArrowDownwardIcon className='featuredIcon negative'/></span>
             </div>
             <span className="featuredSub">Currently recorded</span>
         </div>
         <div className="featuredItem">
             <span className="featuredTitle">Patients</span>
-            <div className="featuredMoneyContainer">
-                <span className="featuredMoney">{notifyPatients.length}</span>
-                <span className="featuredMoneyRate">-11.4 <ArrowUpward className='featuredIcon'/></span>
+            <div className="featuredShowContainer">
+                <span className="featuredShow">{notifyPatients.length}</span>
+                <span className="featuredShowRate">-11.4 <ArrowUpward className='featuredIcon'/></span>
             </div>
             <span className="featuredSub">Currently recorded</span>
         </div>
