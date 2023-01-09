@@ -9,8 +9,9 @@ import {
     FaDisease,
     FaMicroscope,
     FaTablets,
+    FaSignOutAlt,
+    FaSignInAlt,
     FaPrescriptionBottleAlt,
-    FaSignOutAlt
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 
@@ -55,6 +56,15 @@ const Sidebar = ({children}) => {
             icon:<FaTablets/>
         },
         {
+            path: "/login",
+            name: "Login",
+            icon: <FaSignInAlt />  
+        },
+        {
+            path: "/signup",
+            name: "Signup",
+            icon: <FaSignInAlt />
+          },
             path:"/prescriptions",
             name:"Prescriptions",
             icon:<FaPrescriptionBottleAlt/>

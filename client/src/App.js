@@ -21,7 +21,9 @@ import NewMedicine from './pages/newMedicine/NewMedicine';
 import NewPatient from './pages/newPatient/NewPatient';
 import Patient from './pages/patient/Patient';
 import PatientList from './pages/patientList/PatientList';
-import PrescriptionList from './pages/prescriptionList/PrescriptionList';
+import Signup from './pages/Registration/Signup/Signup';
+import Login from './pages/Registration/Login/Login';
+import Logout from './pages/Registration/Logout';
 
 const App = () => {
   return (
@@ -49,7 +51,9 @@ const App = () => {
           <Route path="/newDisease" element={<NewDisease />} />
           <Route path="/newMedicine" element={<NewMedicine />} />
           <Route path="/newDiagnose" element={<NewDiagnose />} />
-          <Route path="/prescriptions" element={<PrescriptionList />} />
+          <Route path="/Signup" element={<Signup/>}/>
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Logout" element={<Logout />} />
         </Routes>
       </Sidebar>
     </BrowserRouter>
