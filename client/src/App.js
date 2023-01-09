@@ -21,6 +21,7 @@ import NewMedicine from './pages/newMedicine/NewMedicine';
 import NewPatient from './pages/newPatient/NewPatient';
 import Patient from './pages/patient/Patient';
 import PatientList from './pages/patientList/PatientList';
+import PrescriptionList from './pages/prescriptionList/PrescriptionList';
 
 const App = () => {
   return (
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/newDisease" element={<NewDisease />} />
           <Route path="/newMedicine" element={<NewMedicine />} />
           <Route path="/newDiagnose" element={<NewDiagnose />} />
+          <Route path="/prescriptions" element={<PrescriptionList />} />
         </Routes>
       </Sidebar>
     </BrowserRouter>

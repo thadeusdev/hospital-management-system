@@ -2,18 +2,20 @@ import React, { useState} from 'react'
 import "./newAppointment.css"
 
 const NewAppointment = () => {
-    const [setAppointments] = useState([]);
+    const [appointments, setAppointments] = useState([]);
 
     function handleAddappointment(event) {
       event.preventDefault();
       const formData = new FormData(event.target);
       const appointment = {
         notes: formData.get('notes'),
+        date: formData.get('date'),
+        time: formData.get('time'),
         patient_id: formData.get('patient_id'),
         doctor_id: formData.get('doctor_id')
       };
   
-      fetch('/doctor_appointments', {
+      fetch('/appointments', {
         method: 'POST',
         body: JSON.stringify(appointment),
         headers: {
@@ -22,7 +24,7 @@ const NewAppointment = () => {
       })
         .then(response => response.json())
         .then(newAppointment => {
-          setAppointments([...appointment, newAppointment]);
+          setAppointments([...appointments, newAppointment]);
         });
     }
 
@@ -33,6 +35,14 @@ const NewAppointment = () => {
             <div className="newAppointmentItem">
                 <label>Notes</label>
                 <input type="text" name='notes' />
+            </div>
+            <div className="newAppointmentItem">
+                <label>Date</label>
+                <input type="date" name='date' />
+            </div>
+            <div className="newAppointmentItem">
+                <label>Time</label>
+                <input type="time" name='time' />
             </div>
             <div className="newAppointmentItem">
                 <label>Patient Id</label>

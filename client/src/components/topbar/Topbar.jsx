@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import "./topbar.css"
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import LanguageIcon from '@mui/icons-material/Language';
-import SettingsIcon from '@mui/icons-material/Settings';
 import { Link } from 'react-router-dom';
 
 const Topbar = () => {
@@ -33,17 +31,12 @@ const Topbar = () => {
             </Link>
             </div>
             <div className="topRight">
+                <Link to="/appointment">
                 <div className="topbarIconContainer">
                     <NotificationsNoneIcon className='icon'/>
                     <span className="topIconBadge">{notifyItems.length}</span>
                 </div>
-                <div className="topbarIconContainer">
-                    <LanguageIcon className='icon'/>
-                    <span className="topIconBadge">2</span>
-                </div>
-                <div className="topbarIconContainer">
-                    <SettingsIcon className='icon'/>
-                </div>
+                </Link>
                 <img src="https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg?w=2000" alt="" className="topAvator" />
             </div>
         </div>

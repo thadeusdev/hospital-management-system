@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 const Appointment = () => {
-    const [appointmentedit, setAppointmentedit] = useState({notes:'', patient_id:'', doctor_id:''})
+    const [appointmentedit, setAppointmentedit] = useState({notes:'', date:'', time:'', patient_id:'', doctor_id:''})
     const {id} = useParams(); 
 
     // console.log(id)
@@ -34,6 +34,8 @@ const Appointment = () => {
             },
             body: JSON.stringify({
                 notes: e.target.notes.value,
+                date: e.target.date.value,
+                time: e.target.time.value,
                 patient_id: e.target.patient_id.value,
                 doctor_id: e.target.doctor_id.value
             }),
@@ -55,14 +57,14 @@ const Appointment = () => {
                 <div className="appointmentShowTop">
                     <div className="appointmentShowTopTitle">
                         <span className="appointmentShowAppointmentname">{appointmentedit.notes}</span>
-                        <span className="appointmentShowAppointmentTitle">{appointmentedit.patient_id}</span>
+                        <span className="appointmentShowAppointmentTitle">{appointmentedit.date}</span>
                     </div>
                 </div>
                 <div className="appointmentShowBottom">
-                    <span className="appointmentShowTitle">Appointment</span>
+                    <span className="appointmentShowTitle">Time</span>
                     <div className="appointmentShowInfo">
                         <VerifiedIcon className="appointmentShowIcon" />
-                        <span className="appointmentShowInfoTitle">{appointmentedit.notes}</span>
+                        <span className="appointmentShowInfoTitle">{appointmentedit.time}</span>
                     </div> 
                     <span className="appointmentShowTitle">Patient Id</span> 
                     <div className="appointmentShowInfo">
@@ -83,6 +85,14 @@ const Appointment = () => {
                         <div className="appointmentUpdateItem">
                             <label>Notes</label>
                             <input type="text" name="notes" className='appointmentUpdateInput' value={appointmentedit.notes} onChange={(e) => handleEdit(e)} />
+                        </div>
+                        <div className="appointmentUpdateItem">
+                            <label>Date</label>
+                            <input type="date" name="date" className='appointmentUpdateInput' value={appointmentedit.date} onChange={(e) => handleEdit(e)} />
+                        </div>
+                        <div className="appointmentUpdateItem">
+                            <label>Time</label>
+                            <input type="time" name="time" className='appointmentUpdateInput' value={appointmentedit.time} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="appointmentUpdateItem">
                             <label>Patient Id</label>

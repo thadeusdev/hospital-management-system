@@ -11,13 +11,15 @@ const MedicineList = () => {
     { field: 'name', headerName: 'Full Name', width: 200, renderCell: (params) => {
       return (
           <div className='medicineListName'>
-              <img className='medicineListImg' src={params.row.img} alt="" />
+              <img className='medicineListImg' src={params.row.image} alt="" />
               {params.row.name}
           </div>
       )
   } },
-    { field: 'description', headerName: 'Description', width: 200 },
-    { field: 'category', headerName: 'Category', width: 120 },
+    { field: 'dosage', headerName: 'Dosage', width: 100 },
+    { field: 'patient_id', headerName: 'Patient Id', width: 100 },
+    { field: 'description', headerName: 'Description', width: 100 },
+    { field: 'category', headerName: 'Category', width: 100 },
     { field: 'is_acidic', headerName: 'Is Acidic', width: 90 },
     { field: 'infant_safe', headerName: 'Infant Safe', width: 90 },
     { 

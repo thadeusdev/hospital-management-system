@@ -42,6 +42,6 @@ class DiagnosticsController < ApplicationController
     private
 
     def diagnostic_params
-        params.permit(:notes, :disease_id, :patient_id, :diagnosed_on, :pulse, :sugar, :temperature, :pressure)
+        params.permit(:name, :patient_id, :doctor_id, :disease_id, :performed_at, :pulse, :sugar, :temperature, :pressure)
     end
 end

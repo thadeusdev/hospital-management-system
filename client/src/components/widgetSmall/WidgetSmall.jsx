@@ -16,10 +16,9 @@ const WidgetSmall = ({id}) => {
         <span className="widgetSmTitle">Available Doctors</span>
         <ul className="widgetSmList">
             {doctors.map((doctor) => (
-                <>
-                <li className="widgetSmListItem">
-                    <img src={doctor.img} alt="" className="widgetSmImg" />
-                    <div className="widgetSmUser">
+                <li className="widgetSmListItem" key={doctor.id}>
+                    <img src={doctor.image} alt="" className="widgetSmImg" />
+                    <div className="widgetSmUser" key={doctor.id}>
                         <span className="widgetSmUsername">{doctor.full_name}</span>
                         <span className="widgetSmUserTitle">{doctor.primary_practice}</span>
                     </div>
@@ -28,7 +27,6 @@ const WidgetSmall = ({id}) => {
                         Display
                     </button>
                 </li>
-                </>
             ))}            
         </ul>
     </div>

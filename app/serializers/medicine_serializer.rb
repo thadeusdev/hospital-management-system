@@ -1,3 +1,3 @@
 class MedicineSerializer < ActiveModel::Serializer
-  attributes :id, :img, :name, :description, :category, :is_acidic, :infant_safe, :patient_id, :disease_id
+  attributes :id, :image, :name, :dosage, :patient_id, :description, :category, :is_acidic, :infant_safe
 end

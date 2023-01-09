@@ -11,13 +11,15 @@ const DoctorList = () => {
     { field: 'full_name', headerName: 'Full Name', width: 200, renderCell: (params) => {
       return (
           <div className='doctorListName'>
-              <img className='doctorListImg' src={params.row.img} alt="" />
+              <img className='doctorListImg' src={params.row.image} alt="" />
               {params.row.full_name}
           </div>
       )
   } },
-    { field: 'primary_practice', headerName: 'Primary Practice', width: 200 },
-    { field: 'secondary_practice', headerName: 'Secondary Practice', width: 200 },
+    { field: 'email', headerName: 'Email', width: 200 },
+    { field: 'primary_practice', headerName: 'Primary Practice', width: 150 },
+    { field: 'secondary_practice', headerName: 'Secondary Practice', width: 150 },
+    { field: 'years_of_experience', headerName: 'Experience', width: 100 },
     { 
       field: 'action',
       headerName: 'Action',

@@ -37,6 +37,7 @@ const Disease = () => {
             },
             body: JSON.stringify({
                 name: e.target.name.value,
+                patient_id: e.target.patient_id.value,
                 symptoms: e.target.symptoms.value,
                 severity: e.target.severity.value
             }),
@@ -58,7 +59,7 @@ const Disease = () => {
                 <div className="diseaseShowTop">
                     <div className="diseaseShowTopTitle">
                         <span className="diseaseShowDiseasename">{diseaseedit.name}</span>
-                        <span className="diseaseShowDiseaseTitle">{diseaseedit.symptoms}</span>
+                        <span className="diseaseShowDiseaseTitle">{diseaseedit.patient_id}</span>
                     </div>
                 </div>
                 <div className="diseaseShowBottom">
@@ -85,15 +86,19 @@ const Disease = () => {
                     <div className="diseaseUpdateLeft">
                         <div className="diseaseUpdateItem">
                             <label>Name</label>
-                            <input type="text" name="name" placeholder='malaria' className='diseaseUpdateInput' value={diseaseedit.name} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="name" className='diseaseUpdateInput' value={diseaseedit.name} onChange={(e) => handleEdit(e)} />
+                        </div>
+                        <div className="diseaseUpdateItem">
+                            <label>Patient Id</label>
+                            <input type="text" name="patient_id" className='diseaseUpdateInput' value={diseaseedit.patient_id} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diseaseUpdateItem">
                             <label>Symptoms</label>
-                            <input type="text" name="symptoms" placeholder='fever, headache' className='diseaseUpdateInput' value={diseaseedit.symptoms} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="symptoms" className='diseaseUpdateInput' value={diseaseedit.symptoms} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diseaseUpdateItem">
                             <label>Severity</label>
-                            <input type="text" name="severity" placeholder='High' className='diseaseUpdateInput' value={diseaseedit.severity} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="severity" className='diseaseUpdateInput' value={diseaseedit.severity} onChange={(e) => handleEdit(e)} />
                         </div>                                                 
                     </div>
                     <div className="diseaseUpdateRight">

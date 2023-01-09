@@ -8,17 +8,19 @@ import { useEffect, useState } from 'react'
 const PatientList = () => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'full_name', headerName: 'Full Name', width: 200, renderCell: (params) => {
+    { field: 'full_name', headerName: 'Full Name', width: 180, renderCell: (params) => {
       return (
           <div className='patientListName'>
-              <img className='patientListImg' src={params.row.img} alt="" />
+              <img className='patientListImg' src={params.row.image} alt="" />
               {params.row.full_name}
           </div>
       )
   } },
-    { field: 'address', headerName: 'Address', width: 200 },
-    { field: 'visiting_date', headerName: 'Visit Date', width: 200 },
-    { field: 'visit_no', headerName: 'Visit Number', width: 200 },
+    { field: 'age', headerName: 'Age', width: 80 },
+    { field: 'gender', headerName: 'Gender', width: 80 },
+    { field: 'address', headerName: 'Address', width: 150 },
+    { field: 'visiting_date', headerName: 'Visit Date', width: 150 },
+    { field: 'visit_no', headerName: 'Visit Number', width: 150 },
     { 
       field: 'action',
       headerName: 'Action',
