@@ -42,6 +42,6 @@ class DoctorAppointmentsController < ApplicationController
     private
 
     def doctor_appointment_params
-        params.permit(:notes, :patient_id, :doctor_id)
+        params.permit(:notes, :date, :time, :patient_id, :doctor_id)
     end
 end

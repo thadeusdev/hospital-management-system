@@ -8,8 +8,10 @@ const NewPatient = () => {
       event.preventDefault();
       const formData = new FormData(event.target);
       const patient = {
-        img: formData.get('img'),
+        image: formData.get('image'),
         full_name: formData.get('full_name'),
+        age: formData.get('age'),
+        gender: formData.get('gender'),
         address: formData.get('address'),
         visiting_date: formData.get('visiting_date'),
         visit_no: formData.get('visit_no')
@@ -34,11 +36,19 @@ const NewPatient = () => {
         <form onSubmit={handleAddPatient} className="newPatientForm">
             <div className="newPatientItem">
                 <label>Image</label>
-                <input type="text" placeholder='url' name='img' />
+                <input type="text" placeholder='url' name='image' />
             </div>
             <div className="newPatientItem">
                 <label>Full Name</label>
                 <input type="text" placeholder='John Snow' name='full_name' />
+            </div>
+            <div className="newPatientItem">
+                <label>Age</label>
+                <input type="text" placeholder='42' name='age' />
+            </div>
+            <div className="newPatientItem">
+                <label>Gender</label>
+                <input type="text" placeholder='Male' name='gender' />
             </div>
             <div className="newPatientItem">
                 <label>Address</label>
@@ -46,7 +56,7 @@ const NewPatient = () => {
             </div>
             <div className="newPatientItem">
                 <label>Visit Date</label>
-                <input type="datetime-local" placeholder='2009-09-01T17:00:00.000Z' name='visiting_date' />
+                <input type="date" placeholder='2009-09-01' name='visiting_date' />
             </div>
             <div className="newPatientItem">
                 <label>Visit Number</label>

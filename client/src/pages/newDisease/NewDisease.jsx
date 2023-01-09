@@ -9,6 +9,7 @@ const NewDisease = () => {
       const formData = new FormData(event.target);
       const disease = {
         name: formData.get('name'),
+        patient_id: formData.get('patient_id'),
         symptoms: formData.get('symptoms'),
         severity: formData.get('severity')
       };
@@ -22,7 +23,7 @@ const NewDisease = () => {
       })
         .then(response => response.json())
         .then(newDisease => {
-          setDiseases([...disease, newDisease]);
+          setDiseases([...diseases, newDisease]);
         });
     }
 
@@ -33,6 +34,10 @@ const NewDisease = () => {
             <div className="newDiseaseItem">
                 <label>Name</label>
                 <input type="text" placeholder='Typhoid' name='name' />
+            </div>
+            <div className="newDiseaseItem">
+                <label>Patient Id</label>
+                <input type="text" placeholder='fever, headache' name='patient_id' />
             </div>
             <div className="newDiseaseItem">
                 <label>Symptoms</label>

@@ -1,4 +1,3 @@
 class SingleDoctorSerializer < ActiveModel::Serializer
-  attributes :id, :img, :full_name, :primary_practice, :secondary_practice, :patients
-  belongs_to :patients
+  attributes :id, :image, :full_name, :email, :primary_practice, :secondary_practice, :years_of_experience, :doctor_appointments, :patients
 end

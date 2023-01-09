@@ -8,7 +8,7 @@ class PatientsController < ApplicationController
     # GET /patients/:id
     def show
         patient = Patient.find_by(id: params[:id])
-        render json: patient, serializer: OnePatientSerializer
+        render json: patient, serializer:SinglePatientSerializer
     end
 
     # POST /patients
@@ -42,6 +42,6 @@ class PatientsController < ApplicationController
     private
 
     def patient_params
-        params.permit(:img, :full_name, :address, :visiting_date, :visit_no)
+        params.permit(:image, :full_name, :age, :gender, :address, :visiting_date, :visit_no)
     end
 end

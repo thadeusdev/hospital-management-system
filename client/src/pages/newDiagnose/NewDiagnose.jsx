@@ -8,10 +8,11 @@ const NewDiagnose = () => {
       event.preventDefault();
       const formData = new FormData(event.target);
       const diagnose = {
-        notes: formData.get('notes'),
-        disease_id: formData.get('disease_id'),
+        name: formData.get('name'),
         patient_id: formData.get('patient_id'),
-        diagnosed_on: formData.get('diagnosed_on'),
+        doctor_id: formData.get('doctor_id'),
+        disease_id: formData.get('disease_id'),
+        performed_at: formData.get('performed_at'),
         pulse: formData.get('pulse'),
         sugar: formData.get('sugar'),
         temperature: formData.get('temperature'),
@@ -27,7 +28,7 @@ const NewDiagnose = () => {
       })
         .then(response => response.json())
         .then(newDiagnose => {
-          setDiagnoses([...diagnose, newDiagnose]);
+          setDiagnoses([...diagnoses, newDiagnose]);
         });
     }
 
@@ -36,20 +37,24 @@ const NewDiagnose = () => {
         <h1 className="newDiagnoseTitle">New Diagnose</h1>
         <form onSubmit={handleAddDiagnose} className="newDiagnoseForm">
             <div className="newDiagnoseItem">
-                <label>Notes</label>
-                <input type="text" placeholder='Chronic condition' name='notes' />
+                <label>Name</label>
+                <input type="text" placeholder='Blood test' name='name' />
+            </div>
+            <div className="newDiagnoseItem">
+                <label>Patient Id</label>
+                <input type="text" placeholder='1' name="patient_id" />
+            </div>
+            <div className="newDiagnoseItem">
+                <label>Doctor id</label>
+                <input type="text" placeholder='1' name="doctor_id" />
             </div>
             <div className="newDiagnoseItem">
                 <label>Disease id</label>
-                <input type="text" placeholder='100' name="disease_id" />
+                <input type="text" placeholder='1' name="disease_id" />
             </div>
             <div className="newDiagnoseItem">
-                <label>Patient id</label>
-                <input type="text" placeholder='100' name="patient_id" />
-            </div>
-            <div className="newDiagnoseItem">
-                <label>Diagnosed on</label>
-                <input type="datetime-local" placeholder='100' name="diagnosed_on" />
+                <label>Performed at</label>
+                <input type="datetime-local" name="performed_at" />
             </div>
             <div className="newDiagnoseItem">
                 <label>Pulse</label>

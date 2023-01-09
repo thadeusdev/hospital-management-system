@@ -8,14 +8,14 @@ const NewMedicine = () => {
       event.preventDefault();
       const formData = new FormData(event.target);
       const medicine = {
-        img: formData.get('img'),
+        image: formData.get('image'),
         name: formData.get('name'),
+        dosage: formData.get('dosage'),
+        patient_id: formData.get('patient_id'),
         description: formData.get('description'),
         category: formData.get('category'),
         is_acidic: formData.get('is_acidic'),
         infant_safe: formData.get('infant_safe'),
-        patient_id: formData.get('patient_id'),
-        disease_id: formData.get('disease_id'),
       };
   
       fetch('/medicines', {
@@ -27,7 +27,7 @@ const NewMedicine = () => {
       })
         .then(response => response.json())
         .then(newMedicine => {
-          setMedicines([...medicine, newMedicine]);
+          setMedicines([...medicines, newMedicine]);
         });
     }
 
@@ -37,15 +37,23 @@ const NewMedicine = () => {
         <form onSubmit={handleAddMedicine} className="newMedicineForm">
             <div className="newMedicineItem">
                 <label>Image</label>
-                <input type="text" placeholder='url' name='img' />
+                <input type="text" placeholder='url' name='image' />
             </div>
             <div className="newMedicineItem">
                 <label>Name</label>
                 <input type="text" placeholder='Asprine' name='name' />
             </div>
             <div className="newMedicineItem">
+                <label>Dosage</label>
+                <input type="text" placeholder='200ml' name='dosage' />
+            </div>
+            <div className="newMedicineItem">
+                <label>Patient Id</label>
+                <input type="text" placeholder='1' name='patient_id' />
+            </div>
+            <div className="newMedicineItem">
                 <label>Description</label>
-                <input type="text" placeholder='for headache' name='description' />
+                <input type="text" name='description' />
             </div>
             <div className="newMedicineItem">
                 <label>Category</label>
@@ -64,14 +72,6 @@ const NewMedicine = () => {
                     <option value="true" name="infant_safe">True</option>
                     <option value="false" name="infant_safe">False</option>
                 </select>
-            </div>
-            <div className="newMedicineItem">
-                <label>Patient Id</label>
-                <input type="text" placeholder='John Snow' name='patient_id' />
-            </div>
-            <div className="newMedicineItem">
-                <label>Disease Id</label>
-                <input type="text" placeholder='Typhoid' name='disease_id' />
             </div>
             <button className="newMedicineButton">Create</button>
         </form>

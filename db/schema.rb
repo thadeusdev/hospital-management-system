@@ -13,72 +13,105 @@
 ActiveRecord::Schema.define(version: 2022_12_23_212149) do
 
   create_table "diagnostics", force: :cascade do |t|
-    t.string "notes"
-    t.integer "disease_id"
+    t.string "name"
     t.integer "patient_id"
-    t.datetime "diagnosed_on"
+    t.integer "doctor_id"
+    t.integer "disease_id"
+    t.datetime "performed_at"
     t.integer "pulse"
     t.decimal "sugar"
     t.decimal "temperature"
     t.decimal "pressure"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["disease_id"], name: "index_diagnostics_on_disease_id"
+    t.index ["doctor_id"], name: "index_diagnostics_on_doctor_id"
+    t.index ["patient_id"], name: "index_diagnostics_on_patient_id"
   end
 
   create_table "diseases", force: :cascade do |t|
     t.string "name"
+    t.integer "patient_id"
     t.string "symptoms"
     t.string "severity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["patient_id"], name: "index_diseases_on_patient_id"
   end
 
   create_table "doctor_appointments", force: :cascade do |t|
     t.string "notes"
+    t.date "date"
+    t.time "time"
     t.integer "patient_id"
     t.integer "doctor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["doctor_id"], name: "index_doctor_appointments_on_doctor_id"
+    t.index ["patient_id"], name: "index_doctor_appointments_on_patient_id"
   end
 
   create_table "doctors", force: :cascade do |t|
-    t.string "img"
+    t.string "image"
     t.string "full_name"
+    t.string "email"
     t.string "primary_practice"
     t.string "secondary_practice"
+    t.integer "years_of_experience"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "medicines", force: :cascade do |t|
-    t.string "img"
+    t.string "image"
     t.string "name"
+    t.string "dosage"
+    t.integer "patient_id"
     t.string "description"
     t.string "category"
     t.boolean "is_acidic"
     t.boolean "infant_safe"
-    t.integer "patient_id"
-    t.integer "disease_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["patient_id"], name: "index_medicines_on_patient_id"
   end
 
   create_table "patients", force: :cascade do |t|
-    t.string "img"
+    t.string "image"
     t.string "full_name"
+    t.integer "age"
+    t.string "gender"
     t.string "address"
-    t.datetime "visiting_date"
+    t.date "visiting_date"
     t.string "visit_no"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "prescriptions", force: :cascade do |t|
-    t.string "notes"
+    t.string "frequency"
+    t.string "duration"
     t.integer "medicine_id"
+    t.integer "disease_id"
     t.integer "patient_id"
+    t.integer "doctor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["disease_id"], name: "index_prescriptions_on_disease_id"
+    t.index ["doctor_id"], name: "index_prescriptions_on_doctor_id"
+    t.index ["medicine_id"], name: "index_prescriptions_on_medicine_id"
+    t.index ["patient_id"], name: "index_prescriptions_on_patient_id"
   end
 
+  add_foreign_key "diagnostics", "diseases"
+  add_foreign_key "diagnostics", "doctors"
+  add_foreign_key "diagnostics", "patients"
+  add_foreign_key "diseases", "patients"
+  add_foreign_key "doctor_appointments", "doctors"
+  add_foreign_key "doctor_appointments", "patients"
+  add_foreign_key "medicines", "patients"
+  add_foreign_key "prescriptions", "diseases"
+  add_foreign_key "prescriptions", "doctors"
+  add_foreign_key "prescriptions", "medicines"
+  add_foreign_key "prescriptions", "patients"
 end

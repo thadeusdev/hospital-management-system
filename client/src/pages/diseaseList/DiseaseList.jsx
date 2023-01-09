@@ -9,6 +9,7 @@ const DiseaseList = () => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'name', headerName: 'Name', width: 200 },
+    { field: 'patient_id', headerName: 'Patient Id', width: 200 },
     { field: 'symptoms', headerName: 'Symptoms', width: 200 },
     { field: 'severity', headerName: 'Severity', width: 200 },
     { 
@@ -21,7 +22,7 @@ const DiseaseList = () => {
             <NavLink to={"/disease/"+params.row.id}>
               <button className="diseaseListEdit">Detail</button>
             </NavLink>                       
-              <DeleteOutlineIcon className="diseaseListDelete" />
+              <DeleteOutlineIcon className="diseaseListDelete" onClick={() => handleDelete(params.row.id)} />
           </>
         )
       }
@@ -36,9 +37,25 @@ const DiseaseList = () => {
         .then((diseases => setDiseases(diseases)))
     }, [])
 
+    const handleDelete = (id) => {
+      async function deleteDisease(){
+        await fetch(`/diseases/${id}`, {
+          method: 'DELETE',
+        })
+        setDiseases(diseases.filter((disease) => disease.id !== id))
+      }
+      deleteDisease()
+    }
+
   return (
     <div className='diseaseList'>
+      <div className="diseaseTitleContainer">
       <h3 className="diseaseTitle">Diseases</h3>
+        <NavLink to="/newDisease">
+          <button className="diseaseAddButton">Create</button>
+        </NavLink>            
+      </div>
+
       <DataGrid
       rows={diseases}
       columns={columns}

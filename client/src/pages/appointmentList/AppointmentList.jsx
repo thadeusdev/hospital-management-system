@@ -9,6 +9,10 @@ const AppointmentList = () => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'notes', headerName: 'Notes', width: 200 },
+    { field: 'date', headerName: 'Date', width: 200 },
+    { field: 'time', headerName: 'Time', width: 200 },
+    { field: 'patient_id', headerName: 'Patient Id', width: 120 },
+    { field: 'doctor_id', headerName: 'Doctor Id', width: 120 },
     { 
       field: 'action',
       headerName: 'Action',
@@ -19,7 +23,7 @@ const AppointmentList = () => {
             <NavLink to={"/appointment/"+params.row.id}>
               <button className="appointmentListEdit">Detail</button>
             </NavLink>                       
-              <DeleteOutlineIcon className="appointmentListDelete" />
+              <DeleteOutlineIcon className="appointmentListDelete" onClick={() => handleDelete(params.row.id)} />
           </>
         )
       }
@@ -34,9 +38,25 @@ const AppointmentList = () => {
         .then((appointments => setAppointments(appointments)))
     }, [])
 
+    const handleDelete = (id) => {
+      async function deleteAppointment(){
+        await fetch(`/doctor_appointments/${id}`, {
+          method: 'DELETE',
+        })
+        setAppointments(appointments.filter((appointment) => appointment.id !== id))
+      }
+      deleteAppointment()
+    }
+
   return (
     <div className='appointmentList'>
-      <h3 className="appointmentTitle">Appointments</h3>
+      <div className="appointmentTitleContainer">
+        <h3 className="appointmentTitle">Appointments</h3>
+        <NavLink to="/newappointment">
+          <button className="appointmentAddButton">Create</button>
+        </NavLink>            
+      </div>
+
       <DataGrid
       rows={appointments}
       columns={columns}

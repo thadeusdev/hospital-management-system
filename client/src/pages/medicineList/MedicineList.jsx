@@ -11,13 +11,15 @@ const MedicineList = () => {
     { field: 'name', headerName: 'Full Name', width: 200, renderCell: (params) => {
       return (
           <div className='medicineListName'>
-              <img className='medicineListImg' src={params.row.img} alt="" />
+              <img className='medicineListImg' src={params.row.image} alt="" />
               {params.row.name}
           </div>
       )
   } },
-    { field: 'description', headerName: 'Description', width: 200 },
-    { field: 'category', headerName: 'Category', width: 120 },
+    { field: 'dosage', headerName: 'Dosage', width: 100 },
+    { field: 'patient_id', headerName: 'Patient Id', width: 100 },
+    { field: 'description', headerName: 'Description', width: 100 },
+    { field: 'category', headerName: 'Category', width: 100 },
     { field: 'is_acidic', headerName: 'Is Acidic', width: 90 },
     { field: 'infant_safe', headerName: 'Infant Safe', width: 90 },
     { 
@@ -30,7 +32,7 @@ const MedicineList = () => {
             <NavLink to={"/medicine/"+params.row.id}>
               <button className="medicineListEdit">Detail</button>
             </NavLink>                       
-              <DeleteOutlineIcon className="medicineListDelete" />
+              <DeleteOutlineIcon className="medicineListDelete" onClick={() => handleDelete(params.row.id)} />
           </>
         )
       }
@@ -45,9 +47,25 @@ const MedicineList = () => {
         .then((medicines => setMedicines(medicines)))
     }, [])
 
+    const handleDelete = (id) => {
+      async function deleteMedicine(){
+        await fetch(`/medicines/${id}`, {
+          method: 'DELETE',
+        })
+        setMedicines(medicines.filter((medicine) => medicine.id !== id))
+      }
+      deleteMedicine()
+    }
+
   return (
     <div className='medicineList'>
+      <div className="medicineTitleContainer">
       <h3 className="medicineTitle">Medicines</h3>
+        <NavLink to="/newMedicine">
+          <button className="medicineAddButton">Create</button>
+        </NavLink>            
+      </div>
+
       <DataGrid
       rows={medicines}
       columns={columns}

@@ -1,4 +1,5 @@
 class DoctorsController < ApplicationController
+
     # GET /doctors
     def index
         doctors = Doctor.all
@@ -8,7 +9,7 @@ class DoctorsController < ApplicationController
     # GET /doctors/:id
     def show
         doctor = Doctor.find_by(id: params[:id])
-        render json: doctor, serializer: SingleDoctorSerializer
+        render json: doctor, serializer:SingleDoctorSerializer
     end
 
     # POST /doctors
@@ -42,6 +43,6 @@ class DoctorsController < ApplicationController
     private
 
     def doctor_params
-        params.permit(:img, :full_name, :primary_practice, :secondary_practice)
+        params.permit(:image, :full_name, :email, :primary_practice, :secondary_practice, :years_of_experience)
     end
 end

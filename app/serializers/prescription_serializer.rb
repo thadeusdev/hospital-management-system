@@ -1,3 +1,3 @@
 class PrescriptionSerializer < ActiveModel::Serializer
-  attributes :id, :notes, :medicine_id, :patient_id
+  attributes :id, :frequency, :duration, :medicine_id, :disease_id, :patient_id, :doctor_id
 end

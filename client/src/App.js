@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/sidebar/Sidebar';
 import Topbar from './components/topbar/Topbar';
+import Appointment from './pages/appointment/Appointment';
 import AppointmentList from './pages/appointmentList/AppointmentList';
 import Dashboard from './pages/dashboard/Dashboard';
 import Diagnose from './pages/diagnose/Diagnose';
@@ -12,6 +13,7 @@ import Doctor from './pages/doctor/Doctor';
 import DoctorList from './pages/doctorList/DoctorList';
 import Medicine from './pages/medicine/Medicine';
 import MedicineList from './pages/medicineList/MedicineList';
+import NewAppointment from './pages/newAppointment/NewAppointment';
 import NewDiagnose from './pages/newDiagnose/NewDiagnose';
 import NewDisease from './pages/newDisease/NewDisease';
 import NewDoctor from './pages/newDoctor/NewDoctor';
@@ -38,20 +40,20 @@ const App = () => {
           <Route path="/diagnoses" element={<DiagnoseList />} />
           <Route path="/medicines" element={<MedicineList />} />
           <Route path="/doctor/:id" element={<Doctor />} />
+          <Route path="/appointment/:id" element={<Appointment />} />
           <Route path="/patient/:id" element={<Patient />} />
           <Route path="/disease/:id" element={<Disease />} />
           <Route path="/diagnose/:id" element={<Diagnose />} />
           <Route path="/medicine/:id" element={<Medicine />} />
           <Route path="/newDoctor" element={<NewDoctor />} />
           <Route path="/newPatient" element={<NewPatient />} />
+          <Route path="/newAppointment" element={<NewAppointment />} />
           <Route path="/newDisease" element={<NewDisease />} />
           <Route path="/newMedicine" element={<NewMedicine />} />
           <Route path="/newDiagnose" element={<NewDiagnose />} />
           <Route path="/Signup" element={<Signup/>}/>
           <Route path="/Login" element={<Login />} />
           <Route path="/Logout" element={<Logout />} />
-          
-
         </Routes>
       </Sidebar>
     </BrowserRouter>

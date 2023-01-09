@@ -3,14 +3,15 @@ import "./sidebar.css"
 import {
     FaTh,
     FaBars,
-    FaCalendarPlus,
+    FaCalendarAlt,
     FaUserMd,
     FaWheelchair,
     FaDisease,
     FaMicroscope,
     FaTablets,
     FaSignOutAlt,
-    FaSignInAlt
+    FaSignInAlt,
+    FaPrescriptionBottleAlt,
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 
@@ -27,7 +28,7 @@ const Sidebar = ({children}) => {
         {
             path:"/appointment",
             name:"Appointment",
-            icon:<FaCalendarPlus/>
+            icon:<FaCalendarAlt/>
         },
         {
             path:"/doctors",
@@ -63,6 +64,10 @@ const Sidebar = ({children}) => {
             path: "/signup",
             name: "Signup",
             icon: <FaSignInAlt />
+          },
+            path:"/prescriptions",
+            name:"Prescriptions",
+            icon:<FaPrescriptionBottleAlt/>
         },
         {
             path:"/logout",
@@ -81,7 +86,7 @@ const Sidebar = ({children}) => {
                </div>
                {
                    menuItem.map((item, index)=>(
-                       <NavLink to={item.path} key={index} className="link" activeclassName="active">
+                       <NavLink to={item.path} key={index} className="link" activeclassname="active">
                            <div className="icon">{item.icon}</div>
                            <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
                        </NavLink>

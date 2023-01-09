@@ -5,20 +5,22 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 
-const DoctorList = () => {
+const PatientList = () => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'full_name', headerName: 'Full Name', width: 200, renderCell: (params) => {
+    { field: 'full_name', headerName: 'Full Name', width: 180, renderCell: (params) => {
       return (
           <div className='patientListName'>
-              <img className='patientListImg' src={params.row.img} alt="" />
+              <img className='patientListImg' src={params.row.image} alt="" />
               {params.row.full_name}
           </div>
       )
   } },
-    { field: 'address', headerName: 'Address', width: 200 },
-    { field: 'visiting_date', headerName: 'Visit Date', width: 200 },
-    { field: 'visit_no', headerName: 'Visit Number', width: 200 },
+    { field: 'age', headerName: 'Age', width: 80 },
+    { field: 'gender', headerName: 'Gender', width: 80 },
+    { field: 'address', headerName: 'Address', width: 150 },
+    { field: 'visiting_date', headerName: 'Visit Date', width: 150 },
+    { field: 'visit_no', headerName: 'Visit Number', width: 150 },
     { 
       field: 'action',
       headerName: 'Action',
@@ -29,7 +31,7 @@ const DoctorList = () => {
             <NavLink to={"/patient/"+params.row.id}>
               <button className="patientListEdit">Detail</button>
             </NavLink>                       
-              <DeleteOutlineIcon className="patientListDelete" />
+              <DeleteOutlineIcon className="patientListDelete" onClick={() => handleDelete(params.row.id)} />
           </>
         )
       }
@@ -44,9 +46,25 @@ const DoctorList = () => {
         .then((patients => setPatients(patients)))
     }, [])
 
+    const handleDelete = (id) => {
+      async function deletePatient(){
+        await fetch(`patients/${id}`, {
+          method: 'DELETE',
+        })
+        setPatients(patients.filter((patient) => patient.id !== id))
+      }
+      deletePatient()
+    }
+
   return (
     <div className='patientList'>
+      <div className="patientTitleContainer">
       <h3 className="patientTitle">Patients</h3>
+        <NavLink to="/newPatient">
+          <button className="patientAddButton">Create</button>
+        </NavLink>            
+      </div>
+
       <DataGrid
       rows={patients}
       columns={columns}
@@ -59,4 +77,4 @@ const DoctorList = () => {
   )
 }
 
-export default DoctorList
+export default PatientList

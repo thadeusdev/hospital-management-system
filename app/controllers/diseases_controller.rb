@@ -42,6 +42,6 @@ class DiseasesController < ApplicationController
     private
 
     def disease_params
-        params.permit(:name, :symptoms, :severity)
+        params.permit(:name, :patient_id, :symptoms, :severity)
     end
 end

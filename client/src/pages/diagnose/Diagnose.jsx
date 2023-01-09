@@ -16,7 +16,7 @@ const Diagnose = () => {
         },
       ];
 
-    const [diagnoseedit, setDiagnoseedit] = useState({notes:'', pulse:'', sugar:'', temperature:'', pressure:''})
+    const [diagnoseedit, setDiagnoseedit] = useState({name:'', patient_id:'', doctor_id:'', disease_id:'', performed_at:'', pulse:'', sugar:'', temperature:'', pressure:''})
     const history = useNavigate()
     const {id} = useParams();    
 
@@ -44,7 +44,11 @@ const Diagnose = () => {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                notes: e.target.notes.value,
+                name: e.target.name.value,
+                patient_id: e.target.patient_id.value,
+                doctor_id: e.target.doctor_id.value,
+                disease_id: e.target.disease_id.value,
+                performed_at: e.target.performed_at.value,
                 pulse: e.target.pulse.value,
                 sugar: e.target.sugar.value,
                 temperature: e.target.temperature.value,
@@ -79,8 +83,24 @@ const Diagnose = () => {
             <form onSubmit={ handleDiagnoseupdate } className="diagnoseUpdateForm">
                     <div className="diagnoseUpdateLeft">
                         <div className="diagnoseUpdateItem">
-                            <label>Notes</label>
-                            <input type="text" name="notes" className='diagnoseUpdateInput' value={diagnoseedit.notes} onChange={(e) => handleEdit(e)} />
+                            <label>Name</label>
+                            <input type="text" name="name" className='diagnoseUpdateInput' value={diagnoseedit.name} onChange={(e) => handleEdit(e)} />
+                        </div>
+                        <div className="diagnoseUpdateItem">
+                            <label>Patient Id</label>
+                            <input type="text" name="patient_id" className='diagnoseUpdateInput' value={diagnoseedit.patient_id} onChange={(e) => handleEdit(e)} />
+                        </div>
+                        <div className="diagnoseUpdateItem">
+                            <label>Doctor Id</label>
+                            <input type="text" name="doctor_id" className='diagnoseUpdateInput' value={diagnoseedit.doctor_id} onChange={(e) => handleEdit(e)} />
+                        </div>
+                        <div className="diagnoseUpdateItem">
+                            <label>Disease Id</label>
+                            <input type="text" name="disease_id" className='diagnoseUpdateInput' value={diagnoseedit.disease_id} onChange={(e) => handleEdit(e)} />
+                        </div>
+                        <div className="diagnoseUpdateItem">
+                            <label>Performed At</label>
+                            <input type="text" name="performed_at" className='diagnoseUpdateInput' value={diagnoseedit.performed_at} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diagnoseUpdateItem">
                             <label>Pulse</label>

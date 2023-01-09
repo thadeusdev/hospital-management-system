@@ -11,13 +11,15 @@ const DoctorList = () => {
     { field: 'full_name', headerName: 'Full Name', width: 200, renderCell: (params) => {
       return (
           <div className='doctorListName'>
-              <img className='doctorListImg' src={params.row.img} alt="" />
+              <img className='doctorListImg' src={params.row.image} alt="" />
               {params.row.full_name}
           </div>
       )
   } },
-    { field: 'primary_practice', headerName: 'Primary Practice', width: 200 },
-    { field: 'secondary_practice', headerName: 'Secondary Practice', width: 200 },
+    { field: 'email', headerName: 'Email', width: 200 },
+    { field: 'primary_practice', headerName: 'Primary Practice', width: 150 },
+    { field: 'secondary_practice', headerName: 'Secondary Practice', width: 150 },
+    { field: 'years_of_experience', headerName: 'Experience', width: 100 },
     { 
       field: 'action',
       headerName: 'Action',
@@ -28,7 +30,7 @@ const DoctorList = () => {
             <NavLink to={"/doctor/"+params.row.id}>
               <button className="doctorListEdit">Detail</button>
             </NavLink>                       
-              <DeleteOutlineIcon className="doctorListDelete" />
+              <DeleteOutlineIcon className="doctorListDelete" onClick={() => handleDelete(params.row.id)} />
           </>
         )
       }
@@ -43,9 +45,24 @@ const DoctorList = () => {
         .then((doctors => setDoctors(doctors)))
     }, [])
 
+    const handleDelete = (id) => {
+      async function deleteDoctor(){
+        await fetch(`/doctors/${id}`, {
+          method: 'DELETE',
+        })
+        setDoctors(doctors.filter((doctor) => doctor.id !== id))
+      }
+      deleteDoctor()
+    }
+
   return (
     <div className='doctorList'>
-      <h3 className="doctorTitle">Doctors</h3>
+      <div className="doctorTitleContainer">
+        <h3 className="doctorTitle">Doctors</h3>
+        <NavLink to="/newDoctor">
+            <button className="doctorAddButton">Create</button>
+        </NavLink>            
+      </div>      
       <DataGrid
       rows={doctors}
       columns={columns}

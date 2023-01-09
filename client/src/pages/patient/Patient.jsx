@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { FaCalendarAlt } from 'react-icons/fa';
 
 const Patient = () => {
-    const [patientedit, setPatientedit] = useState({img:'', full_name:'', address:'', visiting_date:'', visit_no:''})
+    const [patientedit, setPatientedit] = useState({image:'', full_name:'', age:'', gender:'', address:'', visiting_date:'', visit_no:''})
     const history = useNavigate()
     const {id} = useParams();
 
@@ -36,8 +36,10 @@ const Patient = () => {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                img: e.target.img.value,
+                image: e.target.image.value,
                 full_name: e.target.full_name.value,
+                age: e.target.age.value,
+                gender: e.target.gender.value,
                 address: e.target.address.value,
                 visiting_date: e.target.visiting_date.value,
                 visit_no: e.target.visit_no.value
@@ -58,13 +60,18 @@ const Patient = () => {
         <div className="patientContainer">
             <div className="patientShow">
                 <div className="patientShowTop">
-                    <img src={patientedit.img} alt="" className="patientShowImg" />
+                    <img src={patientedit.image} alt="" className="patientShowImg" />
                     <div className="patientShowTopTitle">
                         <span className="patientShowPatientname">{patientedit.full_name}</span>
-                        <span className="patientShowPatientTitle">{patientedit.visit_no}</span>
+                        <span className="patientShowPatientTitle">{patientedit.age}</span>
                     </div>
                 </div>
                 <div className="patientShowBottom">
+                    <span className="patientShowTitle">Gender</span>
+                    <div className="patientShowInfo">
+                        <PlaceIcon className="patientShowIcon" />
+                        <span className="patientShowInfoTitle">{patientedit.gender}</span>
+                    </div> 
                     <span className="patientShowTitle">Address</span>
                     <div className="patientShowInfo">
                         <PlaceIcon className="patientShowIcon" />
@@ -74,7 +81,12 @@ const Patient = () => {
                     <div className="patientShowInfo">
                         <FaCalendarAlt className="patientShowIcon" />
                         <span className="patientShowInfoTitle">{patientedit.visiting_date}</span>
-                    </div>                  
+                    </div> 
+                    <span className="patientShowTitle">Visit No:</span>
+                    <div className="patientShowInfo">
+                        <FaCalendarAlt className="patientShowIcon" />
+                        <span className="patientShowInfoTitle">{patientedit.visit_no}</span>
+                    </div>                 
                 </div>
             </div>
             <div className="patientUpdate">
@@ -86,12 +98,20 @@ const Patient = () => {
                             <input type="text" name="full_name" placeholder='John Kilonzo' className='patientUpdateInput' value={patientedit.full_name} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="patientUpdateItem">
+                            <label>Age</label>
+                            <input type="text" name="age" placeholder='Lavington 2nd Ave' className='patientUpdateInput' value={patientedit.age} onChange={(e) => handleEdit(e)} />
+                        </div>
+                        <div className="patientUpdateItem">
+                            <label>Gender</label>
+                            <input type="text" name="gender" placeholder='Lavington 2nd Ave' className='patientUpdateInput' value={patientedit.gender} onChange={(e) => handleEdit(e)} />
+                        </div>
+                        <div className="patientUpdateItem">
                             <label>Address</label>
                             <input type="text" name="address" placeholder='Lavington 2nd Ave' className='patientUpdateInput' value={patientedit.address} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="patientUpdateItem">
                             <label>Visit Date</label>
-                            <input type="datetime-local" name="visiting_date" className='patientUpdateInput' value={patientedit.visiting_date} onChange={(e) => handleEdit(e)} />
+                            <input type="date" name="visiting_date" className='patientUpdateInput' value={patientedit.visiting_date} onChange={(e) => handleEdit(e)} />
                         </div>  
                         <div className="patientUpdateItem">
                             <label>Visit Number</label>
@@ -100,9 +120,9 @@ const Patient = () => {
                     </div>
                     <div className="patientUpdateRight">
                         <div className="patientUpdateUpload">
-                            <img className="patientUpdateImg" src={patientedit.img} alt="" />
+                            <img className="patientUpdateImg" src={patientedit.image} alt="" />
                             <label htmlFor="file"><PublishIcon className='patientUpdateIcon' /></label>
-                            <input type="file" id='file' style={{display: "none"}}  name="img" src={patientedit.img} onChange={(e) => handleEdit(e)} />
+                            <input type="file" id='file' style={{display: "none"}}  name="image" src={patientedit.image} onChange={(e) => handleEdit(e)} />
                         </div>
                         <button className="patientUpdateButton">Update</button>
                     </div>

@@ -1,15 +1,14 @@
-import React, {  useState, useEffect, Component } from 'react'
+import React, {  useState, useEffect } from 'react'
 import "./medicine.css"
 import CoronavirusIcon from '@mui/icons-material/Coronavirus';
 import PublishIcon from '@mui/icons-material/Publish';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { NavLink } from 'react-router-dom';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Medicine = () => {
-    const [medicineedit, setMedicineedit] = useState({img:'', name:'', description:'', category:'', is_acidic:'', infant_safe:'', patient_id:'', disease_id:''})
-    const history = useNavigate()
+    const [medicineedit, setMedicineedit] = useState({image:'', name:'', dosage:'', patient_id:'', description:'', category:'', is_acidic:'', infant_safe:''})
     const {id} = useParams(); 
 
     // console.log(id)
@@ -37,14 +36,14 @@ const Medicine = () => {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                img: e.target.img.value,
+                image: e.target.image.value,
                 name: e.target.name.value,
+                dosage: e.target.dosage.value,
+                patient_id: e.target.patient_id.value,
                 description: e.target.description.value,
                 category: e.target.category.value,
                 is_acidic: e.target.is_acidic.value,
-                infant_safe: e.target.infant_safe.value,
-                patient_id: e.target.patient_id.value,
-                disease_id: e.target.disease_id.value,
+                infant_safe: e.target.infant_safe.value
             }),
         },[])
         .then((r) => r.json())
@@ -62,10 +61,10 @@ const Medicine = () => {
         <div className="medicineContainer">
             <div className="medicineShow">
                 <div className="medicineShowTop">
-                    <img src={medicineedit.img} alt="" className="medicineShowImg" />
+                    <img src={medicineedit.image} alt="" className="medicineShowImg" />
                     <div className="medicineShowTopTitle">
                         <span className="medicineShowMedicinename">{medicineedit.name}</span>
-                        <span className="medicineShowMedicineTitle">{medicineedit.patient_id}</span>
+                        <span className="medicineShowMedicineTitle">{medicineedit.dosage}</span>
                     </div>
                 </div>
                 <div className="medicineShowBottom">
@@ -82,12 +81,17 @@ const Medicine = () => {
                     <span className="medicineShowTitle">Is acidic</span> 
                     <div className="medicineShowInfo">
                         <VerifiedIcon className="medicineShowIcon" />
-                        <span className="medicineShowInfoTitle">{medicineedit.is_acidic}</span>
+                        <span className="medicineShowInfoTitle">{medicineedit.is_acidic.toString()}</span>
                     </div> 
                     <span className="medicineShowTitle">Infant safe</span> 
                     <div className="medicineShowInfo">
                         <VerifiedIcon className="medicineShowIcon" />
-                        <span className="medicineShowInfoTitle">{medicineedit.infant_safe}</span>
+                        <span className="medicineShowInfoTitle">{medicineedit.infant_safe.toString()}</span>
+                    </div> 
+                    <span className="medicineShowTitle">Patient Id</span> 
+                    <div className="medicineShowInfo">
+                        <VerifiedIcon className="medicineShowIcon" />
+                        <span className="medicineShowInfoTitle">{medicineedit.patient_id}</span>
                     </div>           
                 </div>
             </div>
@@ -98,6 +102,14 @@ const Medicine = () => {
                         <div className="medicineUpdateItem">
                             <label>Name</label>
                             <input type="text" name="name" placeholder='Asprine' className='medicineUpdateInput' value={medicineedit.name} onChange={(e) => handleEdit(e)} />
+                        </div>
+                        <div className="medicineUpdateItem">
+                            <label>Dosage</label>
+                            <input type="text" name="dosage" placeholder='for headache' className='medicineUpdateInput' value={medicineedit.dosage} onChange={(e) => handleEdit(e)} />
+                        </div>
+                        <div className="medicineUpdateItem">
+                            <label>Patient Id</label>
+                            <input type="text" name="patient_id" placeholder='for headache' className='medicineUpdateInput' value={medicineedit.patient_id} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="medicineUpdateItem">
                             <label>Description</label>
@@ -120,21 +132,13 @@ const Medicine = () => {
                                 <option name="infant_safe" value={medicineedit.infant_safe} onChange={(e) => handleEdit(e)}>True</option>
                                 <option name="infant_safe" value={medicineedit.infant_safe} onChange={(e) => handleEdit(e)}>False</option>
                             </select>
-                        </div> 
-                        <div className="medicineUpdateItem">
-                            <label>Patient Name</label>
-                            <input type="text" name="patient_id" placeholder='John Kilonzo' className='medicineUpdateInput' value={medicineedit.patient_id} onChange={(e) => handleEdit(e)} />
-                        </div> 
-                        <div className="medicineUpdateItem">
-                            <label>Disease</label>
-                            <input type="text" name="disease_id" placeholder='malaria' className='medicineUpdateInput' value={medicineedit.disease_id} onChange={(e) => handleEdit(e)} />
                         </div>                                                 
                     </div>
                     <div className="medicineUpdateRight">
                         <div className="medicineUpdateUpload">
-                            <img className="medicineUpdateImg" src={medicineedit.img} alt="" />
+                            <img className="medicineUpdateImg" src={medicineedit.image} alt="" />
                             <label htmlFor="file"><PublishIcon className='medicineUpdateIcon' /></label>
-                            <input type="file" id='file' style={{display: "none"}}  name="img" src={medicineedit.img} onChange={(e) => handleEdit(e)} />
+                            <input type="file" id='file' style={{display: "none"}}  name="image" src={medicineedit.image} onChange={(e) => handleEdit(e)} />
                         </div>
                         <button className="medicineUpdateButton">Update</button>
                     </div>
