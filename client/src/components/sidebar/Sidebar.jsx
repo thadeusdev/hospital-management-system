@@ -55,16 +55,17 @@ const Sidebar = ({children}) => {
             name:"Medicines",
             icon:<FaTablets/>
         },
+        // {
+        //     path: "/login",
+        //     name: "Login",
+        //     icon: <FaSignInAlt />  
+        // },
+        // {
+        //     path: "/signup",
+        //     name: "Signup",
+        //     icon: <FaSignInAlt />
+        // },
         {
-            path: "/login",
-            name: "Login",
-            icon: <FaSignInAlt />  
-        },
-        {
-            path: "/signup",
-            name: "Signup",
-            icon: <FaSignInAlt />
-          },
             path:"/prescriptions",
             name:"Prescriptions",
             icon:<FaPrescriptionBottleAlt/>

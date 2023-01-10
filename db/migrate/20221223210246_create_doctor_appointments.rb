@@ -4,8 +4,8 @@ class CreateDoctorAppointments < ActiveRecord::Migration[6.1]
       t.string :notes
       t.date :date
       t.time :time
-      t.references :patient, foreign_key: true
-      t.references :doctor, foreign_key: true
+      t.belongs_to :doctor, null: false, foreign_key: true
+      t.belongs_to :patient, null: false, foreign_key: true
 
       t.timestamps
     end

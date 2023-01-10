@@ -2,13 +2,17 @@ class DiagnosticsController < ApplicationController
     # GET /diagnostics
     def index
         diagnostics = Diagnostic.all
-        render json: diagnostics
+        render json: diagnostics, status: :ok
     end
 
     # GET /diagnostics/:id
     def show
         diagnostic = Diagnostic.find_by(id: params[:id])
-        render json: diagnostic
+        if diagnostic
+            render json: diagnostic, status: :ok
+        else
+            render json: { error: "Diagnose not found" }, status: :not_found
+        end
     end
 
     # POST /diagnostics
@@ -22,7 +26,7 @@ class DiagnosticsController < ApplicationController
         diagnostic = Diagnostic.find_by(id: params[:id])
         if diagnostic
             diagnostic.update(diagnostic_params)
-            render json: diagnostic
+            render json: diagnostic, status: :accepted
         else
             render json: { error: "Diagnose not found" }, status: :not_found
         end

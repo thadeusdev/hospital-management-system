@@ -1,4 +1,5 @@
 class Diagnostic < ApplicationRecord
-    belongs_to :disease
-    belongs_to :patient
+    belongs_to :disease, optional: true
+    belongs_to :patient, optional: true
+    belongs_to :doctor, optional: true
 end

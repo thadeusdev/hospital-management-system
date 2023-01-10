@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :prescriptions
   resources :diagnostics
   resources :medicines
@@ -6,5 +7,16 @@ Rails.application.routes.draw do
   resources :diseases
   resources :doctor_appointments
   resources :doctors
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get '/diseases/:disease_id/patients', to: 'deseases#patients_index'
+  get '/diseases/:disease_id/patients/:id', to: 'diseases#patient'
+  
+  # Sign-up feature
+  post "/signup", to: "users#create"
+  # Auto-Login feature
+  get "/me", to: "users#show"
+  # Login after sign-up
+  post "/login", to: "sessions#create"
+  # Logout after login
+  delete "/logout", to: "sessions#destroy"
 end

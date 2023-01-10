@@ -1,44 +1,33 @@
 import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
+import axios from 'axios'
 
 
 const Signup = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
-    const [isSignupSuccess, setIsSignupSuccess] = useState(false);
-    const [error, setError] = useState('');
+    const [password_confirmation, setPassword_confirmation] = useState('');
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         try {
-            // Validate the form fields (e.g. make sure the email is in the correct format)
-
-            // Make an HTTP request to your server to create a new user account with the provided information
-            const response = await fetch('/api/signup', {
-                method: 'POST',
-                body: JSON.stringify({ username, password, email }),
-                headers: { 'Content-Type': 'application/json' },
-            });
-            const data = await response.json();
-
-            // If the signup is successful, store the authentication token and set isSignupSuccess to true
-            if (data.token) {
-                localStorage.setItem('authToken', data.token);
-                setIsSignupSuccess(true);
-            } else {
-                setError('An error occurred');
-            }
-        } catch (error) {
-            setError('An error occurred');
+            const res = await axios.post('/signup', {
+                user: {
+                    username: username,
+                    password: password,
+                    password_confirmation: password_confirmation,
+                }
+            })
+            console.log(res);
+        }catch (err){
+            console.error(err)
         }
-    };
-
-    if (isSignupSuccess) {
-        return <Navigate to="/Login" replace={true} />;
     }
+
+    // if (isSignupSuccess) {
+    //     return <Navigate to="/Login" replace={true} />;
+    // }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -74,28 +63,28 @@ const Signup = () => {
 
 
                 <TextField margin="normal"
-                    label="Email"
-                    type={"email"}
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    variant='outlined'
-                    placeholder='Email' />
-
-                <TextField margin="normal"
                     label="Password"
+                    type={"password"}
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
+                    variant='outlined'
+                    placeholder='Password' />
+
+                <TextField margin="normal"
+                    label="Confirm Password"
+                    value={password_confirmation}
+                    onChange={(event) => setPassword_confirmation(event.target.value)}
                     type={"password"} variant='outlined'
-                    placeholder='password' />
+                    placeholder='confirm password' />
                 <br />
-                {error && <p>{error}</p>}
+                {/* {errors && <p>{errors}</p>} */}
 
                 <Button type="submit" sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>Signup</Button>
-                <Button
+                {/* <Button
                     onClick={() => setIsSignupSuccess(!isSignupSuccess)}
                     sx={{ marginTop: 3, borderRadius: 3 }} >
                     Change To {isSignupSuccess ? "Signup" : "Login"}
-                </Button>
+                </Button> */}
 
             </Box>
 

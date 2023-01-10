@@ -27,7 +27,9 @@ import Logout from './pages/Registration/Logout';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <>
+    {/* <Login/> */}
+    <BrowserRouter>    
     <Topbar/>
       <Sidebar>      
         <Routes>
@@ -57,6 +59,7 @@ const App = () => {
         </Routes>
       </Sidebar>
     </BrowserRouter>
+    </>
   );
 };
 

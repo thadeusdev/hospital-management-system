@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_23_212149) do
+ActiveRecord::Schema.define(version: 2023_01_09_214825) do
 
   create_table "diagnostics", force: :cascade do |t|
     t.string "name"
-    t.integer "patient_id"
-    t.integer "doctor_id"
-    t.integer "disease_id"
     t.datetime "performed_at"
     t.integer "pulse"
     t.decimal "sugar"
     t.decimal "temperature"
     t.decimal "pressure"
+    t.integer "doctor_id", null: false
+    t.integer "patient_id", null: false
+    t.integer "disease_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["disease_id"], name: "index_diagnostics_on_disease_id"
@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 2022_12_23_212149) do
 
   create_table "diseases", force: :cascade do |t|
     t.string "name"
-    t.integer "patient_id"
     t.string "symptoms"
     t.string "severity"
+    t.integer "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["patient_id"], name: "index_diseases_on_patient_id"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 2022_12_23_212149) do
     t.string "notes"
     t.date "date"
     t.time "time"
-    t.integer "patient_id"
-    t.integer "doctor_id"
+    t.integer "doctor_id", null: false
+    t.integer "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["doctor_id"], name: "index_doctor_appointments_on_doctor_id"
@@ -66,11 +66,11 @@ ActiveRecord::Schema.define(version: 2022_12_23_212149) do
     t.string "image"
     t.string "name"
     t.string "dosage"
-    t.integer "patient_id"
     t.string "description"
     t.string "category"
     t.boolean "is_acidic"
     t.boolean "infant_safe"
+    t.integer "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["patient_id"], name: "index_medicines_on_patient_id"
@@ -91,16 +91,23 @@ ActiveRecord::Schema.define(version: 2022_12_23_212149) do
   create_table "prescriptions", force: :cascade do |t|
     t.string "frequency"
     t.string "duration"
-    t.integer "medicine_id"
-    t.integer "disease_id"
-    t.integer "patient_id"
-    t.integer "doctor_id"
+    t.integer "medicine_id", null: false
+    t.integer "disease_id", null: false
+    t.integer "doctor_id", null: false
+    t.integer "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["disease_id"], name: "index_prescriptions_on_disease_id"
     t.index ["doctor_id"], name: "index_prescriptions_on_doctor_id"
     t.index ["medicine_id"], name: "index_prescriptions_on_medicine_id"
     t.index ["patient_id"], name: "index_prescriptions_on_patient_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "diagnostics", "diseases"

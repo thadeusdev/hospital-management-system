@@ -7,6 +7,7 @@ class CreateDoctors < ActiveRecord::Migration[6.1]
       t.string :primary_practice
       t.string :secondary_practice
       t.integer :years_of_experience
+      # t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps
     end
