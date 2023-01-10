@@ -11,8 +11,6 @@ const AppointmentList = () => {
     { field: 'notes', headerName: 'Notes', width: 200 },
     { field: 'date', headerName: 'Date', width: 200 },
     { field: 'time', headerName: 'Time', width: 200 },
-    { field: 'patient_id', headerName: 'Patient Id', width: 120 },
-    { field: 'doctor_id', headerName: 'Doctor Id', width: 120 },
     { 
       field: 'action',
       headerName: 'Action',

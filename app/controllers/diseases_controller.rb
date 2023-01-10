@@ -43,7 +43,7 @@ class DiseasesController < ApplicationController
     # # start
     # def patients_index
     #     disease = Disease.find(params[:disease_id])
-    #     patients = disease.reviews
+    #     patients = disease.patients
     #     render json: patients, include: :disease
     # end
 

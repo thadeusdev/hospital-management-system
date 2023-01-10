@@ -9,10 +9,7 @@ const DiagnoseList = () => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 50 },
     { field: 'name', headerName: 'Name', width: 100 },
-    { field: 'patient_id', headerName: 'Patient Id', width: 90 },
-    { field: 'doctor_id', headerName: 'Doctor Id', width: 90 },
-    { field: 'disease_id', headerName: 'Disease Id', width: 90 },
-    { field: 'performed_at', headerName: 'Performed At', width: 155 },
+    { field: 'performed_at', headerName: 'Performed At', width: 200 },
     { field: 'pulse', headerName: 'Pulse', width: 70 },
     { field: 'sugar', headerName: 'Sugar', width: 70 },
     { field: 'temperature', headerName: 'Temperature', width: 120 },

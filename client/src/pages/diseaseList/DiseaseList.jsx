@@ -5,18 +5,10 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 
-const DiseaseList = ({match}) => {
+const DiseaseList = () => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'name', headerName: 'Name', width: 200 },
-    { field: 'patient.name', headerName: 'Patient', width: 200, 
-    renderCell: (params) => {
-      return (
-          <div className='doctorListName'>
-              {params.row.patient ? params.row.patient.full_name : "No Patient assigned"}
-          </div>
-      )
-  }},
     { field: 'symptoms', headerName: 'Symptoms', width: 200 },
     { field: 'severity', headerName: 'Severity', width: 200 },
     { 
@@ -36,7 +28,7 @@ const DiseaseList = ({match}) => {
     },
   ];
 
-  const [diseases, setDiseases] = useState({})
+  const [diseases, setDiseases] = useState([])
   
     useEffect(() => {
         fetch('/diseases')

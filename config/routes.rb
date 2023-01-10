@@ -11,6 +11,24 @@ Rails.application.routes.draw do
   # get '/diseases/:disease_id/patients', to: 'deseases#patients_index'
   # get '/diseases/:disease_id/patients/:id', to: 'diseases#patient'
 
+  get '/medicines/:medicine_id/patients', to: 'medicines#patients_index'
+  get '/medicines/:medicine_id/patients/:id', to: 'medicines#patient'
+
+  get '/doctor_appointments/:doctor_appointment_id/patients', to: 'doctor_appointments#patients_index'
+  get '/doctor_appointments/:doctor_appointment_id/patients/:id', to: 'doctor_appointments#patient'
+
+  get '/doctor_appointments/:doctor_appointment_id/doctors', to: 'doctor_appointments#doctors_index'
+  get '/doctor_appointments/:doctor_appointment_id/doctors/:id', to: 'doctor_appointments#doctor'
+
+  get '/diagnostics/:diagnostic_id/patients', to: 'diagnostics#patients_index'
+  get '/diagnostics/:diagnostic_id/patients/:id', to: 'diagnostics#patient'
+
+  get '/diagnostics/:diagnostic_id/doctors', to: 'diagnostics#doctors_index'
+  get '/diagnostics/:diagnostic_id/doctors/:id', to: 'diagnostics#doctor'
+
+  get '/diagnostics/:diagnostic_id/diseases', to: 'diagnostics#diseases_index'
+  get '/diagnostics/:diagnostic_id/diseases/:id', to: 'diagnostics#disease'
+
   resources :diseases, only: [:show] do
     # nested resource for patients
     resources :patients, only: [:show, :index]

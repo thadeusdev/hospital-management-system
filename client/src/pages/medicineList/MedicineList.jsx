@@ -17,7 +17,6 @@ const MedicineList = () => {
       )
   } },
     { field: 'dosage', headerName: 'Dosage', width: 100 },
-    { field: 'patient_id', headerName: 'Patient Id', width: 100 },
     { field: 'description', headerName: 'Description', width: 100 },
     { field: 'category', headerName: 'Category', width: 100 },
     { field: 'is_acidic', headerName: 'Is Acidic', width: 90 },

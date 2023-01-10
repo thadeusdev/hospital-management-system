@@ -39,6 +39,20 @@ class MedicinesController < ApplicationController
         end
     end
 
+    # Nested resource routing
+    # begin
+    def patients_index
+        medicine = Medicine.find(params[:medicine_id])
+        patients = medicine.reviews
+        render json: patients, include: :medicine
+    end
+
+    def patient
+        patient = Patient.find(params[:id])
+        render json: patient, include: :medicine
+    end
+    # ends
+
     private
 
     def medicine_params

@@ -26,6 +26,7 @@ const Disease = () => {
 
     const handleEdit = (e) => {
         setDiseaseedit({...diseaseedit, [e.target.name] : e.target.value})
+        setPatientedit({...patientedit, [e.target.name] : e.target.value})
     }
 
     function handleDiseaseupdate(e){        
@@ -38,7 +39,7 @@ const Disease = () => {
             },
             body: JSON.stringify({
                 name: e.target.name.value,
-                patient_id: e.target.patient_id.value,
+                // patient_id: e.target.patient_id.value,
                 symptoms: e.target.symptoms.value,
                 severity: e.target.severity.value
             }),
@@ -56,6 +57,22 @@ const Disease = () => {
         }
         editPatientId()
     },[])
+
+    function handlePatientupdate(e){        
+        e.preventDefault();
+        fetch(`/diseases/${id}/patients/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                patient: e.target.patient.value,
+            }),
+        })
+        .then((r) => r.json())
+        .then((data) => console.log(data))
+    }
 
   return (
     <div className='disease'>
@@ -93,15 +110,15 @@ const Disease = () => {
             </div>
             <div className="diseaseUpdate">
                 <span className="diseaseUpdateTitle">Edit</span>
-                <form onSubmit={ handleDiseaseupdate } className="diseaseUpdateForm">
+                <form onSubmit={ handleDiseaseupdate } onClick={handlePatientupdate} className="diseaseUpdateForm">
                     <div className="diseaseUpdateLeft">
                         <div className="diseaseUpdateItem">
                             <label>Name</label>
                             <input type="text" name="name" className='diseaseUpdateInput' value={diseaseedit.name} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diseaseUpdateItem">
-                            <label>Patient Id</label>
-                            <input type="text" name="patient_id" className='diseaseUpdateInput' value={patientedit.full_name} onChange={(e) => handleEdit(e)} />
+                            <label>Patient</label>
+                            <input type="text" name="patient" className='diseaseUpdateInput' value={patientedit.full_name} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diseaseUpdateItem">
                             <label>Symptoms</label>

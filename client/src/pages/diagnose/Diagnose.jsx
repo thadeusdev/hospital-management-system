@@ -59,6 +59,36 @@ const Diagnose = () => {
         .then((data) => console.log(data))
     }
 
+    const [patientedit, setPatientedit] = useState([])
+    useEffect(() => {
+        const editPatientId = async() => {
+            const reqdata= await fetch(`/diagnostics/${id}/patients/${id}`);
+            const res= reqdata.json();
+            setPatientedit(await res);
+        }
+        editPatientId()
+    },[])
+
+    const [doctoredit, setDoctoredit] = useState([])
+    useEffect(() => {
+        const editDoctorId = async() => {
+            const reqdata= await fetch(`/diagnostics/${id}/doctors/${id}`);
+            const res= reqdata.json();
+            setDoctoredit(await res);
+        }
+        editDoctorId()
+    },[])
+
+    const [diseaseedit, setDiseaseedit] = useState([])
+    useEffect(() => {
+        const editDiseaseId = async() => {
+            const reqdata= await fetch(`/diagnostics/${id}/diseases/${id}`);
+            const res= reqdata.json();
+            setDiseaseedit(await res);
+        }
+        editDiseaseId()
+    },[])
+
   return (
     <div className='diagnose'> 
         <div className="diagnoseTitleContainer">
@@ -87,16 +117,16 @@ const Diagnose = () => {
                             <input type="text" name="name" className='diagnoseUpdateInput' value={diagnoseedit.name} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diagnoseUpdateItem">
-                            <label>Patient Id</label>
-                            <input type="text" name="patient_id" className='diagnoseUpdateInput' value={diagnoseedit.patient_id} onChange={(e) => handleEdit(e)} />
+                            <label>Patient</label>
+                            <input type="text" name="patient_id" className='diagnoseUpdateInput' value={patientedit.full_name} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diagnoseUpdateItem">
-                            <label>Doctor Id</label>
-                            <input type="text" name="doctor_id" className='diagnoseUpdateInput' value={diagnoseedit.doctor_id} onChange={(e) => handleEdit(e)} />
+                            <label>Doctor</label>
+                            <input type="text" name="doctor_id" className='diagnoseUpdateInput' value={doctoredit.full_name} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diagnoseUpdateItem">
-                            <label>Disease Id</label>
-                            <input type="text" name="disease_id" className='diagnoseUpdateInput' value={diagnoseedit.disease_id} onChange={(e) => handleEdit(e)} />
+                            <label>Disease</label>
+                            <input type="text" name="disease_id" className='diagnoseUpdateInput' value={diseaseedit.name} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diagnoseUpdateItem">
                             <label>Performed At</label>

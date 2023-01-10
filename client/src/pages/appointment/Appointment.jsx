@@ -44,6 +44,26 @@ const Appointment = () => {
         .then((data) => console.log(data))
     }
 
+    const [patientedit, setPatientedit] = useState([])
+    useEffect(() => {
+        const editPatientId = async() => {
+            const reqdata= await fetch(`/doctor_appointments/${id}/patients/${id}`);
+            const res= reqdata.json();
+            setPatientedit(await res);
+        }
+        editPatientId()
+    },[])
+
+    const [doctoredit, setdoctoredit] = useState([])
+    useEffect(() => {
+        const editdoctorId = async() => {
+            const reqdata= await fetch(`/doctor_appointments/${id}/doctors/${id}`);
+            const res= reqdata.json();
+            setdoctoredit(await res);
+        }
+        editdoctorId()
+    },[])
+
   return (
     <div className='appointment'>
         <div className="appointmentTitleContainer">
@@ -66,15 +86,15 @@ const Appointment = () => {
                         <VerifiedIcon className="appointmentShowIcon" />
                         <span className="appointmentShowInfoTitle">{appointmentedit.time}</span>
                     </div> 
-                    <span className="appointmentShowTitle">Patient Id</span> 
+                    <span className="appointmentShowTitle">Patient</span> 
                     <div className="appointmentShowInfo">
                         <VerifiedIcon className="appointmentShowIcon" />
-                        <span className="appointmentShowInfoTitle">{appointmentedit.patient_id}</span>
+                        <span className="appointmentShowInfoTitle">{patientedit.full_name}</span>
                     </div> 
-                    <span className="appointmentShowTitle">Doctor Id</span> 
+                    <span className="appointmentShowTitle">Doctor</span> 
                     <div className="appointmentShowInfo">
                         <VerifiedIcon className="appointmentShowIcon" />
-                        <span className="appointmentShowInfoTitle">{appointmentedit.doctor_id}</span>
+                        <span className="appointmentShowInfoTitle">{doctoredit.full_name}</span>
                     </div>                  
                 </div>
             </div>
@@ -95,12 +115,12 @@ const Appointment = () => {
                             <input type="time" name="time" className='appointmentUpdateInput' value={appointmentedit.time} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="appointmentUpdateItem">
-                            <label>Patient Id</label>
-                            <input type="text" name="patient_id" className='appointmentUpdateInput' value={appointmentedit.patient_id} onChange={(e) => handleEdit(e)} />
+                            <label>Patient</label>
+                            <input type="text" name="patient_id" className='appointmentUpdateInput' value={patientedit.full_name} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="appointmentUpdateItem">
-                            <label>Doctor Id</label>
-                            <input type="text" name="doctor_id" className='appointmentUpdateInput' value={appointmentedit.doctor_id} onChange={(e) => handleEdit(e)} />
+                            <label>Doctor</label>
+                            <input type="text" name="doctor_id" className='appointmentUpdateInput' value={doctoredit.full_name} onChange={(e) => handleEdit(e)} />
                         </div>                                                 
                     </div>
                     <div className="appointmentUpdateRight">
