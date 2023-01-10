@@ -8,8 +8,13 @@ Rails.application.routes.draw do
   resources :doctor_appointments
   resources :doctors
 
-  get '/diseases/:disease_id/patients', to: 'deseases#patients_index'
-  get '/diseases/:disease_id/patients/:id', to: 'diseases#patient'
+  # get '/diseases/:disease_id/patients', to: 'deseases#patients_index'
+  # get '/diseases/:disease_id/patients/:id', to: 'diseases#patient'
+
+  resources :diseases, only: [:show] do
+    # nested resource for patients
+    resources :patients, only: [:show, :index]
+  end
   
   # Sign-up feature
   post "/signup", to: "users#create"

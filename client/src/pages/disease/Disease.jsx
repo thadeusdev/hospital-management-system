@@ -6,6 +6,7 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import { NavLink } from 'react-router-dom';
 
 import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios'
 
 const Disease = () => {
     const [diseaseedit, setDiseaseedit] = useState({name:'', symptoms:'', severity:''})
@@ -46,6 +47,16 @@ const Disease = () => {
         .then((data) => console.log(data))
     }
 
+    const [patientedit, setPatientedit] = useState([])
+    useEffect(() => {
+        const editPatientId = async() => {
+            const reqdata= await fetch(`/diseases/${id}/patients/${id}`);
+            const res= reqdata.json();
+            setPatientedit(await res);
+        }
+        editPatientId()
+    },[])
+
   return (
     <div className='disease'>
         <div className="diseaseTitleContainer">
@@ -59,7 +70,7 @@ const Disease = () => {
                 <div className="diseaseShowTop">
                     <div className="diseaseShowTopTitle">
                         <span className="diseaseShowDiseasename">{diseaseedit.name}</span>
-                        <span className="diseaseShowDiseaseTitle">{diseaseedit.patient_id}</span>
+                        <span className="diseaseShowDiseaseTitle">{patientedit.full_name}</span>
                     </div>
                 </div>
                 <div className="diseaseShowBottom">
@@ -90,7 +101,7 @@ const Disease = () => {
                         </div>
                         <div className="diseaseUpdateItem">
                             <label>Patient Id</label>
-                            <input type="text" name="patient_id" className='diseaseUpdateInput' value={diseaseedit.patient_id} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="patient_id" className='diseaseUpdateInput' value={patientedit.full_name} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diseaseUpdateItem">
                             <label>Symptoms</label>

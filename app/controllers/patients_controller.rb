@@ -1,8 +1,18 @@
 class PatientsController < ApplicationController
     # GET /patients
+    # def index
+    #     patients = Patient.all
+    #     render json: patients
+    # end
+
     def index
-        patients = Patient.all
-        render json: patients
+        if params[:disease_id]
+            disease = Disease.find(params[:disease_id])
+            patients = disease.patients
+        else
+            patients = Patient.all
+        end
+        render json: patients, include: :disease
     end
 
     # GET /patients/:id
