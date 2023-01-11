@@ -1,4 +1,6 @@
 class DoctorAppointmentsController < ApplicationController
+    before_action :authorize, :current_user
+    
     # GET /doctor_appointments
     def index
         doctor_appointments = DoctorAppointment.all

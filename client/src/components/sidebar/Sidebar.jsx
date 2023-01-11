@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Login from '../../pages/Registration/Login/Login';
 import "./sidebar.css"
 import {
     FaTh,
@@ -10,7 +11,6 @@ import {
     FaMicroscope,
     FaTablets,
     FaSignOutAlt,
-    FaSignInAlt,
     FaPrescriptionBottleAlt,
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
@@ -55,16 +55,6 @@ const Sidebar = ({children}) => {
             name:"Medicines",
             icon:<FaTablets/>
         },
-        // {
-        //     path: "/login",
-        //     name: "Login",
-        //     icon: <FaSignInAlt />  
-        // },
-        // {
-        //     path: "/signup",
-        //     name: "Signup",
-        //     icon: <FaSignInAlt />
-        // },
         {
             path:"/prescriptions",
             name:"Prescriptions",
@@ -73,30 +63,74 @@ const Sidebar = ({children}) => {
         {
             path:"/logout",
             name:"Logout",
-            icon:<FaSignOutAlt/>
+            icon:<FaSignOutAlt onClick={handleLogout}/>
         }
     ]
-    return (
-        <div className="container">
-           <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
-               <div className="top_section">
-                   <h1 style={{display: isOpen ? "block" : "none"}} id="logo1">Admin</h1>
-                   <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
-                       <FaBars onClick={toggle}/>
+
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+      fetch("/me").then((response) => {
+        if (response.ok) {
+          response.json().then((user) => setUser(user));
+        }
+      });
+    }, []);
+
+    if (user) {
+        return (
+            <div className="container">
+               <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
+                   <div className="top_section">
+                       <h1 style={{display: isOpen ? "block" : "none"}} id="logo1">{user.username}</h1>
+                       <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
+                           <FaBars onClick={toggle}/>
+                       </div>
                    </div>
+                   {
+                       menuItem.map((item, index)=>(
+                           <NavLink to={item.path} key={index} className="link" activeclassname="active">
+                               <div className="icon">{item.icon}</div>
+                               <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
+                           </NavLink>
+                       ))
+                   }
                </div>
-               {
-                   menuItem.map((item, index)=>(
-                       <NavLink to={item.path} key={index} className="link" activeclassname="active">
-                           <div className="icon">{item.icon}</div>
-                           <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
-                       </NavLink>
-                   ))
-               }
-           </div>
-           <main>{children}</main>
-        </div>
-    );
-};
+               <main>{children}</main>
+            </div>
+        );
+      } else {
+        return <Login />;
+      }
+
+      function handleLogout() {
+        fetch("/logout", {
+          method: "DELETE",
+        }).then(() => console.log());
+      }
+    }
+
+    // return (
+    //     <div className="container">
+    //        <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
+    //            <div className="top_section">
+    //                <h1 style={{display: isOpen ? "block" : "none"}} id="logo1">Admin</h1>
+    //                <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
+    //                    <FaBars onClick={toggle}/>
+    //                </div>
+    //            </div>
+    //            {
+    //                menuItem.map((item, index)=>(
+    //                    <NavLink to={item.path} key={index} className="link" activeclassname="active">
+    //                        <div className="icon">{item.icon}</div>
+    //                        <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
+    //                    </NavLink>
+    //                ))
+    //            }
+    //        </div>
+    //        <main>{children}</main>
+    //     </div>
+    // );
+// };
 
 export default Sidebar;

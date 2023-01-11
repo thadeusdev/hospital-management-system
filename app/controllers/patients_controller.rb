@@ -1,4 +1,6 @@
 class PatientsController < ApplicationController
+    before_action :authorize, :current_user
+    
     # GET /patients
     # def index
     #     patients = Patient.all

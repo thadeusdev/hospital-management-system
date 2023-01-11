@@ -2,40 +2,31 @@ import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
 
-
-
 const Login = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    console.log(isLoggedIn)
-    const [error, setError] = useState('');
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        try {
-            // Validate the form fields (e.g. make sure the email is in the correct format)
-
-            // Make an HTTP request to your server to create a new user account with the provided information
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                body: JSON.stringify({ username, password }),
-                headers: { 'Content-Type': 'application/json' },
-            });
-            const data = await response.json();
-
-            // If the signup is successful, store the authentication token and set isSignupSuccess to true
-            if (data.token) {
-                localStorage.setItem('authToken', data.token);
-                setIsLoggedIn(true);
-            } else {
-                setError('Invalid login credentials');
-            }
-        } catch (error) {
-            setError('An error occurred');
+  
+    function handleSubmit(e) {
+      e.preventDefault();
+      setIsLoading(true);
+      fetch("/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      }).then((r) => {
+        setIsLoading(false);
+        if (r.ok) {
+          r.json().then((user) => console.log(user));
+        } else {
+          r.json().then((err) => setErrors(err.errors));
         }
-    };
+      });
+    }
 
     if (isLoggedIn) {
         return <Navigate to="/Signup" replace={true} />;
@@ -80,7 +71,10 @@ const Login = () => {
                     variant='outlined'
                     placeholder='password' />
 
-                <Button type="submit" sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>Login</Button>
+                <Button type="submit" sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>
+                    Login
+                    {isLoading ? "Loading..." : "Login"}
+                </Button>
                 <Button
                     onClick={() => setIsLoggedIn(!isLoggedIn)}
                     sx={{ marginTop: 3, borderRadius: 3 }} >

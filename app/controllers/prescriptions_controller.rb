@@ -1,4 +1,6 @@
 class PrescriptionsController < ApplicationController
+    before_action :authorize, :current_user
+    
     # GET /prescriptions
     def index
         prescriptions = Prescription.all

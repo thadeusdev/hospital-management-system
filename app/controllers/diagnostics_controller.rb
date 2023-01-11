@@ -1,4 +1,6 @@
 class DiagnosticsController < ApplicationController
+    before_action :authorize, :current_user
+    
     # GET /diagnostics
     def index
         diagnostics = Diagnostic.all

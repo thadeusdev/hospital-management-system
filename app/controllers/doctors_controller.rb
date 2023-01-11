@@ -1,4 +1,5 @@
 class DoctorsController < ApplicationController
+    before_action :authorize, :current_user
 
     # GET /doctors
     def index
