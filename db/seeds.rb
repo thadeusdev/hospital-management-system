@@ -379,7 +379,7 @@ puts " 📝creating prescriptions..."
 
 prescriptions.each{|prescription| Prescription.create!(prescription)}
 
-# User.create!(username: "test", password:'1234')
+User.create!(username: "admin", password:'root')
 
 
 puts " seeded successfully!"
