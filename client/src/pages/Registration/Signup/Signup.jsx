@@ -5,29 +5,42 @@ import axios from 'axios'
 
 
 const Signup = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [password_confirmation, setPassword_confirmation] = useState('');
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [password_confirmation, setPassword_confirmation] = useState('')
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            const res = await axios.post('/signup', {
-                user: {
-                    username: username,
-                    password: password,
-                    password_confirmation: password_confirmation,
-                }
-            })
-            console.log(res);
-        }catch (err){
-            console.error(err)
-        }
+    const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isSignupSuccess, setIsSignupSuccess] = useState(false);
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        setErrors([]);
+        setIsLoading(true);
+        fetch("/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+            password_confirmation,
+          }),
+        }).then((r) => {
+          setIsLoading(false);
+          if (r.ok) {
+            r.json().then((user) => console.log(user));
+            setIsSignupSuccess(true);
+          } else {
+            r.json().then((err) => setErrors(err.errors));
+          }
+        });
+      }
+
+      if (isSignupSuccess) {
+        return <Navigate to="/Login" replace={true} />;
     }
-
-    // if (isSignupSuccess) {
-    //     return <Navigate to="/Login" replace={true} />;
-    // }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -80,11 +93,11 @@ const Signup = () => {
                 {/* {errors && <p>{errors}</p>} */}
 
                 <Button type="submit" sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>Signup</Button>
-                {/* <Button
+                <Button
                     onClick={() => setIsSignupSuccess(!isSignupSuccess)}
                     sx={{ marginTop: 3, borderRadius: 3 }} >
                     Change To {isSignupSuccess ? "Signup" : "Login"}
-                </Button> */}
+                </Button>
 
             </Box>
 
