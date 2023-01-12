@@ -45,7 +45,7 @@ class MedicinesController < ApplicationController
     # begin
     def patients_index
         medicine = Medicine.find(params[:medicine_id])
-        patients = medicine.reviews
+        patients = medicine.patients
         render json: patients, include: :medicine
     end
 
