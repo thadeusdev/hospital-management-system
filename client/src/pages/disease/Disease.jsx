@@ -6,7 +6,6 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import { NavLink } from 'react-router-dom';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios'
 
 const Disease = () => {
     const [diseaseedit, setDiseaseedit] = useState({name:'', symptoms:'', severity:''})
