@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
-import axios from 'axios'
 
 
 const Signup = () => {

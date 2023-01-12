@@ -72,7 +72,6 @@ const Login = () => {
                     placeholder='password' />
 
                 <Button type="submit" sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>
-                    Login
                     {isLoading ? "Loading..." : "Login"}
                 </Button>
                 <Button

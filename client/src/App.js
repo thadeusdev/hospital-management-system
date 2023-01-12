@@ -63,15 +63,26 @@ const App = () => {
             <Route path="/newDisease" element={<NewDisease />} />
             <Route path="/newMedicine" element={<NewMedicine />} />
             <Route path="/newDiagnose" element={<NewDiagnose />} />
-            <Route path="/Signup" element={<Signup/>}/>
-            <Route path="/Login" element={<Login />} />
+{/*             <Route path="/Signup" element={<Signup/>}/>
+            <Route path="/Login" element={<Login />} /> */}
           </Routes>
         </Sidebar>
       </BrowserRouter>
       </>
     );
   } else {
-    return <Login onLogin={setUser} />;
+    return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Login onLogin={setUser} />}>
+        </Route>
+        <Route path='/Signup'element= {<Signup/>}>
+        </Route>
+        <Route path='/Login' element={<Login onLogin={setUser} />}>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+    );
   }
   // return (
   //   <>
