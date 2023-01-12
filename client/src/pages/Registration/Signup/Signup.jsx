@@ -71,7 +71,6 @@ const Signup = () => {
                     variant='outlined'
                     placeholder='Username' />
 
-
                 <TextField margin="normal"
                     label="Password"
                     type={"password"}
@@ -87,9 +86,9 @@ const Signup = () => {
                     type={"password"} variant='outlined'
                     placeholder='confirm password' />
                 <br />
-                {errors && <p>{errors}</p>}
+                <p>{errors}</p>
 
-                <Button type="submit" sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>{isLoading ? "Loading..." : "Login"}</Button>
+                <Button type="submit" sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>{isLoading ? "Loading..." : "Signup"}</Button>
                 <Button
                     onClick={() => setIsSignupSuccess(!isSignupSuccess)}
                     sx={{ marginTop: 3, borderRadius: 3 }} >

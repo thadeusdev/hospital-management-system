@@ -60,8 +60,8 @@ const Login = () => {
                     onChange={(event) => setUsername(event.target.value)}
                     variant='outlined'
                     placeholder='Username' />
-
-
+                    <br />
+                    {errors && <p>{errors}</p>}
 
                 <TextField margin="normal"
                     type={"password"}

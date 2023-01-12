@@ -15,7 +15,7 @@ const NewAppointment = () => {
         doctor_id: formData.get('doctor_id')
       };
   
-      fetch('/appointments', {
+      fetch('/doctor_appointments', {
         method: 'POST',
         body: JSON.stringify(appointment),
         headers: {
