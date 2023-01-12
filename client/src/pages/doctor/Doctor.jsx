@@ -6,11 +6,10 @@ import PublishIcon from '@mui/icons-material/Publish';
 import { FaCalendarPlus }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Doctor = () => {
     const [doctoredit, setDoctoredit] = useState({img:'', full_name:'', primary_practice:'', secondary_practice:''})
-    const history = useNavigate()
     const {id} = useParams();    
 
     // console.log(id)
@@ -22,7 +21,7 @@ const Doctor = () => {
             setDoctoredit(await res);
         }
         editDoctorId()
-    },[])
+    },[id])
 
     const handleEdit = (e) => {
         setDoctoredit({...doctoredit, [e.target.name] : e.target.value})

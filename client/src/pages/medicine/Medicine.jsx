@@ -20,7 +20,7 @@ const Medicine = () => {
             setMedicineedit(await res);
         }
         editMedicineId()
-    },[])
+    },[id])
 
     const handleEdit = (e) => {
         setMedicineedit({...medicineedit, [e.target.name] : e.target.value})
@@ -58,7 +58,7 @@ const Medicine = () => {
             setPatientedit(await res);
         }
         editPatientId()
-    },[])
+    },[id])
 
   return (
     <div className='medicine'>

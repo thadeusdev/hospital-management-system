@@ -60,8 +60,6 @@ const Signup = () => {
                 }}
             >
 
-
-
                 <Typography variant="h2" padding={3} textAlign="center">
 
                     Signup</Typography>
@@ -89,9 +87,9 @@ const Signup = () => {
                     type={"password"} variant='outlined'
                     placeholder='confirm password' />
                 <br />
-                {/* {errors && <p>{errors}</p>} */}
+                {errors && <p>{errors}</p>}
 
-                <Button type="submit" sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>Signup</Button>
+                <Button type="submit" sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>{isLoading ? "Loading..." : "Login"}</Button>
                 <Button
                     onClick={() => setIsSignupSuccess(!isSignupSuccess)}
                     sx={{ marginTop: 3, borderRadius: 3 }} >

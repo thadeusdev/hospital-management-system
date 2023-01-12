@@ -37,13 +37,11 @@ const App = () => {
 
   if (user) {
     return (
-      <>      
-      {/* <Login/> */}
       <BrowserRouter>  
       <Topbar/>
         <Sidebar>      
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            {/* <Route exact path="/" element={<Dashboard />} /> */}
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/appointment" element={<AppointmentList />} />
             <Route path="/doctors" element={<DoctorList />} />
@@ -63,12 +61,9 @@ const App = () => {
             <Route path="/newDisease" element={<NewDisease />} />
             <Route path="/newMedicine" element={<NewMedicine />} />
             <Route path="/newDiagnose" element={<NewDiagnose />} />
-{/*             <Route path="/Signup" element={<Signup/>}/>
-            <Route path="/Login" element={<Login />} /> */}
           </Routes>
         </Sidebar>
       </BrowserRouter>
-      </>
     );
   } else {
     return (
@@ -84,42 +79,6 @@ const App = () => {
     </BrowserRouter>
     );
   }
-  // return (
-  //   <>
-  //   <LandingPage />
-  //   {/* <Login/>
-  //   <BrowserRouter>    
-  //   <Topbar/>
-  //     <Sidebar>      
-  //       <Routes>
-  //         <Route path="/" element={<Dashboard />} />
-  //         <Route path="/dashboard" element={<Dashboard />} />
-  //         <Route path="/appointment" element={<AppointmentList />} />
-  //         <Route path="/doctors" element={<DoctorList />} />
-  //         <Route path="/patients" element={<PatientList />} />
-  //         <Route path="/diseases" element={<DiseaseList />} />
-  //         <Route path="/diagnoses" element={<DiagnoseList />} />
-  //         <Route path="/medicines" element={<MedicineList />} />
-  //         <Route path="/doctor/:id" element={<Doctor />} />
-  //         <Route path="/appointment/:id" element={<Appointment />} />
-  //         <Route path="/patient/:id" element={<Patient />} />
-  //         <Route path="/disease/:id" element={<Disease />} />
-  //         <Route path="/diagnose/:id" element={<Diagnose />} />
-  //         <Route path="/medicine/:id" element={<Medicine />} />
-  //         <Route path="/newDoctor" element={<NewDoctor />} />
-  //         <Route path="/newPatient" element={<NewPatient />} />
-  //         <Route path="/newAppointment" element={<NewAppointment />} />
-  //         <Route path="/newDisease" element={<NewDisease />} />
-  //         <Route path="/newMedicine" element={<NewMedicine />} />
-  //         <Route path="/newDiagnose" element={<NewDiagnose />} />
-  //         <Route path="/Signup" element={<Signup/>}/>
-  //         <Route path="/Login" element={<Login />} />
-  //         <Route path="/Logout" element={<Logout />} />
-  //       </Routes>
-  //     </Sidebar>
-  //   </BrowserRouter> */}
-  //   </>
-  // );
 };
 
 export default App;

@@ -3,7 +3,7 @@ import "./diagnose.css"
 import { BarChart, Bar, Tooltip, Legend } from 'recharts';
 import { NavLink } from 'react-router-dom';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Diagnose = () => {
     const data = [
@@ -17,7 +17,6 @@ const Diagnose = () => {
       ];
 
     const [diagnoseedit, setDiagnoseedit] = useState({name:'', patient_id:'', doctor_id:'', disease_id:'', performed_at:'', pulse:'', sugar:'', temperature:'', pressure:''})
-    const history = useNavigate()
     const {id} = useParams();    
 
     // console.log(id)
@@ -29,7 +28,7 @@ const Diagnose = () => {
             setDiagnoseedit(await res);
         }
         editDiagnoseId()
-    },[])
+    },[id])
 
     const handleEdit = (e) => {
         setDiagnoseedit({...diagnoseedit, [e.target.name] : e.target.value})
@@ -67,7 +66,7 @@ const Diagnose = () => {
             setPatientedit(await res);
         }
         editPatientId()
-    },[])
+    },[id])
 
     const [doctoredit, setDoctoredit] = useState([])
     useEffect(() => {
@@ -77,7 +76,7 @@ const Diagnose = () => {
             setDoctoredit(await res);
         }
         editDoctorId()
-    },[])
+    },[id])
 
     const [diseaseedit, setDiseaseedit] = useState([])
     useEffect(() => {
@@ -87,7 +86,7 @@ const Diagnose = () => {
             setDiseaseedit(await res);
         }
         editDiseaseId()
-    },[])
+    },[id])
 
   return (
     <div className='diagnose'> 

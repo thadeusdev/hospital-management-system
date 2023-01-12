@@ -4,12 +4,11 @@ import PlaceIcon from '@mui/icons-material/Place';
 import PublishIcon from '@mui/icons-material/Publish';
 import { NavLink } from 'react-router-dom';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FaCalendarAlt } from 'react-icons/fa';
 
 const Patient = () => {
     const [patientedit, setPatientedit] = useState({image:'', full_name:'', age:'', gender:'', address:'', visiting_date:'', visit_no:''})
-    const history = useNavigate()
     const {id} = useParams();
 
     // console.log(id)
@@ -21,7 +20,7 @@ const Patient = () => {
             setPatientedit(await res);
         }
         editPatientId()
-    },[])
+    },[id])
 
     const handleEdit = (e) => {
         setPatientedit({...patientedit, [e.target.name] : e.target.value})

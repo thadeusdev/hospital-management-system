@@ -5,11 +5,10 @@ import CoronavirusIcon from '@mui/icons-material/Coronavirus';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import { NavLink } from 'react-router-dom';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const Disease = () => {
     const [diseaseedit, setDiseaseedit] = useState({name:'', symptoms:'', severity:''})
-    const history = useNavigate()
     const {id} = useParams(); 
 
     // console.log(id)
@@ -21,7 +20,7 @@ const Disease = () => {
             setDiseaseedit(await res);
         }
         editDiseaseId()
-    },[])
+    },[id])
 
     const handleEdit = (e) => {
         setDiseaseedit({...diseaseedit, [e.target.name] : e.target.value})
@@ -55,7 +54,7 @@ const Disease = () => {
             setPatientedit(await res);
         }
         editPatientId()
-    },[])
+    },[id])
 
     function handlePatientupdate(e){        
         e.preventDefault();

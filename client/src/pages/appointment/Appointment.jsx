@@ -18,7 +18,7 @@ const Appointment = () => {
             setAppointmentedit(await res);
         }
         editAppointmentId()
-    },[])
+    },[id])
 
     const handleEdit = (e) => {
         setAppointmentedit({...appointmentedit, [e.target.name] : e.target.value})
@@ -52,7 +52,7 @@ const Appointment = () => {
             setPatientedit(await res);
         }
         editPatientId()
-    },[])
+    },[id])
 
     const [doctoredit, setdoctoredit] = useState([])
     useEffect(() => {
@@ -62,7 +62,7 @@ const Appointment = () => {
             setdoctoredit(await res);
         }
         editdoctorId()
-    },[])
+    },[id])
 
   return (
     <div className='appointment'>

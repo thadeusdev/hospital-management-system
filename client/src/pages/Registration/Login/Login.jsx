@@ -5,9 +5,9 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [errors, setErrors] = useState([]);
   
     function handleSubmit(e) {
       e.preventDefault();
@@ -70,6 +70,8 @@ const Login = () => {
                     onChange={(event) => setPassword(event.target.value)}
                     variant='outlined'
                     placeholder='password' />
+                    <br />
+                    {errors && <p>{errors}</p>}
 
                 <Button type="submit" sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>
                     {isLoading ? "Loading..." : "Login"}
