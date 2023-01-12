@@ -41,7 +41,7 @@ const App = () => {
       <Topbar/>
         <Sidebar>      
           <Routes>
-            {/* <Route exact path="/" element={<Dashboard />} /> */}
+            <Route exact path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/appointment" element={<AppointmentList />} />
             <Route path="/doctors" element={<DoctorList />} />

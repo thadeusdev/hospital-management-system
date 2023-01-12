@@ -96,7 +96,7 @@ patients = [
         visiting_date: "2022-01-01", 
         visit_no: "GN-114730-25",
         age: 33,
-        gender: "Male",
+        gender: "Other",
         # user_id: 1
     }
 ]
