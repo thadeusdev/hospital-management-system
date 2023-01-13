@@ -44,7 +44,7 @@ class DoctorAppointmentsController < ApplicationController
         # Nested resource routing
     # start
     def patients_index
-        doctor_appointment = doctor_appointment.find(params[:doctor_appointment_id])
+        doctor_appointment = Doctor_appointment.find(params[:doctor_appointment_id])
         patients = doctor_appointment.patients
         render json: patients, include: :doctor_appointment
     end
@@ -55,7 +55,7 @@ class DoctorAppointmentsController < ApplicationController
     end
 
     def doctors_index
-        doctor_appointment = doctor_appointment.find(params[:doctor_appointment_id])
+        doctor_appointment = Doctor_appointment.find(params[:doctor_appointment_id])
         doctors = doctor_appointment.doctors
         render json: doctors, include: :doctor_appointment
     end
