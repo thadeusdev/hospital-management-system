@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Login from '../../pages/Registration/Login/Login';
+import Signup from '../../pages/Registration/Signup/Signup';
 import "./sidebar.css"
 import {
     FaTh,
@@ -10,11 +11,10 @@ import {
     FaDisease,
     FaMicroscope,
     FaTablets,
-    FaSignOutAlt,
     FaPrescriptionBottleAlt,
+    FaSignOutAlt,
 }from "react-icons/fa";
-import { NavLink } from 'react-router-dom';
-
+import { Route, Routes, NavLink } from 'react-router-dom';
 
 const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(true);
@@ -94,13 +94,22 @@ const Sidebar = ({children}) => {
                                <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
                            </NavLink>
                        ))
-                   }
-               </div>
+                   }              
+               </div>              
                <main>{children}</main>
             </div>
         );
       } else {
-        return <Login />;
+        return (
+            <Routes>
+              <Route path='/' element={<Login onLogin={setUser} />}>
+              </Route>
+              <Route path='/Signup'element= {<Signup/>}>
+              </Route>
+              <Route path='/Login' element={<Login onLogin={setUser} />}>
+              </Route>
+            </Routes>
+        )
       }
 
       function handleLogout() {
@@ -109,28 +118,5 @@ const Sidebar = ({children}) => {
         }).then(() => console.log());
       }
     }
-
-    // return (
-    //     <div className="container">
-    //        <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
-    //            <div className="top_section">
-    //                <h1 style={{display: isOpen ? "block" : "none"}} id="logo1">Admin</h1>
-    //                <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
-    //                    <FaBars onClick={toggle}/>
-    //                </div>
-    //            </div>
-    //            {
-    //                menuItem.map((item, index)=>(
-    //                    <NavLink to={item.path} key={index} className="link" activeclassname="active">
-    //                        <div className="icon">{item.icon}</div>
-    //                        <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
-    //                    </NavLink>
-    //                ))
-    //            }
-    //        </div>
-    //        <main>{children}</main>
-    //     </div>
-    // );
-// };
 
 export default Sidebar;

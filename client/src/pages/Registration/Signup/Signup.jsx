@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
 
-
 const Signup = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -44,12 +43,12 @@ const Signup = () => {
     return (
         <form onSubmit={handleSubmit}>
 
-            <Box display="flex"
+            <Box display="flex"            
                 flexDirection={"column"}
                 maxWidth={400} alignItems="center"
                 justifyContent={"center"}
                 margin="auto"
-                marginTop={5}
+                marginTop={0}
                 padding={3}
                 borderRadius={5}
                 boxShadow={"5px 5px 10px #ccc"}
