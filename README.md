@@ -1,5 +1,5 @@
 # HOSPITAL MANAGEMENT SYSTEM
-- Is a React-Rails application. i.e React - Frontend & Rails Backend.
+- Is a Full-stack application. i.e React - Frontend & Rails Backend.
 ## Objective
 - The main objective for this project was to create a system that keeps track of the day to day hospital activities and people.
 - We live in a world in world full of data and data management and handling was this project major concern.
