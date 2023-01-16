@@ -44,3 +44,4 @@
 5. Open a different terminal and run ``npm install --prefix client`` to install the required dependencies
 6. Run ``npm start --prefix client`` to start react frontend.
 7. Sign up and login to enjoy the App.
+[Link to the heroku deployed app:](/guides/content/editing-an-existing-page)
