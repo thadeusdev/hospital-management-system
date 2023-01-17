@@ -1,0 +1,125 @@
+.prescription{
+    flex: 4;
+    padding: 20px;
+}
+
+.prescriptionTitleContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.prescriptionAddButton{
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: teal;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.prescriptionContainer{
+    display: flex;
+    margin-top: 20px;
+}
+
+.prescriptionShow{
+    flex: 1;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+}
+
+.prescriptionUpdate{
+    flex: 2;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+    margin-left: 20px;
+}
+
+.prescriptionShowTop{
+    display: flex;
+    align-items: center;
+}
+
+.prescriptionShowTopTitle{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.prescriptionShowprescriptionname{
+    font-weight: 600;
+}
+
+.prescriptionShowprescriptionTitle{
+    font-weight: 300;
+}
+
+.prescriptionShowBottom{
+    margin-top: 20px;
+}
+
+.prescriptionShowTitle{
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(175, 170, 170);
+}
+
+.prescriptionShowInfo{
+    display: flex;
+    align-items: center;
+    margin: 20px 40px;
+    color: #444;
+}
+
+.prescriptionShowIcon{
+    font-size: 16px !important;
+}
+
+.prescriptionShowInfoTitle{
+    margin-left: 10px;
+}
+
+.prescriptionUpdateTitle{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.prescriptionUpdateForm{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.prescriptionUpdateItem{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.prescriptionUpdateItem>label{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.prescriptionUpdateInput{
+    border: none;
+    width: 250px;
+    height: 30px;
+    border-bottom: 1px solid grey;
+}
+
+
+.prescriptionUpdateButton{
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    background-color: rgb(21, 142, 218);
+    color: white;
+    font-weight: 600;
+}

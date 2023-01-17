@@ -24,6 +24,8 @@ import PatientList from './pages/patientList/PatientList';
 import Signup from './pages/Registration/Signup/Signup';
 import Login from './pages/Registration/Login/Login';
 import PrescriptionList from './pages/prescriptionList/PrescriptionList'
+import Prescription from './pages/prescription/Prescription';
+import NewPrescription from './pages/newPrescription/NewPrescription';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -63,6 +65,8 @@ const App = () => {
             <Route path="/newMedicine" element={<NewMedicine />} />
             <Route path="/newDiagnose" element={<NewDiagnose />} />
             <Route path='/prescriptions' element={<PrescriptionList />} />
+            <Route path='/prescription/:id' element={<Prescription />} />
+            <Route path="/newPrescription" element={<NewPrescription />} />
           </Routes>
         </Sidebar>
       </BrowserRouter>

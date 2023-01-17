@@ -7,6 +7,7 @@ import { FaCalendarPlus }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 
 import { useParams } from 'react-router-dom';
+import { WorkspacePremium } from '@mui/icons-material';
 
 const Doctor = () => {
     const [doctoredit, setDoctoredit] = useState({img:'', full_name:'', primary_practice:'', secondary_practice:''})
@@ -77,7 +78,7 @@ const Doctor = () => {
                     </div>
                     <span className="doctorShowTitle">Experience</span>
                     <div className="doctorShowInfo">
-                        <AccessibleIcon className="doctorShowIcon" />
+                        <WorkspacePremium className="doctorShowIcon" />
                         <span className="doctorShowInfoTitle">{doctoredit.years_of_experience}</span>
                     </div>
                     <span className="doctorShowTitle">Appointments</span>

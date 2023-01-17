@@ -10,10 +10,6 @@ const PrescriptionList = () => {
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'frequency', headerName: 'Frequency', width: 120},
     { field: 'duration', headerName: 'Duration', width: 120 },
-    { field: 'medicine_id', headerName: 'Medicine Id', width: 80 },
-    { field: 'disease_id', headerName: 'Disease Id', width: 80 },
-    { field: 'patient_id', headerName: 'Patient Id', width: 80 },
-    { field: 'doctor_id', headerName: 'Doctor Id', width: 80 },
     { 
       field: 'action',
       headerName: 'Action',

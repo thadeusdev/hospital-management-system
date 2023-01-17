@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import "./appointment.css"
-import VerifiedIcon from '@mui/icons-material/Verified';
 import { NavLink } from 'react-router-dom';
 
 import { useParams } from 'react-router-dom';
+import { Accessible, AccessTime } from '@mui/icons-material';
+import { FaUserMd } from 'react-icons/fa';
 
 const Appointment = () => {
     const [appointmentedit, setAppointmentedit] = useState({notes:'', date:'', time:'', patient_id:'', doctor_id:''})
@@ -83,17 +84,17 @@ const Appointment = () => {
                 <div className="appointmentShowBottom">
                     <span className="appointmentShowTitle">Time</span>
                     <div className="appointmentShowInfo">
-                        <VerifiedIcon className="appointmentShowIcon" />
+                        <AccessTime className="appointmentShowIcon" />
                         <span className="appointmentShowInfoTitle">{appointmentedit.time}</span>
                     </div> 
                     <span className="appointmentShowTitle">Patient</span> 
                     <div className="appointmentShowInfo">
-                        <VerifiedIcon className="appointmentShowIcon" />
+                        <Accessible className="appointmentShowIcon" />
                         <span className="appointmentShowInfoTitle">{patientedit.full_name}</span>
                     </div> 
                     <span className="appointmentShowTitle">Doctor</span> 
                     <div className="appointmentShowInfo">
-                        <VerifiedIcon className="appointmentShowIcon" />
+                        <FaUserMd className="appointmentShowIcon" />
                         <span className="appointmentShowInfoTitle">{doctoredit.full_name}</span>
                     </div>                  
                 </div>

@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 import { useParams } from 'react-router-dom';
 import { FaCalendarAlt } from 'react-icons/fa';
+import { Verified } from '@mui/icons-material';
 
 const Patient = () => {
     const [patientedit, setPatientedit] = useState({image:'', full_name:'', age:'', gender:'', address:'', visiting_date:'', visit_no:''})
@@ -68,7 +69,7 @@ const Patient = () => {
                 <div className="patientShowBottom">
                     <span className="patientShowTitle">Gender</span>
                     <div className="patientShowInfo">
-                        <PlaceIcon className="patientShowIcon" />
+                        <Verified className="patientShowIcon" />
                         <span className="patientShowInfoTitle">{patientedit.gender}</span>
                     </div> 
                     <span className="patientShowTitle">Address</span>
