@@ -3,9 +3,11 @@ import "./newDoctor.css"
 
 const NewDoctor = () => {
     const [doctors, setDoctors] = useState([]);
+    const [submitted, setSubmitted] = useState(false);
 
     function handleAddDoctor(event) {
         event.preventDefault();
+        setSubmitted(true);
         const formData = new FormData(event.target);
         const doctor = {
           image: formData.get('image'),
@@ -32,7 +34,10 @@ const NewDoctor = () => {
   return (
     <div className='newDoctor'>
         <h1 className="newDoctorTitle">New Doctor</h1>
-        <form onSubmit={handleAddDoctor} className="newDoctorForm">
+        {submitted ? (
+          <p>added successfully</p>
+        ):(
+          <form onSubmit={handleAddDoctor} className="newDoctorForm">
             <div className="newDoctorItem">
                 <label>Image</label>
                 <input type="text" placeholder='image url' name='image' />
@@ -59,6 +64,8 @@ const NewDoctor = () => {
             </div>
             <button className="newDoctorButton">Create</button>
         </form>
+        )
+      }
     </div>
   )
 }

@@ -3,9 +3,11 @@ import "./newMedicine.css"
 
 const NewMedicine = () => {
     const [medicines, setMedicines] = useState([]);
+    const [submitted, setSubmitted] = useState(false);
 
     function handleAddMedicine(event) {
       event.preventDefault();
+      setSubmitted(true);
       const formData = new FormData(event.target);
       const medicine = {
         image: formData.get('image'),
@@ -34,7 +36,10 @@ const NewMedicine = () => {
   return (
     <div className='newMedicine'>
         <h1 className="newMedicineTitle">New Medicine</h1>
-        <form onSubmit={handleAddMedicine} className="newMedicineForm">
+        {submitted ? (
+          <p>added seccessfully!</p>
+        ):(
+          <form onSubmit={handleAddMedicine} className="newMedicineForm">
             <div className="newMedicineItem">
                 <label>Image</label>
                 <input type="text" placeholder='url' name='image' />
@@ -75,6 +80,8 @@ const NewMedicine = () => {
             </div>
             <button className="newMedicineButton">Create</button>
         </form>
+        )
+      }
     </div>
   )
 }

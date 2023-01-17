@@ -3,9 +3,11 @@ import "./newAppointment.css"
 
 const NewAppointment = () => {
     const [appointments, setAppointments] = useState([]);
+    const [submitted, setSubmitted] = useState(false);
 
     function handleAddappointment(event) {
       event.preventDefault();
+      setSubmitted(true);
       const formData = new FormData(event.target);
       const appointment = {
         notes: formData.get('notes'),
@@ -31,7 +33,10 @@ const NewAppointment = () => {
   return (
     <div className='newAppointment'>
         <h1 className="newAppointmentTitle">New Appointment</h1>
-        <form onSubmit={handleAddappointment} className="newAppointmentForm">
+        {submitted ? (
+          <p>added successfully!</p>
+        ):(
+          <form onSubmit={handleAddappointment} className="newAppointmentForm">
             <div className="newAppointmentItem">
                 <label>Notes</label>
                 <input type="text" name='notes' />
@@ -53,7 +58,9 @@ const NewAppointment = () => {
                 <input type="text" name='doctor_id' />
             </div> 
             <button className="newAppointmentButton">Create</button>
-        </form>
+          </form>
+        )
+      }
     </div>
   )
 }
