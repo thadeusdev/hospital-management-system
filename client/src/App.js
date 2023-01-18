@@ -92,8 +92,8 @@ const App = () => {
         </Route>
         <Route path='/Signup'element= {<Signup onLogin={setUser}/>}>
         </Route>
-        {/* <Route path='/Login' element={<Login onLogin={setUser} />}>
-        </Route> */}
+        <Route path='/Login' element={<Login onLogin={setUser} />}>
+        </Route>
       </Routes>
     </BrowserRouter>
     );
