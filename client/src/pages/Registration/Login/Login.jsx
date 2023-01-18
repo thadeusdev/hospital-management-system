@@ -73,7 +73,7 @@ const Login = ({onLogin}) => {
                     <br />
                     {errors && <p>{errors}</p>}
 
-                <Button type="submit" sx={{ marginTop: 3, borderRadius: 3 }} variant="contained" color='warning'>
+                <Button type="submit" sx={{ marginTop: 3, borderRadius: 3, background: "lightskyblue" }} variant="contained" color='warning'>
                     {isLoading ? "Loading..." : "Login"}
                 </Button>
                 <Button
