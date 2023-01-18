@@ -29,7 +29,7 @@ const Login = ({onLogin}) => {
     }
 
     if (isLoggedIn) {
-        return <Navigate to="/Signup" replace={true} />;
+        return <Navigate to="/signup" replace={true} />;
     }
 
     return (

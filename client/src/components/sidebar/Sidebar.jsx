@@ -61,7 +61,7 @@ const Sidebar = ({children}) => {
             icon:<FaPrescriptionBottleAlt/>
         },
         {
-            path:"/Login",
+            path:"/login",
             name:"Logout",
             icon:<FaSignOutAlt onClick={handleLogout}/>
         }
@@ -104,9 +104,9 @@ const Sidebar = ({children}) => {
             <Routes>
             <Route path='/' element={<Login onLogin={setUser} />}>
               </Route>
-              <Route path='/Login' element={<Login onLogin={setUser} />}>
+              <Route path='/login' element={<Login onLogin={setUser} />}>
               </Route>
-              <Route path='/Signup'element= {<Signup onLogin={setUser}/>}>
+              <Route path='/signup'element= {<Signup onLogin={setUser}/>}>
               </Route>
             </Routes>
         )

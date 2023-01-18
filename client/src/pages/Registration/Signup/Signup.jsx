@@ -37,7 +37,7 @@ const Signup = ({onLogin}) => {
       }
 
       if (isSignupSuccess) {
-        return <Navigate to="/Login" replace={true} />;
+        return <Navigate to="/login" replace={true} />;
     }
 
     return (
