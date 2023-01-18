@@ -104,10 +104,10 @@ const Sidebar = ({children}) => {
             <Routes>
               <Route path='/' element={<Login onLogin={setUser} />}>
               </Route>
-              <Route path='/Signup'element= {<Signup/>}>
+              <Route path='/Signup'element= {<Signup onLogin={setUser}/>}>
               </Route>
-              <Route path='/Login' element={<Login onLogin={setUser} />}>
-              </Route>
+              {/* <Route path='/Login' element={<Login onLogin={setUser} />}>
+              </Route> */}
             </Routes>
         )
       }
@@ -115,7 +115,7 @@ const Sidebar = ({children}) => {
       function handleLogout() {
         fetch("/logout", {
           method: "DELETE",
-        }).then(() => console.log());
+        }).then(() => setUser(null));
       }
     }
 
