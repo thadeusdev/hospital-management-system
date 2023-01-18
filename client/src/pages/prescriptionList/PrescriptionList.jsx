@@ -17,7 +17,7 @@ const PrescriptionList = () => {
       renderCell: (params) => {
         return (
           <>
-            <NavLink to={"/prescription/"+params.row.id}>
+            <NavLink to={"/prescriptions/"+params.row.id}>
               <button className="prescriptionListEdit">Detail</button>
             </NavLink>                       
               <DeleteOutlineIcon className="prescriptionListDelete" onClick={() => handleDelete(params.row.id)} />

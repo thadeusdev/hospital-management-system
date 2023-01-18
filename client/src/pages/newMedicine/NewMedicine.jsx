@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect} from 'react'
 import "./newMedicine.css"
 
 const NewMedicine = () => {
@@ -27,9 +27,18 @@ const NewMedicine = () => {
           'Content-Type': 'application/json'
         }
       })
+
+      // fetch(`/medicines/${id}/patients/${id}`, {
+      //   method: 'POST',
+      //   body: JSON.stringify(medicine),
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   }
+      // })
         .then(response => response.json())
         .then(newMedicine => {
           setMedicines([...medicines, newMedicine]);
+          console.log(newMedicine)
         });
     }
 
@@ -53,8 +62,8 @@ const NewMedicine = () => {
                 <input type="text" placeholder='200ml' name='dosage' />
             </div>
             <div className="newMedicineItem">
-                <label>Patient Id</label>
-                <input type="text" placeholder='1' name='patient_id' />
+                <label>Patient</label>
+                <input type="text" name='patient_id' />
             </div>
             <div className="newMedicineItem">
                 <label>Description</label>

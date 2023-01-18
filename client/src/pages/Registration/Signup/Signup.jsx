@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
 
-const Signup = () => {
+const Signup = ({onLogin}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [password_confirmation, setPassword_confirmation] = useState('')
@@ -28,7 +28,7 @@ const Signup = () => {
         }).then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            r.json().then((user) => console.log(user));
+            r.json().then((user) => onLogin(user));
             setIsSignupSuccess(true);
           } else {
             r.json().then((err) => setErrors(err.errors));

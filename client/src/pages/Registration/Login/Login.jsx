@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Navigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
 
-const Login = () => {
+const Login = ({onLogin}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +21,7 @@ const Login = () => {
       }).then((r) => {
         setIsLoading(false);
         if (r.ok) {
-          r.json().then((user) => console.log(user));
+          r.json().then((user) => onLogin(user));
         } else {
           r.json().then((err) => setErrors(err.errors));
         }

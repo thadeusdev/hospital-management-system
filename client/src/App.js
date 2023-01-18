@@ -38,35 +38,48 @@ const App = () => {
     });
   }, []);
 
+  // if (!user) return (
+  //     <BrowserRouter>
+  //     <Routes>
+  //       <Route path='/' element={<Login onLogin={setUser} />}>
+  //       </Route>
+  //       <Route path='/Signup'element= {<Signup onLogin={setUser}/>}>
+  //       </Route>
+  //       <Route path='/Login' element={<Login onLogin={setUser} />}>
+  //       </Route>
+  //     </Routes>
+  //   </BrowserRouter>
+  // );
+
   if (user) {
     return (
       <BrowserRouter>  
-      <Topbar/>
-        <Sidebar>      
+      <Topbar user={user} setUser={setUser}/>
+        <Sidebar user={user} setUser={setUser}>      
           <Routes>
-            <Route exact path="/" element={<Dashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/appointment" element={<AppointmentList />} />
-            <Route path="/doctors" element={<DoctorList />} />
-            <Route path="/patients" element={<PatientList />} />
-            <Route path="/diseases" element={<DiseaseList />} />
-            <Route path="/diagnoses" element={<DiagnoseList />} />
-            <Route path="/medicines" element={<MedicineList />} />
-            <Route path="/doctor/:id" element={<Doctor />} />
-            <Route path="/appointment/:id" element={<Appointment />} />
-            <Route path="/patient/:id" element={<Patient />} />
-            <Route path="/disease/:id" element={<Disease />} />
-            <Route path="/diagnose/:id" element={<Diagnose />} />
-            <Route path="/medicine/:id" element={<Medicine />} />
-            <Route path="/newDoctor" element={<NewDoctor />} />
-            <Route path="/newPatient" element={<NewPatient />} />
-            <Route path="/newAppointment" element={<NewAppointment />} />
-            <Route path="/newDisease" element={<NewDisease />} />
-            <Route path="/newMedicine" element={<NewMedicine />} />
-            <Route path="/newDiagnose" element={<NewDiagnose />} />
-            <Route path='/prescriptions' element={<PrescriptionList />} />
-            <Route path='/prescription/:id' element={<Prescription />} />
-            <Route path="/newPrescription" element={<NewPrescription />} />
+            <Route exact path="/" element={<Dashboard user={user} setUser={setUser} />} />
+            <Route path="/dashboard" element={<Dashboard user={user} setUser={setUser} />} />
+            <Route path="/appointment" element={<AppointmentList user={user} setUser={setUser} />} />
+            <Route path="/doctors" element={<DoctorList user={user} setUser={setUser} />} />
+            <Route path="/patients" element={<PatientList user={user} setUser={setUser} />} />
+            <Route path="/diseases" element={<DiseaseList user={user} setUser={setUser} />} />
+            <Route path="/diagnoses" element={<DiagnoseList user={user} setUser={setUser} />} />
+            <Route path="/medicines" element={<MedicineList user={user} setUser={setUser} />} />
+            <Route path="/doctor/:id" element={<Doctor user={user} setUser={setUser} />} />
+            <Route path="/appointment/:id" element={<Appointment user={user} setUser={setUser} />} />
+            <Route path="/patient/:id" element={<Patient user={user} setUser={setUser} />} />
+            <Route path="/disease/:id" element={<Disease user={user} setUser={setUser} />} />
+            <Route path="/diagnose/:id" element={<Diagnose user={user} setUser={setUser} />} />
+            <Route path="/medicine/:id" element={<Medicine user={user} setUser={setUser} />} />
+            <Route path="/newDoctor" element={<NewDoctor user={user} setUser={setUser} />} />
+            <Route path="/newPatient" element={<NewPatient user={user} setUser={setUser} />} />
+            <Route path="/newAppointment" element={<NewAppointment user={user} setUser={setUser} />} />
+            <Route path="/newDisease" element={<NewDisease user={user} setUser={setUser} />} />
+            <Route path="/newMedicine" element={<NewMedicine user={user} setUser={setUser} />} />
+            <Route path="/newDiagnose" element={<NewDiagnose user={user} setUser={setUser} />} />
+            <Route path='/prescriptions' element={<PrescriptionList user={user} setUser={setUser} />} />
+            <Route path='/prescriptions/:id' element={<Prescription user={user} setUser={setUser} />} />
+            <Route path="/newPrescription" element={<NewPrescription user={user} setUser={setUser} />} />
           </Routes>
         </Sidebar>
       </BrowserRouter>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import "./doctor.css"
 import BadgeIcon from '@mui/icons-material/Badge';
-import AccessibleIcon from '@mui/icons-material/Accessible';
 import PublishIcon from '@mui/icons-material/Publish';
 import { FaCalendarPlus }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';

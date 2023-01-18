@@ -46,7 +46,7 @@ const Disease = () => {
         .then((data) => console.log(data))
     }
 
-    const [patientedit, setPatientedit] = useState([])
+    const [patientedit, setPatientedit] = useState({full_name:''})
     useEffect(() => {
         const editPatientId = async() => {
             const reqdata= await fetch(`/diseases/${id}/patients/${id}`);
@@ -65,7 +65,7 @@ const Disease = () => {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                patient: e.target.patient.value,
+                full_name: e.target.full_name.value,
             }),
         })
         .then((r) => r.json())
@@ -116,7 +116,7 @@ const Disease = () => {
                         </div>
                         <div className="diseaseUpdateItem">
                             <label>Patient</label>
-                            <input type="text" name="patient" className='diseaseUpdateInput' value={patientedit.full_name} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="full_name" className='diseaseUpdateInput' value={patientedit.full_name} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diseaseUpdateItem">
                             <label>Symptoms</label>
