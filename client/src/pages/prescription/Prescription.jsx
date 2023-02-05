@@ -6,14 +6,14 @@ import { useParams } from 'react-router-dom';
 import { FaAccessibleIcon, FaDisease, FaTablets, FaUserMd } from 'react-icons/fa';
 
 const Prescription = () => {
-    const [prescriptionedit, setPrescriptionedit] = useState({image:'', full_name:'', age:'', gender:'', address:'', visiting_date:'', visit_no:''})
+    const [prescriptionedit, setPrescriptionedit] = useState({frequency:'', duration:'', medicine_id:'', disease_id:'', patient_id:'', doctor_id:''})
     const {id} = useParams();
 
     // console.log(id)
 
-    useEffect(() => {
+    useEffect((id) => {
         const editprescriptionId = async() => {
-            const reqdata= await fetch(`/prescriptions/${id}`);
+            const reqdata= await fetch(`/doctors/${id}/patients/${id}/prescriptions/${id}`);
             const res= reqdata.json();
             setPrescriptionedit(await res);
         }
@@ -26,7 +26,7 @@ const Prescription = () => {
 
     function handlePrescriptionupdate(e){        
         e.preventDefault();
-        fetch(`/prescriptions/${id}`, {
+        fetch(`/doctors/${id}/patients/${id}/prescriptions/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -42,9 +42,9 @@ const Prescription = () => {
     }
 
     const [medicineedit, setMedicineedit] = useState([])
-    useEffect(() => {
+    useEffect((id) => {
         const editMedicineId = async() => {
-            const reqdata= await fetch(`/prescriptions/${id}/medicines/${id}`);
+            const reqdata= await fetch(`/doctors/${id}/patients/${id}/medicines/${id}`);
             const res= reqdata.json();
             setMedicineedit(await res);
         }
@@ -52,9 +52,9 @@ const Prescription = () => {
     },[id])
 
     const [diseaseedit, setDiseaseedit] = useState([])
-    useEffect(() => {
+    useEffect((id) => {
         const editDiseaseId = async() => {
-            const reqdata= await fetch(`/prescriptions/${id}/diseases/${id}`);
+            const reqdata= await fetch(`/doctors/${id}/patients/${id}/diseases/${id}`);
             const res= reqdata.json();
             setDiseaseedit(await res);
         }
@@ -62,9 +62,9 @@ const Prescription = () => {
     },[id])
 
     const [patientedit, setPatientedit] = useState([])
-    useEffect(() => {
+    useEffect((id) => {
         const editPatientId = async() => {
-            const reqdata= await fetch(`/prescriptions/${id}/patients/${id}`);
+            const reqdata= await fetch(`/doctors/${id}/patients/${id}`);
             const res= reqdata.json();
             setPatientedit(await res);
         }
@@ -72,9 +72,9 @@ const Prescription = () => {
     },[id])
 
     const [doctoredit, setDoctoredit] = useState([])
-    useEffect(() => {
+    useEffect((id) => {
         const editDoctorId = async() => {
-            const reqdata= await fetch(`/prescriptions/${id}/doctors/${id}`);
+            const reqdata= await fetch(`/doctors/${id}`);
             const res= reqdata.json();
             setDoctoredit(await res);
         }

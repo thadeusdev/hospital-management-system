@@ -16,7 +16,7 @@ const Patient = () => {
 
     useEffect(() => {
         const editPatientId = async() => {
-            const reqdata= await fetch(`/patients/${id}`);
+            const reqdata= await fetch(`/doctors/${id}/patients/${id}`);
             const res= reqdata.json();
             setPatientedit(await res);
         }
@@ -29,7 +29,7 @@ const Patient = () => {
 
     function handlePatientupdate(e){        
         e.preventDefault();
-        fetch(`/patients/${id}`, {
+        fetch(`/doctors/${id}/patients/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

@@ -26,7 +26,7 @@ import Login from './pages/Registration/Login/Login';
 import PrescriptionList from './pages/prescriptionList/PrescriptionList'
 import Prescription from './pages/prescription/Prescription';
 import NewPrescription from './pages/newPrescription/NewPrescription';
-
+import "./app.css"
 const App = () => {
   const [user, setUser] = useState(null);
 
@@ -86,6 +86,7 @@ const App = () => {
     );
   } else {
     return (
+      <div className="auth">
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login onLogin={setUser} />}>
@@ -96,6 +97,7 @@ const App = () => {
         </Route>
       </Routes>
     </BrowserRouter>
+    </div>
     );
   }
 };

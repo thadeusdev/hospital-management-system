@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 const Topbar = () => {
     const [notifyItems, setNotifyItems] = useState(0)
 
-    useEffect(() => {
-        fetch("/doctor_appointments")
+    useEffect((id) => {
+        fetch(`/doctors/${id}/patients/${id}/doctor_appointments`)
         .then(r => r.json())
         .then(notifyItems => setNotifyItems(notifyItems))
     }, [])

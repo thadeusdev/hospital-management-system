@@ -29,15 +29,15 @@ const PrescriptionList = () => {
 
   const [prescriptions, setprescriptions] = useState([])
 
-    useEffect(() => {
-        fetch('/prescriptions')
+    useEffect((id) => {
+        fetch(`/doctors/${id}/patients/${id}/prescriptions`)
         .then(res => res.json())
         .then((prescriptions => setprescriptions(prescriptions)))
     }, [])
 
     const handleDelete = (id) => {
       async function deleteprescription(){
-        await fetch(`prescriptions/${id}`, {
+        await fetch(`/doctors/${id}/patients/${id}/prescriptions/${id}`, {
           method: 'DELETE',
         })
         setprescriptions(prescriptions.filter((prescription) => prescription.id !== id))

@@ -14,7 +14,7 @@ const Appointment = () => {
 
     useEffect(() => {
         const editAppointmentId = async() => {
-            const reqdata= await fetch(`/doctor_appointments/${id}`);
+            const reqdata= await fetch(`/doctors/${id}/patients/${id}/doctor_appointments/${id}`);
             const res= reqdata.json();
             setAppointmentedit(await res);
         }
@@ -27,7 +27,7 @@ const Appointment = () => {
 
     function handleAppointmentupdate(e){        
         e.preventDefault();
-        fetch(`/doctor_appointments/${id}`, {
+        fetch(`/doctors/${id}/patients/${id}/doctor_appointments/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -48,7 +48,7 @@ const Appointment = () => {
     const [patientedit, setPatientedit] = useState([])
     useEffect(() => {
         const editPatientId = async() => {
-            const reqdata= await fetch(`/doctor_appointments/${id}/patients/${id}`);
+            const reqdata= await fetch(`/doctors/${id}/patients/${id}`);
             const res= reqdata.json();
             setPatientedit(await res);
         }
@@ -58,7 +58,7 @@ const Appointment = () => {
     const [doctoredit, setdoctoredit] = useState([])
     useEffect(() => {
         const editdoctorId = async() => {
-            const reqdata= await fetch(`/doctor_appointments/${id}/doctors/${id}`);
+            const reqdata= await fetch(`/doctors/${id}`);
             const res= reqdata.json();
             setdoctoredit(await res);
         }

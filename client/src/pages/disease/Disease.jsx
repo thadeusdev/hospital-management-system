@@ -8,14 +8,14 @@ import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 const Disease = () => {
-    const [diseaseedit, setDiseaseedit] = useState({name:'', symptoms:'', severity:''})
+    const [diseaseedit, setDiseaseedit] = useState({name:'', symptoms:'', severity:'', patient_id:''})
     const {id} = useParams(); 
 
     // console.log(id)
 
     useEffect(() => {
         const editDiseaseId = async() => {
-            const reqdata= await fetch(`/diseases/${id}`);
+            const reqdata= await fetch(`/doctors/${id}/patients/${id}/diseases/${id}`);
             const res= reqdata.json();
             setDiseaseedit(await res);
         }
@@ -29,7 +29,7 @@ const Disease = () => {
 
     function handleDiseaseupdate(e){        
         e.preventDefault();
-        fetch(`/diseases/${id}`, {
+        fetch(`/doctors/${id}/patients/${id}/diseases/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const Disease = () => {
             },
             body: JSON.stringify({
                 name: e.target.name.value,
-                // patient_id: e.target.patient_id.value,
+                patient_id: e.target.patient_id.value,
                 symptoms: e.target.symptoms.value,
                 severity: e.target.severity.value
             }),
@@ -49,7 +49,7 @@ const Disease = () => {
     const [patientedit, setPatientedit] = useState({full_name:''})
     useEffect(() => {
         const editPatientId = async() => {
-            const reqdata= await fetch(`/diseases/${id}/patients/${id}`);
+            const reqdata= await fetch(`/doctors/${id}/patients/${id}`);
             const res= reqdata.json();
             setPatientedit(await res);
         }
@@ -58,7 +58,7 @@ const Disease = () => {
 
     function handlePatientupdate(e){        
         e.preventDefault();
-        fetch(`/diseases/${id}/patients/${id}`, {
+        fetch(`/doctors/${id}/patients/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

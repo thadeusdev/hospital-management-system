@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react'
 const WidgetLarge = () => {  
   const [patients, setPatients] = useState([])
 
-    useEffect(() => {
-        fetch('/patients')
+    useEffect((id) => {
+        fetch(`/doctors/${id}/patients`)
         .then(res => res.json())
         .then((patients => setPatients(patients)))
     }, [])
