@@ -1,5 +1,5 @@
 class MedicinesController < ApplicationController
-    before_action :authorize, :current_user
+    # before_action :authorize, :current_user
     
     # GET /medicines
     def index
@@ -43,16 +43,16 @@ class MedicinesController < ApplicationController
 
     # Nested resource routing
     # begin
-    def patients_index
-        medicine = Medicine.find(params[:medicine_id])
-        patients = medicine.patients
-        render json: patients, include: :medicine
-    end
+    # def patients_index
+    #     medicine = Medicine.find(params[:medicine_id])
+    #     patients = medicine.patients
+    #     render json: patients, include: :medicine
+    # end
 
-    def patient
-        patient = Patient.find(params[:id])
-        render json: patient, include: :medicine
-    end
+    # def patient
+    #     patient = Patient.find(params[:id])
+    #     render json: patient, include: :medicine
+    # end
     # ends
 
     private

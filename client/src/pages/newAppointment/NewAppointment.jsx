@@ -1,9 +1,12 @@
 import React, { useState} from 'react'
 import "./newAppointment.css"
+import { useParams } from 'react-router-dom';
 
 const NewAppointment = () => {
     const [appointments, setAppointments] = useState([]);
     const [submitted, setSubmitted] = useState(false);
+
+    const {id} = useParams(); 
 
     function handleAddappointment(event) {
       event.preventDefault();
@@ -17,7 +20,7 @@ const NewAppointment = () => {
         doctor_id: formData.get('doctor_id')
       };
   
-      fetch('/doctor_appointments', {
+      fetch(`/doctors/${id}/patients/${id}/doctor_appointments`, {
         method: 'POST',
         body: JSON.stringify(appointment),
         headers: {

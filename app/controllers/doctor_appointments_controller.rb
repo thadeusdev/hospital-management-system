@@ -1,5 +1,5 @@
 class DoctorAppointmentsController < ApplicationController
-    before_action :authorize, :current_user
+    # before_action :authorize, :current_user
     
     # GET /doctor_appointments
     def index
@@ -43,27 +43,27 @@ class DoctorAppointmentsController < ApplicationController
 
         # Nested resource routing
     # start
-    def patients_index
-        doctor_appointment = Doctor_appointment.find(params[:doctor_appointment_id])
-        patients = doctor_appointment.patients
-        render json: patients, include: :doctor_appointment
-    end
+    # def patients_index
+    #     doctor_appointment = Doctor_appointment.find(params[:doctor_appointment_id])
+    #     patients = doctor_appointment.patients
+    #     render json: patients, include: :doctor_appointment
+    # end
 
-    def patient
-        patient = Patient.find(params[:id])
-        render json: patient, include: :doctor_appointment
-    end
+    # def patient
+    #     patient = Patient.find(params[:id])
+    #     render json: patient, include: :doctor_appointment
+    # end
 
-    def doctors_index
-        doctor_appointment = Doctor_appointment.find(params[:doctor_appointment_id])
-        doctors = doctor_appointment.doctors
-        render json: doctors, include: :doctor_appointment
-    end
+    # def doctors_index
+    #     doctor_appointment = Doctor_appointment.find(params[:doctor_appointment_id])
+    #     doctors = doctor_appointment.doctors
+    #     render json: doctors, include: :doctor_appointment
+    # end
 
-    def doctor
-        doctor = Doctor.find(params[:id])
-        render json: doctor, include: :doctor_appointment
-    end
+    # def doctor
+    #     doctor = Doctor.find(params[:id])
+    #     render json: doctor, include: :doctor_appointment
+    # end
     # end
 
     private

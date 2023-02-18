@@ -1,5 +1,5 @@
 class PrescriptionsController < ApplicationController
-    before_action :authorize, :current_user
+    # before_action :authorize, :current_user
     
     # GET /prescriptions
     def index
@@ -43,49 +43,49 @@ class PrescriptionsController < ApplicationController
 
         # Nested resource routing
     # start
-    def medicines_index
-        prescription = Prescription.find(params[:prescription_id])
-        medicines = prescription.medicines
-        render json: medicines, include: :prescription
-    end
+    # def medicines_index
+    #     prescription = Prescription.find(params[:prescription_id])
+    #     medicines = prescription.medicines
+    #     render json: medicines, include: :prescription
+    # end
 
-    def medicine
-        medicine = Medicine.find(params[:id])
-        render json: medicine, include: :prescription
-    end
+    # def medicine
+    #     medicine = Medicine.find(params[:id])
+    #     render json: medicine, include: :prescription
+    # end
 
-    def diseases_index
-        prescription = Prescription.find(params[:prescription_id])
-        diseases = prescription.diseases
-        render json: diseases, include: :prescription
-    end
+    # def diseases_index
+    #     prescription = Prescription.find(params[:prescription_id])
+    #     diseases = prescription.diseases
+    #     render json: diseases, include: :prescription
+    # end
 
-    def disease
-        disease = Disease.find(params[:id])
-        render json: disease, include: :prescription
-    end
+    # def disease
+    #     disease = Disease.find(params[:id])
+    #     render json: disease, include: :prescription
+    # end
 
-    def patients_index
-        prescription = Prescription.find(params[:prescription_id])
-        patients = prescription.patients
-        render json: patients, include: :prescription
-    end
+    # def patients_index
+    #     prescription = Prescription.find(params[:prescription_id])
+    #     patients = prescription.patients
+    #     render json: patients, include: :prescription
+    # end
 
-    def patient
-        patient = Patient.find(params[:id])
-        render json: patient, include: :prescription
-    end
+    # def patient
+    #     patient = Patient.find(params[:id])
+    #     render json: patient, include: :prescription
+    # end
 
-    def doctors_index
-        prescription = Prescription.find(params[:prescription_id])
-        doctors = prescription.doctors
-        render json: doctors, include: :prescription
-    end
+    # def doctors_index
+    #     prescription = Prescription.find(params[:prescription_id])
+    #     doctors = prescription.doctors
+    #     render json: doctors, include: :prescription
+    # end
 
-    def doctor
-        doctor = Doctor.find(params[:id])
-        render json: doctor, include: :prescription
-    end
+    # def doctor
+    #     doctor = Doctor.find(params[:id])
+    #     render json: doctor, include: :prescription
+    # end
     # end
 
     private

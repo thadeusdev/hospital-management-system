@@ -1,5 +1,5 @@
 class DiagnosticsController < ApplicationController
-    before_action :authorize, :current_user
+    # before_action :authorize, :current_user
     
     # GET /diagnostics
     def index
@@ -47,38 +47,38 @@ class DiagnosticsController < ApplicationController
 
     # Nested resource routing
     # start
-    def patients_index
-        diagnostic = Diagnostic.find(params[:diagnostic_id])
-        patients = diagnostic.patients
-        render json: patients, include: :diagnostic
-    end
+    # def patients_index
+    #     diagnostic = Diagnostic.find(params[:diagnostic_id])
+    #     patients = diagnostic.patients
+    #     render json: patients, include: :diagnostic
+    # end
 
-    def patient
-        patient = Patient.find(params[:id])
-        render json: patient, include: :diagnostic
-    end
+    # def patient
+    #     patient = Patient.find(params[:id])
+    #     render json: patient, include: :diagnostic
+    # end
 
-    def doctors_index
-        diagnostic = Diagnostic.find(params[:diagnostic_id])
-        doctors = diagnostic.doctors
-        render json: doctors, include: :diagnostic
-    end
+    # def doctors_index
+    #     diagnostic = Diagnostic.find(params[:diagnostic_id])
+    #     doctors = diagnostic.doctors
+    #     render json: doctors, include: :diagnostic
+    # end
 
-    def doctor
-        doctor = Doctor.find(params[:id])
-        render json: doctor, include: :diagnostic
-    end
+    # def doctor
+    #     doctor = Doctor.find(params[:id])
+    #     render json: doctor, include: :diagnostic
+    # end
 
-    def diseases_index
-        diagnostic = Diagnostic.find(params[:diagnostic_id])
-        diseases = diagnostic.diseases
-        render json: diseases, include: :diagnostic
-    end
+    # def diseases_index
+    #     diagnostic = Diagnostic.find(params[:diagnostic_id])
+    #     diseases = diagnostic.diseases
+    #     render json: diseases, include: :diagnostic
+    # end
 
-    def disease
-        disease = Disease.find(params[:id])
-        render json: disease, include: :diagnostic
-    end
+    # def disease
+    #     disease = Disease.find(params[:id])
+    #     render json: disease, include: :diagnostic
+    # end
     # ends
 
     private

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./newPatient.css"
 
-const NewPatient = () => {
+const NewPatient = (id) => {
     const [patients, setPatients] = useState([]);
     const [submitted, setSubmitted] = useState(false);
 
@@ -19,7 +19,7 @@ const NewPatient = () => {
         visit_no: formData.get('visit_no')
       };
   
-      fetch('/patients', {
+      fetch(`/doctors/${id}/patients`, {
         method: 'POST',
         body: JSON.stringify(patient),
         headers: {
