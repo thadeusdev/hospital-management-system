@@ -14,7 +14,7 @@ const Appointment = () => {
 
     useEffect(() => {
         const editAppointmentId = async() => {
-            const reqdata= await fetch(`/doctors/${id}/patients/${id}/doctor_appointments/${id}`);
+            const reqdata= await fetch(`/doctor_appointments/${id}`);
             const res= reqdata.json();
             setAppointmentedit(await res);
         }
@@ -27,7 +27,7 @@ const Appointment = () => {
 
     function handleAppointmentupdate(e){        
         e.preventDefault();
-        fetch(`/doctors/${id}/patients/${id}/doctor_appointments/${id}`, {
+        fetch(`/doctor_appointments/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

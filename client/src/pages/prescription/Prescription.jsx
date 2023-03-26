@@ -13,7 +13,7 @@ const Prescription = () => {
 
     useEffect((id) => {
         const editprescriptionId = async() => {
-            const reqdata= await fetch(`/doctors/${id}/patients/${id}/prescriptions/${id}`);
+            const reqdata= await fetch(`/prescriptions/${id}`);
             const res= reqdata.json();
             setPrescriptionedit(await res);
         }
@@ -26,7 +26,7 @@ const Prescription = () => {
 
     function handlePrescriptionupdate(e){        
         e.preventDefault();
-        fetch(`/doctors/${id}/patients/${id}/prescriptions/${id}`, {
+        fetch(`/prescriptions/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

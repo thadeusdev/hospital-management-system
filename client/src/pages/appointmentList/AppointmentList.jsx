@@ -31,14 +31,14 @@ const AppointmentList = () => {
   const [appointments, setAppointments] = useState([])
 
     useEffect((id) => {
-        fetch(`/doctors/${id}/patients/${id}/doctor_appointments`)
+        fetch('/doctor_appointments')
         .then(res => res.json())
         .then((appointments => setAppointments(appointments)))
     }, [])
 
     const handleDelete = (id) => {
       async function deleteAppointment(){
-        await fetch(`/doctors/${id}/patients/${id}/doctor_appointments/${id}`, {
+        await fetch(`/doctor_appointments/${id}`, {
           method: 'DELETE',
         })
         setAppointments(appointments.filter((appointment) => appointment.id !== id))

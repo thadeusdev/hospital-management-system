@@ -15,7 +15,7 @@ const Medicine = () => {
 
     useEffect(() => {
         const editMedicineId = async() => {
-            const reqdata= await fetch(`/doctors/${id}/patients/${id}/medicines/${id}`);
+            const reqdata= await fetch(`/medicines/${id}`);
             const res= reqdata.json();
             setMedicineedit(await res);
         }
@@ -29,7 +29,7 @@ const Medicine = () => {
     function handleMedicineupdate(e){    
 
         e.preventDefault();
-        fetch(`/doctors/${id}/patients/${id}/medicines/${id}`, {
+        fetch(`/medicines/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -49,16 +49,6 @@ const Medicine = () => {
         .then((r) => r.json())
         .then((data) => console.log(data))
     }
-
-    const [patientedit, setPatientedit] = useState([])
-    useEffect(() => {
-        const editPatientId = async() => {
-            const reqdata= await fetch(`/doctors/${id}/patients/${id}`);
-            const res= reqdata.json();
-            setPatientedit(await res);
-        }
-        editPatientId()
-    },[id])
 
   return (
     <div className='medicine'>
@@ -101,7 +91,7 @@ const Medicine = () => {
                     <span className="medicineShowTitle">Patient</span> 
                     <div className="medicineShowInfo">
                         <VerifiedIcon className="medicineShowIcon" />
-                        <span className="medicineShowInfoTitle">{patientedit.full_name}</span>
+                        <span className="medicineShowInfoTitle">{medicineedit.patient.full_name}</span>
                     </div>           
                 </div>
             </div>
@@ -119,7 +109,7 @@ const Medicine = () => {
                         </div>
                         <div className="medicineUpdateItem">
                             <label>Patient</label>
-                            <input type="text" name="patient_id" placeholder='for headache' className='medicineUpdateInput' value={patientedit.full_name} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="patient_id" placeholder='for headache' className='medicineUpdateInput' value={medicineedit.full_name} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="medicineUpdateItem">
                             <label>Description</label>

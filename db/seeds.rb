@@ -7,7 +7,7 @@ doctors = [
         secondary_practice: "Surgery",
         years_of_experience: 10,
         email: "doctor1@gmail.com",
-        # user_id: 1
+        id: 1
     },
     {
         image:"https://as2.ftcdn.net/v2/jpg/02/60/04/09/1000_F_260040900_oO6YW1sHTnKxby4GcjCvtypUCWjnQRg5.jpg", full_name: "Michael Odhiambo", 
@@ -15,7 +15,7 @@ doctors = [
         secondary_practice: "Surgery",
         years_of_experience: 10,
         email: "doctor2@gmail.com",
-        # user_id: 1
+        id: 2
     },
     {
         image:"https://as1.ftcdn.net/v2/jpg/01/30/45/54/1000_F_130455409_fTuinPO1LXECv5hlk9VBREnL6yowYUo3.jpg", full_name: "Sarah Kamau", 
@@ -23,7 +23,7 @@ doctors = [
         secondary_practice: "Surgery",
         years_of_experience: 10,
         email: "doctor3@gmail.com",
-        # user_id: 1
+        id: 3
     },
     {
         image:"https://as1.ftcdn.net/v2/jpg/00/79/71/30/1000_F_79713072_dWCAZt6wPNFG5PqooCxAGsl4Mza7UfVy.jpg", full_name: "Dwight Shrute", 
@@ -31,7 +31,7 @@ doctors = [
         secondary_practice: "Surgery",
         years_of_experience: 10,
         email: "doctor4@gmail.com",
-        # user_id: 1
+        id: 4
     },
     {
         image:"https://as1.ftcdn.net/v2/jpg/01/32/94/46/1000_F_132944601_TzKWWNgwnBBsShz9UwWiUjTpoydpB5cV.jpg", full_name: "Andrew Benard", 
@@ -39,7 +39,7 @@ doctors = [
         secondary_practice: "Surgery",
         years_of_experience: 10,
         email: "doctor5@gmail.com",
-        # user_id: 1
+        id: 5
     }
 ]
 
@@ -57,7 +57,7 @@ patients = [
         visit_no: "GN-114730-21",
         age: 42,
         gender: "Male",
-        # user_id: 1,
+        id: 1,
     },
     {
         image:"https://images.pexels.com/photos/101537/baby-boy-hat-covered-101537.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", 
@@ -67,7 +67,7 @@ patients = [
         visit_no: "GN-114730-22",        
         age: 20,
         gender: "Female",
-        # user_id: 1
+        id: 2
     },
     {
         image:"https://images.pexels.com/photos/208134/pexels-photo-208134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", 
@@ -77,7 +77,7 @@ patients = [
         visit_no: "GN-114730-23",
         age: 30,
         gender: "Male",
-        # user_id: 1
+        id: 3
     },
     {
         image:"https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", 
@@ -87,7 +87,7 @@ patients = [
         visit_no: "GN-114730-24",
         age: 23,
         gender: "Female",
-        # user_id: 1
+        id: 4
     },
     {
         image:"https://images.pexels.com/photos/371985/pexels-photo-371985.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", 
@@ -97,7 +97,7 @@ patients = [
         visit_no: "GN-114730-25",
         age: 33,
         gender: "Other",
-        # user_id: 1
+        id: 5
     }
 ]
 
@@ -112,35 +112,35 @@ diseases = [
         symptoms: "fever, headache", 
         severity: "High",
         patient_id: 1,
-        # user_id: 1
+        id: 1
     },
     {
         name: "Typhoid", 
         symptoms: "fever, headache", 
         severity: "High",
         patient_id: 2,
-        # user_id: 1
+        id: 2
     },
     {
         name: "Cholera", 
         symptoms: "diarrhoea", 
         severity: "High",
         patient_id: 3,
-        # user_id: 1
+        id: 3
     },
     {
         name: "Breast cancer", 
         symptoms: "diarrhoea", 
         severity: "High",
         patient_id: 4,
-        # user_id: 1
+        id: 4
     },
     {
         name: "Diabetes", 
         symptoms: "diarrhoea", 
         severity: "High",
         patient_id: 5,
-        # user_id: 1
+        id: 5
     }
 ]
 
@@ -156,7 +156,7 @@ appointments = [
         patient_id: 1,
         doctor_id: 1,
         notes: "Normal checkup",
-        # user_id: 1
+        id: 1
     },
     {
         date: '2022-01-01',
@@ -164,7 +164,7 @@ appointments = [
         patient_id: 2,
         doctor_id: 2,
         notes: "Normal checkup",
-        # user_id: 1
+        id: 2
     },
     {
         date: '2022-01-01',
@@ -172,7 +172,7 @@ appointments = [
         patient_id: 3,
         doctor_id: 3,
         notes: "Normal checkup",
-        # user_id: 1
+        id: 3
     },
     {
         date: '2022-01-01',
@@ -180,7 +180,7 @@ appointments = [
         patient_id: 4,
         doctor_id: 4,
         notes: "Normal checkup",
-        # user_id: 1
+        id: 4
     },
     {
         date: '2022-01-01',
@@ -188,7 +188,7 @@ appointments = [
         patient_id: 5,
         doctor_id: 5,
         notes: "Normal checkup",
-        # user_id: 1
+        id: 5
     },
 ]
 
@@ -207,7 +207,7 @@ medicines = [
         infant_safe: true, 
         patient_id: 1,
         dosage: '500mg',
-        # user_id: 1
+        id: 1
     },
     {
         image:"https://as1.ftcdn.net/v2/jpg/00/93/01/00/1000_F_93010064_rhvBWAmpC1oZV2I8tDrtB7pp89TAJ960.jpg", 
@@ -218,7 +218,7 @@ medicines = [
         infant_safe: true, 
         patient_id: 2,
         dosage: '200mg',
-        # user_id: 1
+        id: 2
     },
     {
         image:"https://as1.ftcdn.net/v2/jpg/01/86/91/66/1000_F_186916617_oPPHwxkROZ9jdjXD9QAQcu7ygejiaWhF.jpg", 
@@ -229,7 +229,7 @@ medicines = [
         infant_safe: true, 
         patient_id: 3,
         dosage: '1000mg',
-        # user_id: 1
+        id: 3
     },
     {
         image:"https://as1.ftcdn.net/v2/jpg/01/86/91/66/1000_F_186916617_oPPHwxkROZ9jdjXD9QAQcu7ygejiaWhF.jpg", 
@@ -240,7 +240,7 @@ medicines = [
         infant_safe: true, 
         patient_id: 4,
         dosage: '1000mg',
-        # user_id: 1
+        id: 4
     },
     {
         image:"https://as2.ftcdn.net/v2/jpg/02/81/42/79/1000_F_281427970_ybqCaoaBN5olT1Hs4IvBGiP3JazmFBN3.jpg", 
@@ -251,7 +251,7 @@ medicines = [
         infant_safe: true, 
         patient_id: 5,
         dosage: '1000mg',
-        # user_id: 1
+        id: 5
     },
 ]
 
@@ -271,7 +271,7 @@ diagnostics = [
         sugar: 0.231, 
         temperature: 36.1, 
         pressure: 121.7,
-        # user_id: 1
+        id: 1
     },
     { 
         name: 'X-ray', 
@@ -283,7 +283,7 @@ diagnostics = [
         sugar: 0.231, 
         temperature: 36.1, 
         pressure: 121.7,
-        # user_id: 1
+        id: 2
     },
     { 
         name: 'CT scan', 
@@ -295,7 +295,7 @@ diagnostics = [
         sugar: 0.231, 
         temperature: 36.1, 
         pressure: 121.7,
-        # user_id: 1
+        id: 3
     },
     { 
         name: 'Blood test', 
@@ -307,7 +307,7 @@ diagnostics = [
         sugar: 0.231, 
         temperature: 36.1, 
         pressure: 121.7,
-        # user_id: 1
+        id: 4
     },
     { 
         name: 'Blood test', 
@@ -319,7 +319,7 @@ diagnostics = [
         sugar: 0.231, 
         temperature: 36.1, 
         pressure: 121.7,
-        # user_id: 1
+        id: 5
     },
 ]
 
@@ -336,7 +336,7 @@ prescriptions = [
         disease_id: 1,
         frequency: "2 X 2", 
         duration: "7 days",
-        # user_id: 1
+        id: 1
     },
     { 
         medicine_id: 2, 
@@ -345,7 +345,7 @@ prescriptions = [
         disease_id: 2,
         frequency: "2 X 2", 
         duration: "7 days",
-        # user_id: 1
+        id: 2
     },
     { 
         medicine_id: 3, 
@@ -353,7 +353,8 @@ prescriptions = [
         doctor_id: 3,
         disease_id: 3,
         frequency: "2 X 2", 
-        duration: "7 days"
+        duration: "7 days",
+        id: 3
     },
     { 
         medicine_id: 4, 
@@ -362,7 +363,7 @@ prescriptions = [
         disease_id: 4,
         frequency: "2 X 2", 
         duration: "7 days",
-        # user_id: 1
+        id: 4
     },
     { 
         medicine_id: 5, 
@@ -371,7 +372,7 @@ prescriptions = [
         disease_id: 5,
         frequency: "2 X 2", 
         duration: "7 days",
-        # user_id: 1
+        id: 5
     },
 ]
 

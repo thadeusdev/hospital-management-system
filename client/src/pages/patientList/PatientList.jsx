@@ -41,14 +41,14 @@ const PatientList = () => {
   const [patients, setPatients] = useState([])
 
     useEffect((id) => {
-        fetch(`/doctors/${id}/patients`)
+        fetch('/patients')
         .then(res => res.json())
         .then((patients => setPatients(patients)))
     }, [])
 
     const handleDelete = (id) => {
       async function deletePatient(){
-        await fetch(`/doctors/${id}/patients/${id}`, {
+        await fetch(`/patients/${id}`, {
           method: 'DELETE',
         })
         setPatients(patients.filter((patient) => patient.id !== id))

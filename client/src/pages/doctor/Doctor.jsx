@@ -79,16 +79,7 @@ const Doctor = () => {
                     <div className="doctorShowInfo">
                         <WorkspacePremium className="doctorShowIcon" />
                         <span className="doctorShowInfoTitle">{doctoredit.years_of_experience}</span>
-                    </div>
-                    <span className="doctorShowTitle">Appointments</span>
-                    <div className="doctorShowInfo">
-                        <FaCalendarPlus className="doctorShowIcon" />
-                        <span className="doctorShowInfoTitle">Normal checkup</span>
-                    </div>
-                    <div className="doctorShowInfo">
-                        <FaCalendarPlus className="doctorShowIcon" />
-                        <span className="doctorShowInfoTitle">2000-01-01T11:00:00.000Z</span>
-                    </div>                  
+                    </div>                 
                 </div>
             </div>
             <div className="doctorUpdate">

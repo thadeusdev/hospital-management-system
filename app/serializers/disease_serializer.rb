@@ -1,3 +1,3 @@
 class DiseaseSerializer < ActiveModel::Serializer
-  attributes :id, :name, :patient_id, :symptoms, :severity, :patients
+  attributes :id, :name, :patient, :symptoms, :severity, :diagnostics
 end

@@ -20,7 +20,7 @@ class PatientsController < ApplicationController
     # GET /patients/:id
     def show
         patient = Patient.find_by(id: params[:id])
-        render json: patient, serializer:SinglePatientSerializer
+        render json: patient
     end
 
     # POST /patients

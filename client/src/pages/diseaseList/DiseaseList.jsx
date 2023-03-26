@@ -31,14 +31,14 @@ const DiseaseList = () => {
   const [diseases, setDiseases] = useState([])
   
     useEffect((id) => {
-        fetch(`/doctors/${id}/patients/${id}/diseases`)
+        fetch('/diseases')
         .then(res => res.json())
         .then((diseases => setDiseases(diseases)))
     }, [])
 
     const handleDelete = (id) => {
       async function deleteDisease(){
-        await fetch(`/doctors/${id}/patients/${id}/diseases/${id}`, {
+        await fetch(`/diseases/${id}`, {
           method: 'DELETE',
         })
         setDiseases(diseases.filter((disease) => disease.id !== id))

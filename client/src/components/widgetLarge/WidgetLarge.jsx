@@ -6,7 +6,7 @@ const WidgetLarge = () => {
   const [patients, setPatients] = useState([])
 
     useEffect((id) => {
-        fetch(`/doctors/${id}/patients`)
+        fetch('/patients')
         .then(res => res.json())
         .then((patients => setPatients(patients)))
     }, [])
