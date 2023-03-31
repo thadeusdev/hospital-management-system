@@ -1,31 +1,40 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./appointment.css"
-import { NavLink } from 'react-router-dom';
-
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { Accessible, AccessTime } from '@mui/icons-material';
 import { FaUserMd } from 'react-icons/fa';
 
 const Appointment = () => {
-    const [appointmentedit, setAppointmentedit] = useState({notes:'', date:'', time:'', patient_id:'', doctor_id:''})
-    const {id} = useParams(); 
 
+    const [singleAppointment, setSingleAppointment] = useState({notes: '', date: '', time: '', patient_id: '', doctor_id: '',});
+    const [doctors, setDoctors] = useState([]);
+    const [patients, setPatients] = useState([]);
+    const {id} = useParams()
     // console.log(id)
 
     useEffect(() => {
-        const editAppointmentId = async() => {
-            const reqdata= await fetch(`/doctor_appointments/${id}`);
-            const res= reqdata.json();
-            setAppointmentedit(await res);
-        }
-        editAppointmentId()
-    },[id])
+        fetch(`/doctor_appointments/${id}`)
+        .then(res => res.json())
+        .then(singleAppointment => setSingleAppointment(singleAppointment))
+    }, [id])
+
+    useEffect(() => {
+        fetch('/doctors')
+        .then(res => res.json())
+        .then(doctors => setDoctors(doctors))
+    }, []);
+
+    useEffect(() => {
+        fetch('/patients')
+        .then(res => res.json())
+        .then(patients => setPatients(patients))
+    }, []);
 
     const handleEdit = (e) => {
-        setAppointmentedit({...appointmentedit, [e.target.name] : e.target.value})
+        setSingleAppointment({...singleAppointment, [e.target.name] : e.target.value})
     }
 
-    function handleAppointmentupdate(e){        
+    function handleUpdate(e){        
         e.preventDefault();
         fetch(`/doctor_appointments/${id}`, {
             method: "PATCH",
@@ -38,32 +47,12 @@ const Appointment = () => {
                 date: e.target.date.value,
                 time: e.target.time.value,
                 patient_id: e.target.patient_id.value,
-                doctor_id: e.target.doctor_id.value
+                doctor_id: e.target.doctor_id.value,
             }),
         })
         .then((r) => r.json())
         .then((data) => console.log(data))
     }
-
-    const [patientedit, setPatientedit] = useState([])
-    useEffect(() => {
-        const editPatientId = async() => {
-            const reqdata= await fetch(`/doctors/${id}/patients/${id}`);
-            const res= reqdata.json();
-            setPatientedit(await res);
-        }
-        editPatientId()
-    },[id])
-
-    const [doctoredit, setdoctoredit] = useState([])
-    useEffect(() => {
-        const editdoctorId = async() => {
-            const reqdata= await fetch(`/doctors/${id}`);
-            const res= reqdata.json();
-            setdoctoredit(await res);
-        }
-        editdoctorId()
-    },[id])
 
   return (
     <div className='appointment'>
@@ -77,51 +66,59 @@ const Appointment = () => {
             <div className="appointmentShow">
                 <div className="appointmentShowTop">
                     <div className="appointmentShowTopTitle">
-                        <span className="appointmentShowAppointmentname">{appointmentedit.notes}</span>
-                        <span className="appointmentShowAppointmentTitle">{appointmentedit.date}</span>
+                        <span className="appointmentShowAppointmentname">{singleAppointment.notes}</span>
+                        <span className="appointmentShowAppointmentTitle">{singleAppointment.date}</span>
                     </div>
                 </div>
                 <div className="appointmentShowBottom">
                     <span className="appointmentShowTitle">Time</span>
                     <div className="appointmentShowInfo">
                         <AccessTime className="appointmentShowIcon" />
-                        <span className="appointmentShowInfoTitle">{appointmentedit.time}</span>
+                        <span className="appointmentShowInfoTitle">{singleAppointment.time}</span>
                     </div> 
                     <span className="appointmentShowTitle">Patient</span> 
                     <div className="appointmentShowInfo">
                         <Accessible className="appointmentShowIcon" />
-                        <span className="appointmentShowInfoTitle">{patientedit.full_name}</span>
+                        <span className="appointmentShowInfoTitle">{singleAppointment.patient_name}</span>
                     </div> 
                     <span className="appointmentShowTitle">Doctor</span> 
                     <div className="appointmentShowInfo">
                         <FaUserMd className="appointmentShowIcon" />
-                        <span className="appointmentShowInfoTitle">{doctoredit.full_name}</span>
+                        <span className="appointmentShowInfoTitle">{singleAppointment.doctor_name}</span>
                     </div>                  
                 </div>
             </div>
             <div className="appointmentUpdate">
                 <span className="appointmentUpdateTitle">Edit</span>
-                <form onSubmit={ handleAppointmentupdate } className="appointmentUpdateForm">
+                <form className="appointmentUpdateForm" onSubmit={handleUpdate}>
                     <div className="appointmentUpdateLeft">
                         <div className="appointmentUpdateItem">
                             <label>Notes</label>
-                            <input type="text" name="notes" className='appointmentUpdateInput' value={appointmentedit.notes} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="notes" className='appointmentUpdateInput' value={singleAppointment.notes} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="appointmentUpdateItem">
                             <label>Date</label>
-                            <input type="date" name="date" className='appointmentUpdateInput' value={appointmentedit.date} onChange={(e) => handleEdit(e)} />
+                            <input type="date" name="date" className='appointmentUpdateInput' value={singleAppointment.date} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="appointmentUpdateItem">
                             <label>Time</label>
-                            <input type="time" name="time" className='appointmentUpdateInput' value={appointmentedit.time} onChange={(e) => handleEdit(e)} />
+                            <input type="time" name="time" className='appointmentUpdateInput' value={singleAppointment.time} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="appointmentUpdateItem">
                             <label>Patient</label>
-                            <input type="text" name="patient_id" className='appointmentUpdateInput' value={patientedit.full_name} onChange={(e) => handleEdit(e)} />
+                            <select name="patient_id" value={singleAppointment.patient_id} onChange={(e) => handleEdit(e)}>
+                                {patients.map(patient => (
+                                    <option key={patient.id} value={patient.id}>{patient.full_name}</option>
+                                ))}
+                            </select>
                         </div>
                         <div className="appointmentUpdateItem">
                             <label>Doctor</label>
-                            <input type="text" name="doctor_id" className='appointmentUpdateInput' value={doctoredit.full_name} onChange={(e) => handleEdit(e)} />
+                            <select name="doctor_id" value={singleAppointment.doctor_id} onChange={(e) => handleEdit(e)}>
+                                {doctors.map(doctor => (
+                                    <option key={doctor.id} value={doctor.id}>{doctor.full_name}</option>
+                                ))}
+                            </select>
                         </div>                                                 
                     </div>
                     <div className="appointmentUpdateRight">
