@@ -1,33 +1,44 @@
-import React, { useState} from 'react'
+import React, { useEffect, useState} from 'react'
 import "./newDisease.css"
 
 const NewDisease = () => {
-    const [diseases, setDiseases] = useState([]);
-    const [submitted, setSubmitted] = useState(false);
+  const [patients, setPatients] = useState([]);
+  const [diseases, setDiseases] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
 
-    function handleAddDisease(event) {
-      event.preventDefault();
-      setSubmitted(true);
-      const formData = new FormData(event.target);
-      const disease = {
-        name: formData.get('name'),
-        patient_id: formData.get('patient_id'),
-        symptoms: formData.get('symptoms'),
-        severity: formData.get('severity')
-      };
-  
-      fetch('/diseases', {
-        method: 'POST',
-        body: JSON.stringify(disease),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+  useEffect(() => {
+    fetch('/patients')
+    .then(res => res.json())
+    .then(patients => setPatients(patients))
+  }, [])
+
+  const [name, setName] = useState('');
+  const [patient_id, setPatient_id] = useState('');
+  const [symptoms, setSymptoms] = useState('');
+  const [severity, setSeverity] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setSubmitted(true);
+    fetch('/diseases', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name,
+        symptoms: symptoms,
+        severity: severity,
+        patient_id: patient_id
       })
-        .then(response => response.json())
-        .then(newDisease => {
-          setDiseases([...diseases, newDisease]);
-        });
-    }
+    })
+    .then(res => res.json())
+    .then(newDisease => {
+      setDiseases([...diseases, newDisease])
+      console.log(newDisease)
+    })
+    .catch(error => console.log(error))
+  }
 
   return (
     <div className='newDisease'>
@@ -35,22 +46,27 @@ const NewDisease = () => {
         {submitted ? (
           <p>added successfully!</p>
         ):(
-          <form onSubmit={handleAddDisease} className="newDiseaseForm">
+          <form className="newDiseaseForm" onSubmit={handleSubmit}>
             <div className="newDiseaseItem">
                 <label>Name</label>
-                <input type="text" placeholder='Typhoid' name='name' />
+                <input type="text" placeholder='Typhoid' value={name} onChange={e => setName(e.target.value)} />
             </div>
             <div className="newDiseaseItem">
-                <label>Patient Id</label>
-                <input type="text" placeholder='fever, headache' name='patient_id' />
+              <label>Patient</label>
+              <select value={patient_id} onChange={e => setPatient_id(e.target.value)}>
+              <option>Select</option>
+                {patients.map(patient => (
+                  <option key={patient.id} value={patient.id}>{patient.full_name}</option>
+                ))}
+              </select>
             </div>
             <div className="newDiseaseItem">
                 <label>Symptoms</label>
-                <input type="text" placeholder='fever, headache' name='symptoms' />
+                <input type="text" placeholder='fever, headache' value={symptoms} onChange={e => setSymptoms(e.target.value)} />
             </div>
             <div className="newDiseaseItem">
                 <label>Severity</label>
-                <input type="text" placeholder='High' name='severity' />
+                <input type="text" placeholder='High' value={severity} onChange={e => setSeverity(e.target.value)} />
             </div> 
             <button className="newDiseaseButton">Create</button>
         </form>
