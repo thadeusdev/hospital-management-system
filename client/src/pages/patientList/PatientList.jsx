@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react'
 
 const PatientList = () => {
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
     { field: 'full_name', headerName: 'Full Name', width: 180, renderCell: (params) => {
       return (
           <div className='patientListName'>

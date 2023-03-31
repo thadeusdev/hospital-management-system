@@ -7,10 +7,10 @@ import { useEffect, useState } from 'react'
 
 const DiseaseList = () => {
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
     { field: 'name', headerName: 'Name', width: 200 },
     { field: 'symptoms', headerName: 'Symptoms', width: 200 },
     { field: 'severity', headerName: 'Severity', width: 200 },
+    { field: 'patient_name', headerName: 'Patient', width: 200 },
     { 
       field: 'action',
       headerName: 'Action',

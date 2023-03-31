@@ -7,14 +7,15 @@ import { useEffect, useState } from 'react'
 
 const AppointmentList = () => {
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'notes', headerName: 'Notes', width: 200 },
-    { field: 'date', headerName: 'Date', width: 200 },
-    { field: 'time', headerName: 'Time', width: 200 },
+    { field: 'notes', headerName: 'Notes', width: 140 },
+    { field: 'date', headerName: 'Date', width: 140 },
+    { field: 'time', headerName: 'Time', width: 140 },
+    { field: 'doctor_name', headerName: 'Doctor', width: 140 },
+    { field: 'patient_name', headerName: 'Patient', width: 140 },
     { 
       field: 'action',
       headerName: 'Action',
-      width: 150 ,
+      width: 100 ,
       renderCell: (params) => {
         return (
           <>
