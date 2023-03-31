@@ -19,7 +19,7 @@ const NewPatient = (id) => {
         visit_no: formData.get('visit_no')
       };
   
-      fetch(`/doctors/${id}/patients`, {
+      fetch('/patients', {
         method: 'POST',
         body: JSON.stringify(patient),
         headers: {

@@ -78,7 +78,7 @@ const Doctor = () => {
                     <span className="doctorShowTitle">Experience</span>
                     <div className="doctorShowInfo">
                         <WorkspacePremium className="doctorShowIcon" />
-                        <span className="doctorShowInfoTitle">{doctoredit.years_of_experience}</span>
+                        <span className="doctorShowInfoTitle">{doctoredit.years_of_experience} years</span>
                     </div>                 
                 </div>
             </div>
