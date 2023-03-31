@@ -1,42 +1,57 @@
 import React, { useState, useEffect } from 'react'
 import "./diagnose.css"
 import { BarChart, Bar, Tooltip, Legend } from 'recharts';
-import { NavLink } from 'react-router-dom';
-
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 const Diagnose = () => {
-    const data = [
-        {
-          name: 'Chronic condition',
-          sugar: 140,
-          pressure: 80,
-          temperature: 37,
-          pulse: 100,
-        },
-      ];
-
-    const [diagnoseedit, setDiagnoseedit] = useState({name:'', patient_id:'', doctor_id:'', disease_id:'', performed_at:'', pulse:'', sugar:'', temperature:'', pressure:''})
-    const {id} = useParams();    
-
+    const [singleDiagnose, setSingleDiagnose] = useState({name: '', patient_id: '', doctor_id: '', disease_id: '', performed_at: '', pulse: '', sugar: '', temperature: '', pressure: ''});
+    const [patients, setPatients] = useState([]);
+    const [doctors, setDoctors] = useState([]);
+    const [diseases, setDiseases] = useState([]);
+    const {id} = useParams()
     // console.log(id)
 
+    const data = [
+        {
+            name: 'Chronic condition',
+            sugar: 140,
+            pressure: 80,
+            temperature: 37,
+            pulse: 100,
+        },
+    ];
+
     useEffect(() => {
-        const editDiagnoseId = async() => {
-            const reqdata= await fetch(`/doctors/${id}/patients/${id}/diagnostics/${id}`);
-            const res= reqdata.json();
-            setDiagnoseedit(await res);
-        }
-        editDiagnoseId()
-    },[id])
+        fetch('/patients')
+        .then(res => res.json())
+        .then(patients => setPatients(patients))
+    }, []);
+
+    useEffect(() => {
+        fetch('/doctors')
+        .then(res => res.json())
+        .then(doctors => setDoctors(doctors))
+    }, []);
+
+    useEffect(() => {
+        fetch('/diseases')
+        .then(res => res.json())
+        .then(diseases => setDiseases(diseases))
+    }, []);
+
+    useEffect(() => {
+        fetch(`/diagnostics/${id}`)
+        .then(res => res.json())
+        .then(singleDiagnose => setSingleDiagnose(singleDiagnose))
+    }, [])
 
     const handleEdit = (e) => {
-        setDiagnoseedit({...diagnoseedit, [e.target.name] : e.target.value})
-    }
+        setSingleDiagnose({...singleDiagnose, [e.target.name] : e.target.value})
+    };
 
-    function handleDiagnoseupdate(e){        
+    const handleUpdate = (e) => {        
         e.preventDefault();
-        fetch(`/doctors/${id}/patients/${id}/diagnostics/${id}`, {
+        fetch(`/diagnostics/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -51,42 +66,12 @@ const Diagnose = () => {
                 pulse: e.target.pulse.value,
                 sugar: e.target.sugar.value,
                 temperature: e.target.temperature.value,
-                pressure: e.target.pressure.value
+                pressure: e.target.pressure.value,
             }),
         })
         .then((r) => r.json())
         .then((data) => console.log(data))
     }
-
-    const [patientedit, setPatientedit] = useState([])
-    useEffect(() => {
-        const editPatientId = async() => {
-            const reqdata= await fetch(`/doctors/${id}/patients/${id}`);
-            const res= reqdata.json();
-            setPatientedit(await res);
-        }
-        editPatientId()
-    },[id])
-
-    const [doctoredit, setDoctoredit] = useState([])
-    useEffect(() => {
-        const editDoctorId = async() => {
-            const reqdata= await fetch(`/doctors/${id}`);
-            const res= reqdata.json();
-            setDoctoredit(await res);
-        }
-        editDoctorId()
-    },[id])
-
-    const [diseaseedit, setDiseaseedit] = useState([])
-    useEffect(() => {
-        const editDiseaseId = async() => {
-            const reqdata= await fetch(`/doctors/${id}/patients/${id}/diseases/${id}`);
-            const res= reqdata.json();
-            setDiseaseedit(await res);
-        }
-        editDiseaseId()
-    },[id])
 
   return (
     <div className='diagnose'> 
@@ -109,43 +94,55 @@ const Diagnose = () => {
             </div>
             <div className="diagnoseUpdate">
             <span className="diagnoseUpdateTitle">Edit</span>
-            <form onSubmit={ handleDiagnoseupdate } className="diagnoseUpdateForm">
+            <form className="diagnoseUpdateForm" onSubmit={handleUpdate}>
                     <div className="diagnoseUpdateLeft">
                         <div className="diagnoseUpdateItem">
                             <label>Name</label>
-                            <input type="text" name="name" className='diagnoseUpdateInput' value={diagnoseedit.name} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="name" className='diagnoseUpdateInput' value={singleDiagnose.name} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diagnoseUpdateItem">
                             <label>Patient</label>
-                            <input type="text" name="patient_id" className='diagnoseUpdateInput' value={patientedit.full_name} onChange={(e) => handleEdit(e)} />
+                            <select name="patient_id" value={singleDiagnose.patient_id} onChange={(e) => handleEdit(e)}>
+                                {patients.map(patient => (
+                                    <option key={patient.id} value={patient.id}>{patient.full_name}</option>
+                                ))}
+                            </select>
                         </div>
                         <div className="diagnoseUpdateItem">
                             <label>Doctor</label>
-                            <input type="text" name="doctor_id" className='diagnoseUpdateInput' value={doctoredit.full_name} onChange={(e) => handleEdit(e)} />
+                            <select name="doctor_id" value={singleDiagnose.doctor_id} onChange={(e) => handleEdit(e)}>
+                                {doctors.map(doctor => (
+                                    <option key={doctor.id} value={doctor.id}>{doctor.full_name}</option>
+                                ))}
+                            </select>
                         </div>
                         <div className="diagnoseUpdateItem">
                             <label>Disease</label>
-                            <input type="text" name="disease_id" className='diagnoseUpdateInput' value={diseaseedit.name} onChange={(e) => handleEdit(e)} />
+                            <select name="disease_id" value={singleDiagnose.disease_id} onChange={(e) => handleEdit(e)}>
+                                {diseases.map(disease => (
+                                    <option key={disease.id} value={disease.id}>{disease.name}</option>
+                                ))}
+                            </select>
                         </div>
                         <div className="diagnoseUpdateItem">
                             <label>Performed At</label>
-                            <input type="text" name="performed_at" className='diagnoseUpdateInput' value={diagnoseedit.performed_at} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="performed_at" className='diagnoseUpdateInput' value={singleDiagnose.performed_at} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diagnoseUpdateItem">
                             <label>Pulse</label>
-                            <input type="text" name="pulse" className='diagnoseUpdateInput' value={diagnoseedit.pulse} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="pulse" className='diagnoseUpdateInput' value={singleDiagnose.pulse} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diagnoseUpdateItem">
                             <label>Sugar</label>
-                            <input type="text" name="sugar" className='diagnoseUpdateInput' value={diagnoseedit.sugar} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="sugar" className='diagnoseUpdateInput' value={singleDiagnose.sugar} onChange={(e) => handleEdit(e)} />
                         </div> 
                         <div className="diagnoseUpdateItem">
                             <label>Temperature</label>
-                            <input type="text" name="temperature" className='diagnoseUpdateInput' value={diagnoseedit.temperature} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="temperature" className='diagnoseUpdateInput' value={singleDiagnose.temperature} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="diagnoseUpdateItem">
                             <label>Pressure</label>
-                            <input type="text" name="pressure" className='diagnoseUpdateInput' value={diagnoseedit.pressure} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="pressure" className='diagnoseUpdateInput' value={singleDiagnose.pressure} onChange={(e) => handleEdit(e)} />
                         </div>                       
                     </div>
                     <div className="diagnoseUpdateRight">

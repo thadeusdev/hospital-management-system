@@ -7,17 +7,18 @@ import { useEffect, useState } from 'react'
 
 const DiagnoseList = () => {
   const columns = [
-    { field: 'id', headerName: 'ID', width: 50 },
     { field: 'name', headerName: 'Name', width: 100 },
-    { field: 'performed_at', headerName: 'Performed At', width: 200 },
+    { field: 'performed_at', headerName: 'Performed At', width: 100 },
+    { field: 'patient_name', headerName: 'Patient', width: 140 },
+    { field: 'doctor_name', headerName: 'Doctor', width: 140 },
     { field: 'pulse', headerName: 'Pulse', width: 70 },
     { field: 'sugar', headerName: 'Sugar', width: 70 },
-    { field: 'temperature', headerName: 'Temperature', width: 120 },
+    { field: 'temperature', headerName: 'Temperature', width: 110 },
     { field: 'pressure', headerName: 'Pressure', width: 100 },
     { 
       field: 'action',
       headerName: 'Action',
-      width: 150 ,
+      width: 100 ,
       renderCell: (params) => {
         return (
           <>
@@ -33,7 +34,7 @@ const DiagnoseList = () => {
 
   const [diagnoses, setDiagnoses] = useState([])
 
-    useEffect((id) => {
+    useEffect(() => {
         fetch('/diagnostics')
         .then(res => res.json())
         .then((diagnoses => setDiagnoses(diagnoses)))

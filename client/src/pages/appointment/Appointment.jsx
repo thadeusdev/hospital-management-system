@@ -102,7 +102,7 @@ const Appointment = () => {
                         </div>
                         <div className="appointmentUpdateItem">
                             <label>Time</label>
-                            <input type="time" name="time" className='appointmentUpdateInput' value={singleAppointment.time} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="time" className='appointmentUpdateInput' value={singleAppointment.time} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="appointmentUpdateItem">
                             <label>Patient</label>
