@@ -1,38 +1,68 @@
-import React, { useState} from 'react'
+import React, { useEffect, useState} from 'react'
 import "./newDiagnose.css"
 
 const NewDiagnose = () => {
-    const [diagnoses, setDiagnoses] = useState([]);
-    const [submitted, setSubmitted] = useState(false);
+  const [patients, setPatients] = useState([]);
+  const [doctors, setDoctors] = useState([]);
+  const [diseases, setDiseases] = useState([]);
+  const [diagnostics, setDiagnostics] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
 
-    function handleAddDiagnose(event) {
-      event.preventDefault();
-      setSubmitted(true);
-      const formData = new FormData(event.target);
-      const diagnose = {
-        name: formData.get('name'),
-        patient_id: formData.get('patient_id'),
-        doctor_id: formData.get('doctor_id'),
-        disease_id: formData.get('disease_id'),
-        performed_at: formData.get('performed_at'),
-        pulse: formData.get('pulse'),
-        sugar: formData.get('sugar'),
-        temperature: formData.get('temperature'),
-        pressure: formData.get('pressure')
-      };
-  
-      fetch('/diagnostics', {
-        method: 'POST',
-        body: JSON.stringify(diagnose),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+  useEffect(() => {
+    fetch('/patients')
+    .then(res => res.json())
+    .then(patients => setPatients(patients))
+  }, []);
+
+  useEffect(() => {
+    fetch('/doctors')
+    .then(res => res.json())
+    .then(doctors => setDoctors(doctors))
+  }, []);
+
+  useEffect(() => {
+    fetch('/diseases')
+    .then(res => res.json())
+    .then(diseases => setDiseases(diseases))
+  }, []);
+
+  const [name, setName] = useState('');
+  const [patient_id, setPatient_id] = useState('');
+  const [doctor_id, setDoctor_id] = useState('');
+  const [disease_id, setDisease_id] = useState('');
+  const [performed_at, setPerformed_at] = useState('');
+  const [pulse, setPulse] = useState('');
+  const [sugar, setSugar] = useState('');
+  const [temperature, setTemperature] = useState('');
+  const [pressure, setPressure] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setSubmitted(true);
+    fetch('/diagnostics', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name,
+        patient_id: patient_id,
+        doctor_id: doctor_id,
+        disease_id: disease_id,
+        performed_at: performed_at,
+        pulse: pulse,
+        sugar: sugar,
+        temperature: temperature,
+        pressure: pressure,
       })
-        .then(response => response.json())
-        .then(newDiagnose => {
-          setDiagnoses([...diagnoses, newDiagnose]);
-        });
-    }
+    })
+    .then(res => res.json())
+    .then(newDiagnostic => {
+      setDiagnostics([...diagnostics, newDiagnostic])
+      console.log(newDiagnostic)
+    })
+    .catch(error => console.log(error))
+  }
 
   return (
     <div className='newDiagnose'>
@@ -40,42 +70,57 @@ const NewDiagnose = () => {
         {submitted ? (
           <p>added successfully!</p>
         ):(
-          <form onSubmit={handleAddDiagnose} className="newDiagnoseForm">
+          <form className="newDiagnoseForm" onSubmit={handleSubmit}>
             <div className="newDiagnoseItem">
                 <label>Name</label>
-                <input type="text" placeholder='Blood test' name='name' />
+                <input type="text" placeholder='Blood test' name='name' value={name} onChange={e => setName(e.target.value)} />
             </div>
             <div className="newDiagnoseItem">
-                <label>Patient Id</label>
-                <input type="text" placeholder='1' name="patient_id" />
+              <label>Patient</label>
+              <select value={patient_id} onChange={e => setPatient_id(e.target.value)}>
+              <option>Select</option>
+                {patients.map(patient => (
+                  <option key={patient.id} value={patient.id}>{patient.full_name}</option>
+                ))}
+              </select>
             </div>
             <div className="newDiagnoseItem">
-                <label>Doctor id</label>
-                <input type="text" placeholder='1' name="doctor_id" />
+              <label>Doctor</label>
+              <select value={doctor_id} onChange={e => setDoctor_id(e.target.value)}>
+              <option>Select</option>
+                {doctors.map(doctor => (
+                  <option key={doctor.id} value={doctor.id}>{doctor.full_name}</option>
+                ))}
+              </select>
             </div>
             <div className="newDiagnoseItem">
-                <label>Disease id</label>
-                <input type="text" placeholder='1' name="disease_id" />
+              <label>Disease</label>
+              <select value={disease_id} onChange={e => setDisease_id(e.target.value)}>
+              <option>Select</option>
+                {diseases.map(disease => (
+                  <option key={disease.id} value={disease.id}>{disease.name}</option>
+                ))}
+              </select>
             </div>
             <div className="newDiagnoseItem">
                 <label>Performed at</label>
-                <input type="datetime-local" name="performed_at" />
+                <input type="time" value={performed_at} onChange={e => setPerformed_at(e.target.value)} />
             </div>
             <div className="newDiagnoseItem">
                 <label>Pulse</label>
-                <input type="text" placeholder='100' name="pulse" />
+                <input type="text" placeholder='100' value={pulse} onChange={e => setPulse(e.target.value)} />
             </div>
             <div className="newDiagnoseItem">
                 <label>Sugar</label>
-                <input type="text" placeholder='140' name="sugar" />
+                <input type="text" placeholder='140' value={sugar} onChange={e => setSugar(e.target.value)} />
             </div>
             <div className="newDiagnoseItem">
                 <label>Temperature</label>
-                <input type="text" placeholder='37' name='temperature' />
+                <input type="text" placeholder='37' value={temperature} onChange={e => setTemperature(e.target.value)} />
             </div>
             <div className="newDiagnoseItem">
                 <label>Pressure</label>
-                <input type="text" placeholder='80' name='pressure' />
+                <input type="text" placeholder='80' value={pressure} onChange={e => setPressure(e.target.value)} />
             </div>
             <button className="newDiagnoseButton">Create</button>
         </form>

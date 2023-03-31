@@ -11,6 +11,7 @@ const DiagnoseList = () => {
     { field: 'performed_at', headerName: 'Performed At', width: 100 },
     { field: 'patient_name', headerName: 'Patient', width: 140 },
     { field: 'doctor_name', headerName: 'Doctor', width: 140 },
+    { field: 'disease_name', headerName: 'Disease', width: 100 },
     { field: 'pulse', headerName: 'Pulse', width: 70 },
     { field: 'sugar', headerName: 'Sugar', width: 70 },
     { field: 'temperature', headerName: 'Temperature', width: 110 },
