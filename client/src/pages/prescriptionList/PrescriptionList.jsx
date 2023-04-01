@@ -7,13 +7,16 @@ import { useEffect, useState } from 'react'
 
 const PrescriptionList = () => {
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'frequency', headerName: 'Frequency', width: 120},
-    { field: 'duration', headerName: 'Duration', width: 120 },
+    { field: 'frequency', headerName: 'Frequency', width: 80},
+    { field: 'duration', headerName: 'Duration', width: 80 },
+    { field: 'medicine_name', headerName: 'Medicine', width: 120 },
+    { field: 'disease_name', headerName: 'Disease', width: 120 },
+    { field: 'patient_name', headerName: 'Patient', width: 150 },
+    { field: 'doctor_name', headerName: 'Doctor', width: 150 },
     { 
       field: 'action',
       headerName: 'Action',
-      width: 150 ,
+      width: 100 ,
       renderCell: (params) => {
         return (
           <>

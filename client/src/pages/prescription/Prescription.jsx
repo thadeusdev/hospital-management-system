@@ -1,30 +1,52 @@
 import React, { useState, useEffect } from 'react'
 import "./prescription.css"
-import { NavLink } from 'react-router-dom';
-
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { FaAccessibleIcon, FaDisease, FaTablets, FaUserMd } from 'react-icons/fa';
 
 const Prescription = () => {
-    const [prescriptionedit, setPrescriptionedit] = useState({frequency:'', duration:'', medicine_id:'', disease_id:'', patient_id:'', doctor_id:''})
+    const [singlePrescription, setSinglePrescription] = useState({frequency:'', duration:'', medicine_id:'', disease_id:'', patient_id:'', doctor_id:''});
+    const [medicines, setMedicines] = useState([]);
+    const [diseases, setDiseases] = useState([]);
+    const [patients, setPatients] = useState([]);
+    const [doctors, setDoctors] = useState([]);
     const {id} = useParams();
+    // console.log(id);
 
-    // console.log(id)
+    useEffect(() => {
+        fetch(`/prescriptions/${id}`)
+        .then(res => res.json())
+        .then(singlePrescription => setSinglePrescription(singlePrescription))
+    }, []);
 
-    useEffect((id) => {
-        const editprescriptionId = async() => {
-            const reqdata= await fetch(`/prescriptions/${id}`);
-            const res= reqdata.json();
-            setPrescriptionedit(await res);
-        }
-        editprescriptionId()
-    },[id])
+    useEffect(() => {
+        fetch('/medicines')
+        .then(res => res.json())
+        .then(medicines => setMedicines(medicines))
+    }, []);
+
+    useEffect(() => {
+        fetch('/diseases')
+        .then(res => res.json())
+        .then(diseases => setDiseases(diseases))
+    }, []);
+
+    useEffect(() => {
+        fetch('/patients')
+        .then(res => res.json())
+        .then(patients => setPatients(patients))
+    }, []);
+
+    useEffect(() => {
+        fetch('/doctors')
+        .then(res => res.json())
+        .then(doctors => setDoctors(doctors))
+    }, []);
 
     const handleEdit = (e) => {
-        setPrescriptionedit({...prescriptionedit, [e.target.name] : e.target.value})
-    }
+        setSinglePrescription({...singlePrescription, [e.target.name] : e.target.value})
+    };
 
-    function handlePrescriptionupdate(e){        
+    function handleUpdate(e){        
         e.preventDefault();
         fetch(`/prescriptions/${id}`, {
             method: "PATCH",
@@ -35,51 +57,15 @@ const Prescription = () => {
             body: JSON.stringify({
                 frequency: e.target.frequency.value,
                 duration: e.target.duration.value,
+                medicine_id: e.target.medicine_id.value,
+                disease_id: e.target.disease_id.value,
+                patient_id: e.target.patient_id.value,
+                doctor_id: e.target.doctor_id.value,
             }),
         })
         .then((r) => r.json())
         .then((data) => console.log(data))
-    }
-
-    const [medicineedit, setMedicineedit] = useState([])
-    useEffect((id) => {
-        const editMedicineId = async() => {
-            const reqdata= await fetch(`/doctors/${id}/patients/${id}/medicines/${id}`);
-            const res= reqdata.json();
-            setMedicineedit(await res);
-        }
-        editMedicineId()
-    },[id])
-
-    const [diseaseedit, setDiseaseedit] = useState([])
-    useEffect((id) => {
-        const editDiseaseId = async() => {
-            const reqdata= await fetch(`/doctors/${id}/patients/${id}/diseases/${id}`);
-            const res= reqdata.json();
-            setDiseaseedit(await res);
-        }
-        editDiseaseId()
-    },[id])
-
-    const [patientedit, setPatientedit] = useState([])
-    useEffect((id) => {
-        const editPatientId = async() => {
-            const reqdata= await fetch(`/doctors/${id}/patients/${id}`);
-            const res= reqdata.json();
-            setPatientedit(await res);
-        }
-        editPatientId()
-    },[id])
-
-    const [doctoredit, setDoctoredit] = useState([])
-    useEffect((id) => {
-        const editDoctorId = async() => {
-            const reqdata= await fetch(`/doctors/${id}`);
-            const res= reqdata.json();
-            setDoctoredit(await res);
-        }
-        editDoctorId()
-    },[id])
+    };
 
   return (
     <div className='prescription'>
@@ -93,61 +79,80 @@ const Prescription = () => {
             <div className="prescriptionShow">
                 <div className="prescriptionShowTop">
                     <div className="prescriptionShowTopTitle">
-                        <span className="prescriptionShowprescriptionname">{prescriptionedit.frequency}</span>
-                        <span className="prescriptionShowprescriptionTitle">{prescriptionedit.duration}</span>
+                        <span className="prescriptionShowprescriptionname">Frequency: {singlePrescription.frequency}</span>
+                        <span className="prescriptionShowprescriptionTitle">Duration: {singlePrescription.duration}</span>
                     </div>
                 </div>
                 <div className="prescriptionShowBottom">
                     <span className="prescriptionShowTitle">Medicine</span>
                     <div className="prescriptionShowInfo">
                         <FaTablets className="prescriptionShowIcon" />
-                        <span className="prescriptionShowInfoTitle">{medicineedit.name}</span>
+                        <span className="prescriptionShowInfoTitle">{singlePrescription.medicine_name}</span>
                     </div> 
                     <span className="prescriptionShowTitle">Disease</span>
                     <div className="prescriptionShowInfo">
                         <FaDisease className="prescriptionShowIcon" />
-                        <span className="prescriptionShowInfoTitle">{diseaseedit.name}</span>
+                        <span className="prescriptionShowInfoTitle">{singlePrescription.disease_name}</span>
                     </div> 
                     <span className="prescriptionShowTitle">Doctor</span> 
                     <div className="prescriptionShowInfo">
                         <FaUserMd className="prescriptionShowIcon" />
-                        <span className="prescriptionShowInfoTitle">{doctoredit.full_name}</span>
+                        <span className="prescriptionShowInfoTitle">{singlePrescription.doctor_name}</span>
                     </div> 
                     <span className="prescriptionShowTitle">Patient</span>
                     <div className="prescriptionShowInfo">
                         <FaAccessibleIcon className="prescriptionShowIcon" />
-                        <span className="prescriptionShowInfoTitle">{patientedit.full_name}</span>
+                        <span className="prescriptionShowInfoTitle">{singlePrescription.patient_name}</span>
                     </div>                 
                 </div>
             </div>
             <div className="prescriptionUpdate">
                 <span className="prescriptionUpdateTitle">Edit</span>
-                <form onSubmit={ handlePrescriptionupdate } className="prescriptionUpdateForm">
+                <form className="prescriptionUpdateForm" onSubmit={handleUpdate}>
                     <div className="prescriptionUpdateLeft">
                         <div className="prescriptionUpdateItem">
                             <label>Frequency</label>
-                            <input type="text" name="frequency" className='prescriptionUpdateInput' value={prescriptionedit.frequency} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="frequency" className='prescriptionUpdateInput' value={singlePrescription.frequency} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="prescriptionUpdateItem">
                             <label>Duration</label>
-                            <input type="text" name="duration" className='prescriptionUpdateInput' value={prescriptionedit.duration} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="duration" className='prescriptionUpdateInput' value={singlePrescription.duration} onChange={(e) => handleEdit(e)} />
                         </div>
                         <div className="prescriptionUpdateItem">
                             <label>Medicine</label>
-                            <input type="text" name="medicine_id" className='prescriptionUpdateInput' value={medicineedit.name} onChange={(e) => handleEdit(e)} />
+                            <select name="medicine_id" value={singlePrescription.medicine_id} onChange={(e) => handleEdit(e)}>
+                                {medicines.map(medicine => (
+                                    <option key={medicine.id} value={medicine.id}>{medicine.name}</option>
+                                ))}
+                            </select>
                         </div>
                         <div className="prescriptionUpdateItem">
                             <label>Disease</label>
-                            <input type="text" name="disease_id" className='prescriptionUpdateInput' value={diseaseedit.name} onChange={(e) => handleEdit(e)} />
+                            <select name="disease_id" value={singlePrescription.disease_id} onChange={(e) => handleEdit(e)}>
+                                {diseases.map(disease => (
+                                    <option key={disease.id} value={disease.id}>{disease.name}</option>
+                                ))}
+                            </select>
                         </div>
                         <div className="prescriptionUpdateItem">
                             <label>Patient</label>
-                            <input type="text" name="patient_id" className='prescriptionUpdateInput' value={patientedit.full_name} onChange={(e) => handleEdit(e)} />
+                            <select name="patient_id" value={singlePrescription.patient_id} onChange={(e) => handleEdit(e)}>
+                                {patients.map(patient => (
+                                    <option key={patient.id} value={patient.id}>{patient.full_name}</option>
+                                ))}
+                            </select>
                         </div>  
                         <div className="prescriptionUpdateItem">
                             <label>Doctor</label>
-                            <input type="text" name="doctor_id" className='prescriptionUpdateInput' value={doctoredit.full_name} onChange={(e) => handleEdit(e)} />
-                        </div>                       
+                            <select name="doctor_id" value={singlePrescription.doctor_id} onChange={(e) => handleEdit(e)}>
+                                {doctors.map(doctor => (
+                                    <option key={doctor.id} value={doctor.id}>{doctor.full_name}</option>
+                                ))}
+                            </select>
+                        </div>                      
+                    </div>
+                    <div className="prescriptionUpdateRight">
+                        <button className="prescriptionUpdateButton">Update</button>
                     </div>
                 </form>
             </div>
