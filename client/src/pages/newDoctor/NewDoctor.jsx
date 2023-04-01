@@ -4,6 +4,7 @@ import "./newDoctor.css"
 const NewDoctor = () => {
     const [doctors, setDoctors] = useState([]);
     const [submitted, setSubmitted] = useState(false);
+    // const [file, setFile] = useState(null);
 
     function handleAddDoctor(event) {
         event.preventDefault();
@@ -30,6 +31,21 @@ const NewDoctor = () => {
             setDoctors([...doctors, newDoctor]);
           });
       }
+
+      // const upload = (file) => {
+      //   const formData = new formData();
+      //   formData.append("file", file);
+      //   formData.append("upload_preset", 'hospital-management-system');
+
+      //   fetch("https://api.cloudinary.com/vi_1/dp9nfmkoo/image", {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json'
+      //     }
+      //   })
+      //   .then(res => res.json())
+      //   .then(data => console.log(data))
+      // }
 
   return (
     <div className='newDoctor'>

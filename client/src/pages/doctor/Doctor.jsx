@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react'
 import "./doctor.css"
 import BadgeIcon from '@mui/icons-material/Badge';
 import PublishIcon from '@mui/icons-material/Publish';
-import { FaCalendarPlus }from "react-icons/fa";
-import { NavLink } from 'react-router-dom';
-
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { WorkspacePremium } from '@mui/icons-material';
 
 const Doctor = () => {
-    const [doctoredit, setDoctoredit] = useState({img:'', full_name:'', primary_practice:'', secondary_practice:''})
+    const [doctoredit, setDoctoredit] = useState({image:'', full_name:'', primary_practice:'', secondary_practice:''})
     const {id} = useParams();    
 
     // console.log(id)
@@ -45,7 +42,9 @@ const Doctor = () => {
             }),
         })
         .then((r) => r.json())
-        .then((data) => console.log(data))
+        .then((newDoctor) => {
+            console.log(newDoctor)
+        })
     }
 
   return (
@@ -66,11 +65,12 @@ const Doctor = () => {
                     </div>
                 </div>
                 <div className="doctorShowBottom">
-                    <span className="doctorShowTitle">Primary & Secondary Practice</span>
+                    <span className="doctorShowTitle">Primary Practice</span>
                     <div className="doctorShowInfo">
                         <BadgeIcon className="doctorShowIcon" />
                         <span className="doctorShowInfoTitle">{doctoredit.primary_practice}</span>
                     </div>  
+                    <span className="doctorShowTitle">Secondary Practice</span>
                     <div className="doctorShowInfo">
                         <BadgeIcon className="doctorShowIcon" />
                         <span className="doctorShowInfoTitle">{doctoredit.secondary_practice}</span>
@@ -105,13 +105,17 @@ const Doctor = () => {
                         <div className="doctorUpdateItem">
                             <label>Experience</label>
                             <input type="text" name="years_of_experience" placeholder='Family Practice Physician' className='doctorUpdateInput' value={doctoredit.years_of_experience} onChange={(e) => handleEdit(e)} />
-                        </div>                        
+                        </div> 
+                        <div className="doctorUpdateItem">
+                            <label>Image</label>
+                            <input type="text" name="image" className='doctorUpdateInput' value={doctoredit.image} onChange={(e) => handleEdit(e)} />
+                        </div>                         
                     </div>
                     <div className="doctorUpdateRight">
                         <div className="doctorUpdateUpload">
                             <img className="doctorUpdateImg" src={doctoredit.image} alt="" />
-                            <label htmlFor="file"><PublishIcon className='doctorUpdateIcon' /></label>
-                            <input type="file" id='file' style={{display: "none"}}  name="image" src={doctoredit.image} onChange={(e) => handleEdit(e)} />
+                            {/* <label htmlFor="file"><PublishIcon className='doctorUpdateIcon' /></label>
+                            <input type="file" id='file' style={{display: "none"}}  name="image" src={doctoredit.image} /> */}
                         </div>
                         <button className="doctorUpdateButton">Update</button>
                     </div>
