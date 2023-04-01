@@ -16,13 +16,13 @@ const DoctorList = () => {
       )
   } },
     { field: 'email', headerName: 'Email', width: 200 },
-    { field: 'primary_practice', headerName: 'Primary Practice', width: 150 },
-    { field: 'secondary_practice', headerName: 'Secondary Practice', width: 150 },
+    { field: 'primary_practice', headerName: 'Primary Practice', width: 200 },
+    { field: 'secondary_practice', headerName: 'Secondary Practice', width: 200 },
     { field: 'years_of_experience', headerName: 'Experience (yrs)', width: 120 },
     { 
       field: 'action',
       headerName: 'Action',
-      width: 150 ,
+      width: 100 ,
       renderCell: (params) => {
         return (
           <>
