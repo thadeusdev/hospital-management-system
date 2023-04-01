@@ -7,8 +7,7 @@ import { useEffect, useState } from 'react'
 
 const MedicineList = () => {
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'name', headerName: 'Full Name', width: 200, renderCell: (params) => {
+    { field: 'name', headerName: 'Name', width: 200, renderCell: (params) => {
       return (
           <div className='medicineListName'>
               <img className='medicineListImg' src={params.row.image} alt="" />
@@ -40,7 +39,7 @@ const MedicineList = () => {
 
   const [medicines, setMedicines] = useState([])
 
-    useEffect((id) => {
+    useEffect(() => {
         fetch('/medicines')
         .then(res => res.json())
         .then((medicines => setMedicines(medicines)))
