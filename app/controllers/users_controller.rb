@@ -29,10 +29,21 @@ class UsersController < ApplicationController
         end
     end
 
+    # PATCH /users/:id
+    def update
+        user = User.find_by(id: params[:id])
+        if user
+            user.update!(user_params)
+            render json: user
+        else
+            render json: { error: "user not found" }, status: :not_found
+        end
+    end
+
     private
 
     def user_params
-        params.permit(:username, :password, :password_confirmation)
+        params.permit(:username, :role, :image, :password, :password_confirmation)
     end
 
 end

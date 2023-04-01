@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import "./topbar.css"
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const Topbar = () => {
     const [notifyItems, setNotifyItems] = useState(0)
+    const [loggedInUser, setLoggedInUser] = useState({username: '', role: '', image: '', password: ''});
+    const {id} = useParams();
+    // console.log(id)
 
     useEffect((id) => {
         fetch(`/doctor_appointments`)
@@ -19,7 +22,17 @@ const Topbar = () => {
                 position: toast.POSITION.BOTTOM_RIGHT
             })
         }
-    }, [notifyItems])
+    }, [notifyItems]);
+  
+    useEffect(() => {
+      fetch(`/users/${id}`)
+      .then(res => res.json())
+      .then(loggedInUser => setLoggedInUser(loggedInUser))
+    }, [id]);
+  
+    if (!loggedInUser){
+      return null;
+    }
     
   return (
     <div className='topbar'>
@@ -38,7 +51,9 @@ const Topbar = () => {
                     <span className="topIconBadge">{notifyItems.length}</span>
                 </div>
                 </Link>
-                <img src="https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg?w=2000" alt="" className="topAvator" />
+                <Link to={`/users/${loggedInUser.id}`}>
+                <img src={loggedInUser.image} alt="" className="topAvator" />
+                </Link>
             </div>
         </div>
     </div>

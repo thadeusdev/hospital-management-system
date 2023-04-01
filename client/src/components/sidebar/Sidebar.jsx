@@ -14,7 +14,7 @@ import {
     FaPrescriptionBottleAlt,
     FaSignOutAlt,
 }from "react-icons/fa";
-import { Route, Routes, NavLink } from 'react-router-dom';
+import { Route, Routes, NavLink} from 'react-router-dom';
 
 const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(true);

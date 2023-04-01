@@ -136,13 +136,17 @@ const Medicine = () => {
                                 <option name="infant_safe" value='true' onChange={(e) => handleEdit(e)}>True</option>
                                 <option name="infant_safe" value='false' onChange={(e) => handleEdit(e)}>False</option>
                             </select>
-                        </div>                                                 
+                        </div>
+                        <div className="medicineUpdateItem">
+                            <label>Image</label>
+                            <input type="text" name="image" placeholder='url' className='medicineUpdateInput' value={singleMedicine.image} onChange={(e) => handleEdit(e)} />
+                        </div>                                                  
                     </div>
                     <div className="medicineUpdateRight">
                         <div className="medicineUpdateUpload">
                             <img src={singleMedicine.image} className="medicineUpdateImg" alt="" />
-                            <label htmlFor="file"><PublishIcon className='medicineUpdateIcon' /></label>
-                            <input type="file" id='file' style={{display: "none"}}  name="image" src={singleMedicine.image} onChange={(e) => handleEdit(e)} />
+                            {/* <label htmlFor="file"><PublishIcon className='medicineUpdateIcon' /></label>
+                            <input type="file" id='file' style={{display: "none"}}  name="image" src={singleMedicine.image} onChange={(e) => handleEdit(e)} /> */}
                         </div>
                         <button className="medicineUpdateButton">Update</button>
                     </div>

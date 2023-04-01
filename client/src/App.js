@@ -27,6 +27,8 @@ import PrescriptionList from './pages/prescriptionList/PrescriptionList'
 import Prescription from './pages/prescription/Prescription';
 import NewPrescription from './pages/newPrescription/NewPrescription';
 import "./app.css"
+import User from './pages/user/User';
+
 const App = () => {
   const [user, setUser] = useState(null);
 
@@ -80,6 +82,7 @@ const App = () => {
             <Route path='/prescriptions' element={<PrescriptionList user={user} setUser={setUser} />} />
             <Route path='/prescriptions/:id' element={<Prescription user={user} setUser={setUser} />} />
             <Route path="/newPrescription" element={<NewPrescription user={user} setUser={setUser} />} />
+            <Route path="/users/:id" element={<User user={user} setUser={setUser} />} />
           </Routes>
         </Sidebar>
       </BrowserRouter>

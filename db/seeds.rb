@@ -380,7 +380,7 @@ puts " 📝creating prescriptions..."
 
 prescriptions.each{|prescription| Prescription.create!(prescription)}
 
-User.create!(username: "admin", password:'root')
+User.create!(username: "admin", role: 'admin', image: 'https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?w=2000', password:'root')
 
 
 puts " seeded successfully!"
