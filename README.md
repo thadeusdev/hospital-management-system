@@ -23,16 +23,17 @@
 ### Doctor Appointments
 ![Appointments](/client/src/img/appointment.png "Optional title")
 ### Doctors
-![Doctors](/client/src/img/Doctors.png "Optional title")
+![Doctors](/client/src/img/doctors.png "Optional title")
 ### Patients
-![Patients](/client/src/img/Patients.png "Optional title")
+![Patients](/client/src/img/patients.png "Optional title")
 ### Diseases
-![Diseases](/client/src/img/Diseases.png "Optional title")
+![Diseases](/client/src/img/diseases.png "Optional title")
 ### Diagnostics
-![Diagnostics](/client/src/img/Diagnoses.png "Optional title")
-![data-diagnose](/client/src/img/data-diagnose.png "Optional title")
+![Diagnostics](/client/src/img/diagnostics.png "Optional title")
 ### Medicines
-![Medicines](/client/src/img/Medicines.png "Optional title")
+![Medicines](/client/src/img/medicines.png "Optional title")
+### Prescriptions
+![Medicines](/client/src/img/prescriptions.png "Optional title")
 ## How to Run App
 1. Comment out first validations for patient and user at their respective models
 2. Open terminal and run ``bundle install`` to install the necessary gems
