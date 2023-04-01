@@ -5,14 +5,15 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { ArrowUpward } from '@mui/icons-material';
 
 const FeaturedInfo = () => {
-    const [notifyPatients, setNotifyPatients] = useState(0)
-    const [notifyMedicines, setNotifyMedicines] = useState(0)
+    const [notifyPatients, setNotifyPatients] = useState(0);
+    const [notifyMedicines, setNotifyMedicines] = useState(0);
+    const [notifyDiseases, setNotifyDiseases] = useState(0);
 
     useEffect(() => {
         fetch("/patients")
         .then(r => r.json())
         .then(notifyPatients => setNotifyPatients(notifyPatients))
-    }, [])
+    }, []);
 
     useEffect(() => {
         if (notifyPatients > 0) {
@@ -20,13 +21,13 @@ const FeaturedInfo = () => {
                 position: toast.POSITION.BOTTOM_RIGHT
             })
         }
-    }, [notifyPatients])
+    }, [notifyPatients]);
 
     useEffect(() => {
         fetch("/medicines")
         .then(r => r.json())
         .then(notifyMedicines => setNotifyMedicines(notifyMedicines))
-    }, [])
+    }, []);
 
     useEffect(() => {
         if (notifyMedicines > 0) {
@@ -34,14 +35,28 @@ const FeaturedInfo = () => {
                 position: toast.POSITION.BOTTOM_RIGHT
             })
         }
-    }, [notifyMedicines])
+    }, [notifyMedicines]);
+
+    useEffect(() => {
+        fetch("/diseases")
+        .then(r => r.json())
+        .then(notifyDiseases => setNotifyDiseases(notifyDiseases))
+    }, []);
+
+    useEffect(() => {
+        if (notifyDiseases > 0) {
+            toast.success(`${notifyDiseases} appointments addesuccessfully`, {
+                position: toast.POSITION.BOTTOM_RIGHT
+            })
+        }
+    }, [notifyDiseases]);
 
   return (
     <div className='featured'>
         <div className="featuredItem">
             <span className="featuredTitle">Diseases</span>
             <div className="featuredShowContainer">
-                <span className="featuredShow">5</span>
+                <span className="featuredShow">{notifyDiseases.length}</span>
                 <span className="featuredShowRate">-11.4 <ArrowDownwardIcon className='featuredIcon negative'/></span>
             </div>
             <span className="featuredSub">Currently recorded</span>
