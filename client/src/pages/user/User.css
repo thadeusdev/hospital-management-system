@@ -3,6 +3,13 @@
     padding: 20px;
 }
 
+.userDelete{
+    width: 100px; 
+    padding: 2px;
+    color: red;
+    cursor: pointer;   
+}
+
 .userContainer{
     display: flex;
     margin-top: 20px;

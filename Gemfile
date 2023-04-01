@@ -55,4 +55,4 @@ gem 'active_model_serializers'
 
 # gem "jsonapi-serializer"
 
-gem 'cloudinary'
+# gem 'cloudinary'
