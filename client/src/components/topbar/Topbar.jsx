@@ -8,7 +8,7 @@ const Topbar = () => {
     const [notifyItems, setNotifyItems] = useState(0)
 
     useEffect((id) => {
-        fetch(`/doctors/${id}/patients/${id}/doctor_appointments`)
+        fetch(`/doctor_appointments`)
         .then(r => r.json())
         .then(notifyItems => setNotifyItems(notifyItems))
     }, [])
