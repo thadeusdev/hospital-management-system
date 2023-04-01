@@ -44,6 +44,9 @@ const User = () => {
 
   return (
     <div className='user'>
+        <div className="patientTitleContainer">
+          <h1 className="patientTitle">Welcome {loggedInUser.username}</h1>           
+        </div>
       <div className="userContainer">
         <div className="userShow">
           <div className="userShowTop">
