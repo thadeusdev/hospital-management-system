@@ -34,6 +34,8 @@
 ![Medicines](/client/src/img/medicines.png "Optional title")
 ### Prescriptions
 ![Medicines](/client/src/img/prescriptions.png "Optional title")
+### User account
+![Medicines](/client/src/img/userProfile.png "Optional title")
 ## How to Run App
 1. Comment out first validations for patient and user at their respective models
 2. Open terminal and run ``bundle install`` to install the necessary gems
