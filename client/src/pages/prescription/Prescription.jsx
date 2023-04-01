@@ -16,7 +16,7 @@ const Prescription = () => {
         fetch(`/prescriptions/${id}`)
         .then(res => res.json())
         .then(singlePrescription => setSinglePrescription(singlePrescription))
-    }, []);
+    }, [id]);
 
     useEffect(() => {
         fetch('/medicines')

@@ -20,6 +20,7 @@ const Topbar = () => {
             })
         }
     }, [notifyItems])
+    
   return (
     <div className='topbar'>
         <div className="topbarWrapper">

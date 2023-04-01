@@ -59,7 +59,7 @@ const NewPrescription = () => {
       })
       .then(res => res.json())
       .then(newPrescription => {
-        setDiseases([...prescriptions, newPrescription])
+        setPrescriptions([...prescriptions, newPrescription])
         console.log(newPrescription)
       })
       .catch(error => console.log(error))

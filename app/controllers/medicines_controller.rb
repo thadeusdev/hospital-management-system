@@ -15,7 +15,7 @@ class MedicinesController < ApplicationController
 
     # POST /medicines
     def create
-        medicine = Medicine.create(medicine_params)
+        medicine = Medicine.create!(medicine_params)
         render json: medicine, status: :created
     end
 

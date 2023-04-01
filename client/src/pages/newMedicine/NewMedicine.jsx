@@ -23,7 +23,7 @@ const NewMedicine = () => {
   
     const handleSubmit = (e) => {
       e.preventDefault()
-      setSubmitted(true);
+      // setSubmitted(true);
       fetch('/medicines', {
         method: 'POST',
         headers: {
@@ -42,8 +42,9 @@ const NewMedicine = () => {
       })
       .then(res => res.json())
       .then(newMedicine => {
-        setMedicines([...medicines, newMedicine])
-        console.log(newMedicine)
+        setMedicines([...medicines, newMedicine]);
+        console.log(newMedicine);
+        setSubmitted(true);
       })
       .catch(error => console.log(error))
     }
