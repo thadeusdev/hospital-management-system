@@ -125,16 +125,16 @@ const Medicine = () => {
                         </div> 
                         <div className="medicineUpdateItem">
                             <label>Acidic?</label>
-                            <select name="is_acidic" id="acidic" className="newMedicineSelect">
-                                <option name="is_acidic" value={singleMedicine.is_acidic} onChange={(e) => handleEdit(e)}>True</option>
-                                <option name="is_acidic" value={singleMedicine.is_acidic} onChange={(e) => handleEdit(e)}>False</option>
+                            <select name="is_acidic" id="acidic" className="newMedicineSelect" value={singleMedicine.is_acidic} onChange={(e) => handleEdit(e)}>
+                                <option name="is_acidic" value='true' onChange={(e) => handleEdit(e)}>True</option>
+                                <option name="is_acidic" value='false' onChange={(e) => handleEdit(e)}>False</option>
                             </select>
                         </div> 
                         <div className="medicineUpdateItem">
                            <label>Infant safe?</label>
-                            <select name="infant_safe" id="infant_safe" className="newMedicineSelect">
-                                <option name="infant_safe" value={singleMedicine.infant_safe.toString()} onChange={(e) => handleEdit(e)}>True</option>
-                                <option name="infant_safe" value={singleMedicine.infant_safe.toString()} onChange={(e) => handleEdit(e)}>False</option>
+                            <select name="infant_safe" id="infant_safe" className="newMedicineSelect" value={singleMedicine.infant_safe} onChange={(e) => handleEdit(e)}>
+                                <option name="infant_safe" value='true' onChange={(e) => handleEdit(e)}>True</option>
+                                <option name="infant_safe" value='false' onChange={(e) => handleEdit(e)}>False</option>
                             </select>
                         </div>                                                 
                     </div>
