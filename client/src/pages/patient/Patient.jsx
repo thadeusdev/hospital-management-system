@@ -116,13 +116,17 @@ const Patient = () => {
                         <div className="patientUpdateItem">
                             <label>Visit Number</label>
                             <input type="text" name="visit_no" placeholder='GN-114730-21' className='patientUpdateInput' value={patientedit.visit_no} onChange={(e) => handleEdit(e)} />
-                        </div>                       
+                        </div> 
+                        <div className="patientUpdateItem">
+                            <label>Image</label>
+                            <input type="text" name="image" placeholder='url' className='patientUpdateInput' value={patientedit.image} onChange={(e) => handleEdit(e)} />
+                        </div>                      
                     </div>
                     <div className="patientUpdateRight">
                         <div className="patientUpdateUpload">
                             <img className="patientUpdateImg" src={patientedit.image} alt="" />
-                            <label htmlFor="file"><PublishIcon className='patientUpdateIcon' /></label>
-                            <input type="file" id='file' style={{display: "none"}}  name="image" src={patientedit.image} onChange={(e) => handleEdit(e)} />
+                            {/* <label htmlFor="file"><PublishIcon className='patientUpdateIcon' /></label>
+                            <input type="file" id='file' style={{display: "none"}}  name="image" src={patientedit.image} onChange={(e) => handleEdit(e)} /> */}
                         </div>
                         <button className="patientUpdateButton">Update</button>
                     </div>

@@ -108,7 +108,7 @@ const Doctor = () => {
                         </div> 
                         <div className="doctorUpdateItem">
                             <label>Image</label>
-                            <input type="text" name="image" className='doctorUpdateInput' value={doctoredit.image} onChange={(e) => handleEdit(e)} />
+                            <input type="text" name="image" placeholder='url' className='doctorUpdateInput' value={doctoredit.image} onChange={(e) => handleEdit(e)} />
                         </div>                         
                     </div>
                     <div className="doctorUpdateRight">
