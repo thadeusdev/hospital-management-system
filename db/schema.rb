@@ -24,9 +24,6 @@ ActiveRecord::Schema.define(version: 2023_01_09_214825) do
     t.integer "disease_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["disease_id"], name: "index_diagnostics_on_disease_id"
-    t.index ["doctor_id"], name: "index_diagnostics_on_doctor_id"
-    t.index ["patient_id"], name: "index_diagnostics_on_patient_id"
   end
 
   create_table "diseases", force: :cascade do |t|
@@ -36,7 +33,6 @@ ActiveRecord::Schema.define(version: 2023_01_09_214825) do
     t.integer "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["patient_id"], name: "index_diseases_on_patient_id"
   end
 
   create_table "doctor_appointments", force: :cascade do |t|
@@ -47,8 +43,6 @@ ActiveRecord::Schema.define(version: 2023_01_09_214825) do
     t.integer "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["doctor_id"], name: "index_doctor_appointments_on_doctor_id"
-    t.index ["patient_id"], name: "index_doctor_appointments_on_patient_id"
   end
 
   create_table "doctors", force: :cascade do |t|
@@ -73,7 +67,6 @@ ActiveRecord::Schema.define(version: 2023_01_09_214825) do
     t.integer "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["patient_id"], name: "index_medicines_on_patient_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -97,10 +90,6 @@ ActiveRecord::Schema.define(version: 2023_01_09_214825) do
     t.integer "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["disease_id"], name: "index_prescriptions_on_disease_id"
-    t.index ["doctor_id"], name: "index_prescriptions_on_doctor_id"
-    t.index ["medicine_id"], name: "index_prescriptions_on_medicine_id"
-    t.index ["patient_id"], name: "index_prescriptions_on_patient_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -112,15 +101,4 @@ ActiveRecord::Schema.define(version: 2023_01_09_214825) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "diagnostics", "diseases"
-  add_foreign_key "diagnostics", "doctors"
-  add_foreign_key "diagnostics", "patients"
-  add_foreign_key "diseases", "patients"
-  add_foreign_key "doctor_appointments", "doctors"
-  add_foreign_key "doctor_appointments", "patients"
-  add_foreign_key "medicines", "patients"
-  add_foreign_key "prescriptions", "diseases"
-  add_foreign_key "prescriptions", "doctors"
-  add_foreign_key "prescriptions", "medicines"
-  add_foreign_key "prescriptions", "patients"
 end
