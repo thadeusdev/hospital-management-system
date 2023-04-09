@@ -39,7 +39,9 @@ const DoctorList = () => {
   const [doctors, setDoctors] = useState([])
 
     useEffect(() => {
-        fetch('/doctors')
+        fetch('/doctors', {
+          mode: 'cors',
+        })
         .then(res => res.json())
         .then((doctors => setDoctors(doctors)))
     }, [])
