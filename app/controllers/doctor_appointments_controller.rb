@@ -1,4 +1,6 @@
 class DoctorAppointmentsController < ApplicationController
+    # before_action :authorize, :current_user
+    
     # GET /doctor_appointments
     def index
         doctor_appointments = DoctorAppointment.all
@@ -49,6 +51,6 @@ class DoctorAppointmentsController < ApplicationController
     private
 
     def doctor_appointment_params
-        params.permit(:notes, :patient_id, :doctor_id)
+        params.require(:doctor_appointment).permit(:notes, :date, :time, :patient_id, :doctor_id)
     end
 end

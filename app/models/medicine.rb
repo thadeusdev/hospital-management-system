@@ -1,6 +1,7 @@
 class Medicine < ApplicationRecord
-    validates :name, presence: true
+    has_many :prescriptions, dependent: :destroy
+    belongs_to :patient
 
-    belongs_to :disease
-    has_many :prescriptions
+    validates :name, presence: true
+    validates :dosage, presence: true
 end

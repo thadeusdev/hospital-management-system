@@ -1,0 +1,37 @@
+.doctorList{
+    flex: 4;
+    height: 520px;
+}
+
+.doctorListName{
+    display: flex;
+    align-items: center;
+}
+
+.doctorListImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.doctorListEdit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.doctorListDelete{
+    color: red;
+    cursor: pointer;
+}
+
+.doctorTitle{
+    font-size: 22px;
+    font-weight: 600;
+}

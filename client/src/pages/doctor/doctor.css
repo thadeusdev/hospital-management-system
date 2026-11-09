@@ -1,0 +1,154 @@
+.doctor{
+    flex: 4;
+    padding: 20px;
+}
+
+.doctorTitleContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.doctorAddButton{
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: teal;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.doctorContainer{
+    display: flex;
+    margin-top: 20px;
+}
+
+.doctorShow{
+    flex: 1;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+}
+
+.doctorUpdate{
+    flex: 2;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+    margin-left: 20px;
+}
+
+.doctorShowTop{
+    display: flex;
+    align-items: center;
+}
+
+.doctorShowImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.doctorShowTopTitle{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.doctorShowDoctorname{
+    font-weight: 600;
+}
+
+.doctorShowDoctorTitle{
+    font-weight: 300;
+}
+
+.doctorShowBottom{
+    margin-top: 20px;
+}
+
+.doctorShowTitle{
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(175, 170, 170);
+}
+
+.doctorShowInfo{
+    display: flex;
+    align-items: center;
+    margin: 20px 40px;
+    color: #444;
+}
+
+.doctorShowIcon{
+    font-size: 16px !important;
+}
+
+.doctorShowInfoTitle{
+    margin-left: 10px;
+}
+
+.doctorUpdateTitle{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.doctorUpdateForm{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.doctorUpdateItem{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.doctorUpdateItem>label{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.doctorUpdateInput{
+    border: none;
+    width: 250px;
+    height: 30px;
+    border-bottom: 1px solid grey;
+}
+
+.doctorUpdateRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.doctorUpdateUpload{
+    display: flex;
+    align-items: center;
+}
+
+.doctorUpdateImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.doctorUpdateIcon{
+    cursor: pointer;
+}
+
+.doctorUpdateButton{
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    background-color: rgb(21, 142, 218);
+    color: white;
+    font-weight: 600;
+}

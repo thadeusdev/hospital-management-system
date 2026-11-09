@@ -2,13 +2,17 @@ class DiagnosticsController < ApplicationController
     # GET /diagnostics
     def index
         diagnostics = Diagnostic.all
-        render json: diagnostics
+        render json: diagnostics, status: :ok
     end
 
     # GET /diagnostics/:id
     def show
         diagnostic = Diagnostic.find_by(id: params[:id])
-        render json: diagnostic
+        if diagnostic
+            render json: diagnostic, status: :ok
+        else
+            render json: { error: "Diagnose not found" }, status: :not_found
+        end
     end
 
     # POST /diagnostics
@@ -26,7 +30,7 @@ class DiagnosticsController < ApplicationController
         diagnostic = Diagnostic.find_by(id: params[:id])
         if diagnostic
             if diagnostic.update(diagnostic_params)
-                render json: diagnostic
+                render json: diagnostic, status: :accepted
             else
                 render json: { errors: diagnostic.errors.full_messages }, status: :unprocessable_entity
             end
@@ -49,6 +53,6 @@ class DiagnosticsController < ApplicationController
     private
 
     def diagnostic_params
-        params.permit(:notes, :disease_id, :patient_id, :diagnosed_on, :pulse, :sugar, :temperature, :pressure)
+        params.permit(:name, :patient_id, :doctor_id, :disease_id, :performed_at, :pulse, :sugar, :temperature, :pressure)
     end
 end

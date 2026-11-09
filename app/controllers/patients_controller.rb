@@ -1,14 +1,26 @@
 class PatientsController < ApplicationController
+    # before_action :authorize, :current_user
+    
     # GET /patients
     def index
         patients = Patient.all
         render json: patients
     end
 
+    def index
+        if params[:disease_id]
+            disease = Disease.find(params[:disease_id])
+            patients = disease.patients
+        else
+            patients = Patient.all
+        end
+        render json: patients, include: :disease
+    end
+
     # GET /patients/:id
     def show
         patient = Patient.find_by(id: params[:id])
-        render json: patient, serializer: OnePatientSerializer
+        render json: patient
     end
 
     # POST /patients
@@ -49,6 +61,6 @@ class PatientsController < ApplicationController
     private
 
     def patient_params
-        params.permit(:full_name, :address, :visiting_date, :visit_no)
+        params.permit(:image, :full_name, :age, :gender, :address, :visiting_date, :visit_no)
     end
 end

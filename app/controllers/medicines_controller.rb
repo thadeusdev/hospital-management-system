@@ -49,6 +49,6 @@ class MedicinesController < ApplicationController
     private
 
     def medicine_params
-        params.permit(:name, :patient_id, :disease_id)
+        params.permit(:image, :name, :dosage, :patient_id, :description, :category, :is_acidic, :infant_safe)
     end
 end

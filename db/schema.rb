@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_23_212149) do
+ActiveRecord::Schema.define(version: 2023_01_09_214825) do
 
   create_table "diagnostics", force: :cascade do |t|
-    t.string "notes"
-    t.integer "disease_id"
-    t.integer "patient_id"
-    t.datetime "diagnosed_on"
+    t.string "name"
+    t.datetime "performed_at"
     t.integer "pulse"
     t.decimal "sugar"
     t.decimal "temperature"
     t.decimal "pressure"
+    t.integer "doctor_id", null: false
+    t.integer "patient_id", null: false
+    t.integer "disease_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -29,47 +30,73 @@ ActiveRecord::Schema.define(version: 2022_12_23_212149) do
     t.string "name"
     t.string "symptoms"
     t.string "severity"
+    t.integer "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "doctor_appointments", force: :cascade do |t|
     t.string "notes"
-    t.integer "patient_id"
-    t.integer "doctor_id"
+    t.date "date"
+    t.time "time"
+    t.integer "doctor_id", null: false
+    t.integer "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "doctors", force: :cascade do |t|
+    t.string "image"
     t.string "full_name"
+    t.string "email"
     t.string "primary_practice"
     t.string "secondary_practice"
+    t.integer "years_of_experience"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "medicines", force: :cascade do |t|
+    t.string "image"
     t.string "name"
-    t.integer "patient_id"
-    t.integer "disease_id"
+    t.string "dosage"
+    t.string "description"
+    t.string "category"
+    t.boolean "is_acidic"
+    t.boolean "infant_safe"
+    t.integer "patient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "patients", force: :cascade do |t|
+    t.string "image"
     t.string "full_name"
+    t.integer "age"
+    t.string "gender"
     t.string "address"
-    t.datetime "visiting_date"
+    t.date "visiting_date"
     t.string "visit_no"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "prescriptions", force: :cascade do |t|
-    t.string "notes"
-    t.integer "medicine_id"
-    t.integer "patient_id"
+    t.string "frequency"
+    t.string "duration"
+    t.integer "medicine_id", null: false
+    t.integer "disease_id", null: false
+    t.integer "doctor_id", null: false
+    t.integer "patient_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "role"
+    t.string "image"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

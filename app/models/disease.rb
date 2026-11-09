@@ -1,6 +1,7 @@
 class Disease < ApplicationRecord
-    validates :name, presence: true
+    has_many :diagnostics, dependent: :destroy
+    belongs_to :patient
+    has_many :prescriptions
 
-    has_many :diagnostics
-    has_many :patients, through: :diagnostics
+    validates :name, presence: true
 end

@@ -1,0 +1,154 @@
+.patient{
+    flex: 4;
+    padding: 20px;
+}
+
+.patientTitleContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.patientAddButton{
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: teal;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.patientContainer{
+    display: flex;
+    margin-top: 20px;
+}
+
+.patientShow{
+    flex: 1;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+}
+
+.patientUpdate{
+    flex: 2;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 11px -1px #000000; 
+    box-shadow: 0px 0px 11px -1px #000000;
+    margin-left: 20px;
+}
+
+.patientShowTop{
+    display: flex;
+    align-items: center;
+}
+
+.patientShowImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.patientShowTopTitle{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.patientShowPatientname{
+    font-weight: 600;
+}
+
+.patientShowPatientTitle{
+    font-weight: 300;
+}
+
+.patientShowBottom{
+    margin-top: 20px;
+}
+
+.patientShowTitle{
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(175, 170, 170);
+}
+
+.patientShowInfo{
+    display: flex;
+    align-items: center;
+    margin: 20px 40px;
+    color: #444;
+}
+
+.patientShowIcon{
+    font-size: 16px !important;
+}
+
+.patientShowInfoTitle{
+    margin-left: 10px;
+}
+
+.patientUpdateTitle{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.patientUpdateForm{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.patientUpdateItem{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.patientUpdateItem>label{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.patientUpdateInput{
+    border: none;
+    width: 250px;
+    height: 30px;
+    border-bottom: 1px solid grey;
+}
+
+.patientUpdateRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.patientUpdateUpload{
+    display: flex;
+    align-items: center;
+}
+
+.patientUpdateImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.patientUpdateIcon{
+    cursor: pointer;
+}
+
+.patientUpdateButton{
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    background-color: rgb(21, 142, 218);
+    color: white;
+    font-weight: 600;
+}
