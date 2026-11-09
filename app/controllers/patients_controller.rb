@@ -13,16 +13,23 @@ class PatientsController < ApplicationController
 
     # POST /patients
     def create
-        patient = Patient.create(patient_params)
-        render json: patient, status: :created
+        patient = Patient.new(patient_params)
+        if patient.save
+            render json: patient, status: :created
+        else
+            render json: { errors: patient.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     # PATCH /patients/:id
     def update
         patient = Patient.find_by(id: params[:id])
         if patient
-            patient.update(patient_params)
-            render json: patient
+            if patient.update(patient_params)
+                render json: patient
+            else
+                render json: { errors: patient.errors.full_messages }, status: :unprocessable_entity
+            end
         else
             render json: { error: "Patient not found" }, status: :not_found
         end

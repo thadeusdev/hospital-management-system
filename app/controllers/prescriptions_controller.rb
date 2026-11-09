@@ -13,16 +13,23 @@ class PrescriptionsController < ApplicationController
 
     # POST /prescriptions
     def create
-        prescription = Prescription.create(prescription_params)
-        render json: prescription, status: :created
+        prescription = Prescription.new(prescription_params)
+        if prescription.save
+            render json: prescription, status: :created
+        else
+            render json: { errors: prescription.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     # PATCH /prescriptions/:id
     def update
         prescription = Prescription.find_by(id: params[:id])
         if prescription
-            prescription.update(prescription_params)
-            render json: prescription
+            if prescription.update(prescription_params)
+                render json: prescription
+            else
+                render json: { errors: prescription.errors.full_messages }, status: :unprocessable_entity
+            end
         else
             render json: { error: "Prescription not found" }, status: :not_found
         end

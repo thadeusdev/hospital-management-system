@@ -13,16 +13,23 @@ class DoctorAppointmentsController < ApplicationController
 
     # POST /doctor_appointments
     def create
-        doctor_appointment = DoctorAppointment.create(doctor_appointment_params)
-        render json: doctor_appointment, status: :created
+        doctor_appointment = DoctorAppointment.new(doctor_appointment_params)
+        if doctor_appointment.save
+            render json: doctor_appointment, status: :created
+        else
+            render json: { errors: doctor_appointment.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     # PATCH /doctor_appointments/:id
     def update
         doctor_appointment = DoctorAppointment.find_by(id: params[:id])
         if doctor_appointment
-            doctor_appointment.update(doctor_appointment_params)
-            render json: doctor_appointment
+            if doctor_appointment.update(doctor_appointment_params)
+                render json: doctor_appointment
+            else
+                render json: { errors: doctor_appointment.errors.full_messages }, status: :unprocessable_entity
+            end
         else
             render json: { error: "Doctor Appointment not found" }, status: :not_found
         end
