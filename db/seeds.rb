@@ -385,3 +385,18 @@ User.create!(username: "admin", role: 'admin', image: 'https://img.freepik.com/f
 
 puts " seeded successfully!"
 
+
+# --- keep sequences in sync with explicitly-seeded ids ---
+conn = ActiveRecord::Base.connection
+%w[
+  users doctors patients diseases medicines
+  doctor_appointments diagnostics prescriptions
+].each do |t|
+  seq = conn.select_value("SELECT pg_get_serial_sequence('#{t}', 'id')")
+  next unless seq
+  max = conn.select_value("SELECT COALESCE(MAX(id), 1) FROM #{t}").to_i
+  conn.execute("SELECT setval('#{seq}', #{max}, #{max > 1})")
+end
+puts "✅ sequences resynced"
+
+

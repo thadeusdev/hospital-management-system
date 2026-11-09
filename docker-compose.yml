@@ -1,0 +1,61 @@
+name: hospital-system
+
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: hospital_development    # created on first init
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build:
+      context: .
+      target: development
+    environment:
+      RAILS_ENV: development
+      DB_HOST: db
+      DB_PORT: "5432"                      # inside the container it's 5432, not 5433
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      DB_NAME: hospital_development
+      DISABLE_SPRING: "1"                  # kills the Spring preloader noise
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web-prod:
+    profiles: ["prod"]
+    build:
+      context: .
+      target: production
+      args:
+        GIT_SHA: local
+    environment:
+      RAILS_ENV: production
+      DATABASE_URL: postgres://postgres:${DB_PASSWORD:-postgres}@db:5432/hospital_production
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE:-local-only-change-me-local-only-change-me-local-only-change-me-0000}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-ChangeMe123!}
+      FORCE_SSL: "false"
+    ports:
+      - "8080:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
