@@ -1,158 +1,231 @@
-import React, { useState, useEffect } from 'react'
-import "./diagnose.css"
-import { BarChart, Bar, Tooltip, Legend } from 'recharts';
-import { NavLink, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { NavLink, useParams } from "react-router-dom";
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+} from "recharts";
+
+const initial = {
+  name: "",
+  patient_id: "",
+  doctor_id: "",
+  disease_id: "",
+  performed_at: "",
+  pulse: "",
+  sugar: "",
+  temperature: "",
+  pressure: "",
+};
 
 const Diagnose = () => {
-    const [singleDiagnose, setSingleDiagnose] = useState({name: '', patient_id: '', doctor_id: '', disease_id: '', performed_at: '', pulse: '', sugar: '', temperature: '', pressure: ''});
-    const [patients, setPatients] = useState([]);
-    const [doctors, setDoctors] = useState([]);
-    const [diseases, setDiseases] = useState([]);
-    const {id} = useParams()
-    // console.log(id)
+  const [diagnose, setDiagnose] = useState(initial);
+  const [patients, setPatients] = useState([]);
+  const [doctors, setDoctors] = useState([]);
+  const [diseases, setDiseases] = useState([]);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState("");
+  const { id } = useParams();
 
-    const data = [
-        {
-            name: 'Chronic condition',
-            sugar: 140,
-            pressure: 80,
-            temperature: 37,
-            pulse: 100,
-        },
-    ];
+  useEffect(() => {
+    fetch("/patients").then((r) => r.json()).then(setPatients);
+    fetch("/doctors").then((r) => r.json()).then(setDoctors);
+    fetch("/diseases").then((r) => r.json()).then(setDiseases);
+  }, []);
 
-    useEffect(() => {
-        fetch('/patients')
-        .then(res => res.json())
-        .then(patients => setPatients(patients))
-    }, []);
+  useEffect(() => {
+    fetch(`/diagnostics/${id}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(r)))
+      .then((d) => setDiagnose({ ...initial, ...d }))
+      .catch(() => setError("Unable to load diagnostic"));
+  }, [id]);
 
-    useEffect(() => {
-        fetch('/doctors')
-        .then(res => res.json())
-        .then(doctors => setDoctors(doctors))
-    }, []);
+  const handleEdit = (e) => {
+    setSaved(false);
+    setDiagnose({ ...diagnose, [e.target.name]: e.target.value });
+  };
 
-    useEffect(() => {
-        fetch('/diseases')
-        .then(res => res.json())
-        .then(diseases => setDiseases(diseases))
-    }, []);
-
-    useEffect(() => {
-        fetch(`/diagnostics/${id}`)
-        .then(res => res.json())
-        .then(singleDiagnose => setSingleDiagnose(singleDiagnose))
-    }, [])
-
-    const handleEdit = (e) => {
-        setSingleDiagnose({...singleDiagnose, [e.target.name] : e.target.value})
-    };
-
-    const handleUpdate = (e) => {        
-        e.preventDefault();
-        fetch(`/diagnostics/${id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                name: e.target.name.value,
-                patient_id: e.target.patient_id.value,
-                doctor_id: e.target.doctor_id.value,
-                disease_id: e.target.disease_id.value,
-                performed_at: e.target.performed_at.value,
-                pulse: e.target.pulse.value,
-                sugar: e.target.sugar.value,
-                temperature: e.target.temperature.value,
-                pressure: e.target.pressure.value,
-            }),
-        })
-        .then((r) => r.json())
-        .then((data) => console.log(data))
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      const res = await fetch(`/diagnostics/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: diagnose.name,
+          patient_id: diagnose.patient_id,
+          doctor_id: diagnose.doctor_id,
+          disease_id: diagnose.disease_id,
+          performed_at: diagnose.performed_at,
+          pulse: diagnose.pulse,
+          sugar: diagnose.sugar,
+          temperature: diagnose.temperature,
+          pressure: diagnose.pressure,
+        }),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.errors?.join(", ") || `HTTP ${res.status}`);
+      }
+      setSaved(true);
+    } catch (err) {
+      setError(err.message || "Failed to save");
     }
+  };
+
+  // Chart data comes from the CURRENT diagnostic, not a hardcoded array
+  const chartData = [
+    {
+      name: diagnose.name || "Reading",
+      sugar: Number(diagnose.sugar) || 0,
+      pressure: Number(diagnose.pressure) || 0,
+      pulse: Number(diagnose.pulse) || 0,
+      temperature: Number(diagnose.temperature) || 0,
+    },
+  ];
 
   return (
-    <div className='diagnose'> 
-        <div className="diagnoseTitleContainer">
-            <h1 className="diagnoseTitle">Edit diagnose</h1>
-            <NavLink to="/newDiagnose">
-                <button className="diagnoseAddButton">Create</button>
-            </NavLink>            
-        </div> 
-        <div className="diagnoseContainer">
-            <div className="diagnoseShow">
-                <BarChart width={300} height={300} data={data}>
-                    <Bar dataKey="sugar" fill="#8884d8" stroke='#5550bd' />
-                    <Bar dataKey="pressure" fill="#8884d8" stroke='#5550bd' />
-                    <Bar dataKey="pulse" fill="#8884d8" stroke='#5550bd' />
-                    <Bar dataKey="temperature" fill="#8884d8" stroke='#5550bd' />
-                    <Tooltip />
-                    <Legend />
-                </BarChart>
-            </div>
-            <div className="diagnoseUpdate">
-            <span className="diagnoseUpdateTitle">Edit</span>
-            <form className="diagnoseUpdateForm" onSubmit={handleUpdate}>
-                    <div className="diagnoseUpdateLeft">
-                        <div className="diagnoseUpdateItem">
-                            <label>Name</label>
-                            <input type="text" name="name" className='diagnoseUpdateInput' value={singleDiagnose.name} onChange={(e) => handleEdit(e)} />
-                        </div>
-                        <div className="diagnoseUpdateItem">
-                            <label>Patient</label>
-                            <select name="patient_id" value={singleDiagnose.patient_id} onChange={(e) => handleEdit(e)}>
-                                {patients.map(patient => (
-                                    <option key={patient.id} value={patient.id}>{patient.full_name}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="diagnoseUpdateItem">
-                            <label>Doctor</label>
-                            <select name="doctor_id" value={singleDiagnose.doctor_id} onChange={(e) => handleEdit(e)}>
-                                {doctors.map(doctor => (
-                                    <option key={doctor.id} value={doctor.id}>{doctor.full_name}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="diagnoseUpdateItem">
-                            <label>Disease</label>
-                            <select name="disease_id" value={singleDiagnose.disease_id} onChange={(e) => handleEdit(e)}>
-                                {diseases.map(disease => (
-                                    <option key={disease.id} value={disease.id}>{disease.name}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="diagnoseUpdateItem">
-                            <label>Performed At</label>
-                            <input type="text" name="performed_at" className='diagnoseUpdateInput' value={singleDiagnose.performed_at} onChange={(e) => handleEdit(e)} />
-                        </div>
-                        <div className="diagnoseUpdateItem">
-                            <label>Pulse</label>
-                            <input type="text" name="pulse" className='diagnoseUpdateInput' value={singleDiagnose.pulse} onChange={(e) => handleEdit(e)} />
-                        </div>
-                        <div className="diagnoseUpdateItem">
-                            <label>Sugar</label>
-                            <input type="text" name="sugar" className='diagnoseUpdateInput' value={singleDiagnose.sugar} onChange={(e) => handleEdit(e)} />
-                        </div> 
-                        <div className="diagnoseUpdateItem">
-                            <label>Temperature</label>
-                            <input type="text" name="temperature" className='diagnoseUpdateInput' value={singleDiagnose.temperature} onChange={(e) => handleEdit(e)} />
-                        </div>
-                        <div className="diagnoseUpdateItem">
-                            <label>Pressure</label>
-                            <input type="text" name="pressure" className='diagnoseUpdateInput' value={singleDiagnose.pressure} onChange={(e) => handleEdit(e)} />
-                        </div>                       
-                    </div>
-                    <div className="diagnoseUpdateRight">
-                        <button className="diagnoseUpdateButton">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>      
-    </div>
-  )
-}
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+        <h1 className="text-xl md:text-2xl font-bold">Edit diagnostic</h1>
+        <NavLink
+          to="/newDiagnose"
+          className="inline-flex items-center justify-center rounded-md bg-brand-600 hover:bg-brand-700 text-white px-3 py-2 text-sm font-medium"
+        >
+          + Create
+        </NavLink>
+      </div>
 
-export default Diagnose
+      {saved && (
+        <div className="mb-4 rounded-md bg-green-50 text-green-700 text-sm px-3 py-2 border border-green-200">
+          Saved
+        </div>
+      )}
+      {error && (
+        <div className="mb-4 rounded-md bg-red-50 text-red-700 text-sm px-3 py-2 border border-red-200">
+          {error}
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Chart panel */}
+        <div className="bg-white rounded-lg border shadow-sm p-4 md:p-6">
+          <h2 className="font-semibold mb-4">Vitals</h2>
+          <div className="h-64 md:h-80">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+                <YAxis tick={{ fontSize: 12 }} />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="sugar"       fill="#3b82f6" />
+                <Bar dataKey="pressure"    fill="#10b981" />
+                <Bar dataKey="pulse"       fill="#f59e0b" />
+                <Bar dataKey="temperature" fill="#ef4444" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <p className="text-xs text-gray-500 mt-2">
+            Updates as you edit — reflects saved values after save
+          </p>
+        </div>
+
+        {/* Edit form */}
+        <div className="bg-white rounded-lg border shadow-sm p-4 md:p-6">
+          <h2 className="font-semibold mb-4">Edit</h2>
+          <form onSubmit={handleUpdate} className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Field label="Name" className="md:col-span-2">
+                <input
+                  type="text" name="name" value={diagnose.name}
+                  onChange={handleEdit} className={inputCls}
+                />
+              </Field>
+
+              <Field label="Patient">
+                <select name="patient_id" value={diagnose.patient_id} onChange={handleEdit} className={inputCls}>
+                  <option value="">Select patient…</option>
+                  {patients.map((p) => (
+                    <option key={p.id} value={p.id}>{p.full_name}</option>
+                  ))}
+                </select>
+              </Field>
+              <Field label="Doctor">
+                <select name="doctor_id" value={diagnose.doctor_id} onChange={handleEdit} className={inputCls}>
+                  <option value="">Select doctor…</option>
+                  {doctors.map((d) => (
+                    <option key={d.id} value={d.id}>{d.full_name}</option>
+                  ))}
+                </select>
+              </Field>
+              <Field label="Disease">
+                <select name="disease_id" value={diagnose.disease_id} onChange={handleEdit} className={inputCls}>
+                  <option value="">Select disease…</option>
+                  {diseases.map((d) => (
+                    <option key={d.id} value={d.id}>{d.name}</option>
+                  ))}
+                </select>
+              </Field>
+              <Field label="Performed at">
+                <input
+                  type="text" name="performed_at" placeholder="13:00"
+                  value={diagnose.performed_at} onChange={handleEdit} className={inputCls}
+                />
+              </Field>
+
+              <Field label="Pulse">
+                <input
+                  type="number" name="pulse" value={diagnose.pulse}
+                  onChange={handleEdit} className={inputCls}
+                />
+              </Field>
+              <Field label="Sugar">
+                <input
+                  type="number" step="0.001" name="sugar" value={diagnose.sugar}
+                  onChange={handleEdit} className={inputCls}
+                />
+              </Field>
+              <Field label="Temperature">
+                <input
+                  type="number" step="0.1" name="temperature" value={diagnose.temperature}
+                  onChange={handleEdit} className={inputCls}
+                />
+              </Field>
+              <Field label="Pressure">
+                <input
+                  type="number" step="0.1" name="pressure" value={diagnose.pressure}
+                  onChange={handleEdit} className={inputCls}
+                />
+              </Field>
+            </div>
+
+            <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2 pt-2">
+              <NavLink
+                to="/diagnoses"
+                className="inline-flex items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 text-sm font-medium"
+              >
+                Cancel
+              </NavLink>
+              <button className="inline-flex items-center justify-center rounded-md bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 text-sm font-medium">
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const inputCls =
+  "w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white";
+
+const Field = ({ label, className = "", children }) => (
+  <label className={`block ${className}`}>
+    <span className="block text-sm font-medium text-gray-700 mb-1">{label}</span>
+    {children}
+  </label>
+);
+
+export default Diagnose;

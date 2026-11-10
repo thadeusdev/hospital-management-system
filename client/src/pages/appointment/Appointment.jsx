@@ -26,12 +26,8 @@ const Appointment = () => {
   }, [id]);
 
   useEffect(() => {
-    fetch("/doctors")
-      .then((r) => r.json())
-      .then(setDoctors);
-    fetch("/patients")
-      .then((r) => r.json())
-      .then(setPatients);
+    fetch("/doctors").then((r) => r.json()).then(setDoctors);
+    fetch("/patients").then((r) => r.json()).then(setPatients);
   }, []);
 
   const handleEdit = (e) => {
@@ -60,7 +56,6 @@ const Appointment = () => {
       .catch(() => setSaved(false));
   };
 
-  // Names derived from the loaded lists, not from the API (which only returns ids)
   const patientName =
     patients.find((p) => String(p.id) === String(appt.patient_id))?.full_name ||
     "—";
@@ -70,15 +65,9 @@ const Appointment = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+      {/* Header — no + Create here; that lives on the list page */}
+      <div className="mb-6">
         <h1 className="text-xl md:text-2xl font-bold">Edit appointment</h1>
-        <NavLink
-          to="/newappointment"
-          className="inline-flex items-center justify-center rounded-md bg-brand-600 hover:bg-brand-700 text-white px-3 py-2 text-sm font-medium"
-        >
-          + Create
-        </NavLink>
       </div>
 
       {saved && (
@@ -179,10 +168,10 @@ const Appointment = () => {
 
             <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2 pt-2">
               <NavLink
-                to="/appointments"
+                to="/appointment"
                 className="inline-flex items-center justify-center rounded-md bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 text-sm font-medium"
               >
-                Cancel
+                Back
               </NavLink>
               <button className="inline-flex items-center justify-center rounded-md bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 text-sm font-medium">
                 Update
