@@ -1,54 +1,62 @@
 class MedicinesController < ApplicationController
-    # GET /medicines
-    def index
-        medicines = Medicine.all
-        render json: medicines
-    end
+  before_action :set_medicine, only: [:show, :update, :destroy]
 
-    # GET /medicines/:id
-    def show
-        medicine = Medicine.find_by(id: params[:id])
-        render json: medicine
-    end
+  def index
+    meds = Medicine.includes(:stock_batches).order(:name)
+    render json: meds.map { |m| serialize(m) }
+  end
 
-    # POST /medicines
-    def create
-        medicine = Medicine.new(medicine_params)
-        if medicine.save
-            render json: medicine, status: :created
-        else
-            render json: { errors: medicine.errors.full_messages }, status: :unprocessable_entity
-        end
-    end
+  def show
+    render json: serialize(@medicine, detailed: true)
+  end
 
-     # PATCH /medicines/:id
-     def update
-        medicine = Medicine.find_by(id: params[:id])
-        if medicine
-            if medicine.update(medicine_params)
-                render json: medicine
-            else
-                render json: { errors: medicine.errors.full_messages }, status: :unprocessable_entity
-            end
-        else
-            render json: { error: "Medicine not found" }, status: :not_found
-        end
+  def create
+    m = Medicine.new(medicine_params)
+    if m.save
+      render json: serialize(m), status: :created
+    else
+      render json: { errors: m.errors.full_messages }, status: :unprocessable_entity
     end
+  end
 
-    # DELETE /medicines/:id
-    def destroy
-        medicine = Medicine.find_by(id: params[:id])
-        if medicine
-            medicine.destroy
-            head :no_content
-        else
-            render json: { error: "Medicine not found" }, status: :not_found
-        end
+  def update
+    if @medicine.update(medicine_params)
+      render json: serialize(@medicine)
+    else
+      render json: { errors: @medicine.errors.full_messages }, status: :unprocessable_entity
     end
+  end
 
-    private
+  def destroy
+    @medicine.destroy
+    head :no_content
+  end
 
-    def medicine_params
-        params.permit(:image, :name, :dosage, :patient_id, :description, :category, :is_acidic, :infant_safe)
-    end
+  private
+
+  def set_medicine
+    @medicine = Medicine.find_by(id: params[:id])
+    render json: { error: "Not found" }, status: :not_found unless @medicine
+  end
+
+  def medicine_params
+    params.permit(:name, :dosage, :description, :category, :image,
+                  :is_acidic, :infant_safe, :reorder_level, :unit)
+  end
+
+  def serialize(m, detailed: false)
+    base = {
+      id: m.id, name: m.name, dosage: m.dosage, description: m.description,
+      category: m.category, unit: m.unit, reorder_level: m.reorder_level,
+      total_quantity: m.total_quantity, below_reorder: m.below_reorder?,
+      batches_count: m.stock_batches.count
+    }
+    return base unless detailed
+    base.merge(
+      batches: m.stock_batches.fefo.map do |b|
+        { id: b.id, batch_number: b.batch_number, expiry_date: b.expiry_date,
+          quantity: b.quantity, days_to_expiry: (b.expiry_date - Date.current).to_i }
+      end
+    )
+  end
 end
