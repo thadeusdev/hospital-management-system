@@ -18,5 +18,10 @@ module HospitalSystem
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    if Rails.env.production?
+      require_relative "../lib/spa_fallback"
+      config.middleware.insert_before ActionDispatch::Routing::RouteSet, SpaFallback
+    end
   end
 end

@@ -16,7 +16,7 @@
 * **Postgres** - For setting up database.
 * **React** - For building user interfaces.
 * **CSS** - For styling the application.
-* **Heroku** - For deploying the application.
+* **Render** - For deploying the application.
 ## User Experience
 ### Dashboard
 ![Dashboard](/client/src/img/Dashboard.png "Optional title")
@@ -46,3 +46,12 @@
 6. Run ``npm start --prefix client`` to start react frontend.
 7. Sign up and login to enjoy the App.
 
+## Deploying to Render
+
+This repository includes a Render Blueprint in [`render.yaml`](./render.yaml). It deploys the React client and Rails API together in one Docker web service and provisions a PostgreSQL database. Keeping them on one origin lets the existing session-based login work without cross-origin configuration.
+
+1. Push the repository to GitHub and create a Blueprint in the [Render Dashboard](https://dashboard.render.com/blueprints), selecting this repository.
+2. Apply the Blueprint. Render builds the production stage in `Dockerfile`, runs database migrations on startup, and checks the `/up` health endpoint.
+3. Open the deployed service URL, sign up, and log in.
+
+The Blueprint uses Render's free plans for evaluation. Free PostgreSQL databases are temporary and can expire; change the database and web service plans before relying on this deployment. Do not use the free setup for real patient information. The demo seed data also creates a known `admin` / `root` account, so do not run `rails db:seed` on a public deployment.

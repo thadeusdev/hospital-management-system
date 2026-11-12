@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: hospital-management-system
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    dockerCommand: "bundle exec rails db:migrate && bundle exec puma -C config/puma.rb"
+    healthCheckPath: /up
+    autoDeploy: true
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_SERVE_STATIC_FILES
+        value: "true"
+      - key: RAILS_LOG_TO_STDOUT
+        value: "true"
+      - key: SECRET_KEY_BASE
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hospital-management-db
+          property: connectionString
+
+databases:
+  - name: hospital-management-db
+    databaseName: hospital_management
+    user: hospital_management
+    plan: free
