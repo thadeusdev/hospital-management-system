@@ -5,7 +5,6 @@ services:
     plan: free
     dockerfilePath: ./Dockerfile
     dockerContext: .
-    dockerCommand: "sh -c 'bundle exec rails db:migrate && exec bundle exec puma -b 0.0.0.0 -p $PORT'"
     healthCheckPath: /up
     autoDeploy: true
     envVars:

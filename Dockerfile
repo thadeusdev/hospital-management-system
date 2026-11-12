@@ -34,4 +34,4 @@ COPY --from=client-build /client/build/ ./public/
 ARG GIT_SHA=unknown
 ENV GIT_SHA=${GIT_SHA}
 EXPOSE 3000
-CMD ["sh", "-c", "bundle exec rails db:prepare && bundle exec puma -C config/puma.rb"]
+CMD ["sh", "-c", "bundle exec rails db:migrate && exec bundle exec puma -C config/puma.rb"]
