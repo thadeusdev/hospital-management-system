@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stock_batch: one
+  kind: MyString
+  quantity: 1
+  reason: MyString
+  user: one
+
+two:
+  stock_batch: two
+  kind: MyString
+  quantity: 1
+  reason: MyString
+  user: two

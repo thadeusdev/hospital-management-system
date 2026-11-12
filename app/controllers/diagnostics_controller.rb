@@ -1,6 +1,4 @@
 class DiagnosticsController < ApplicationController
-    # before_action :authorize, :current_user
-    
     # GET /diagnostics
     def index
         diagnostics = Diagnostic.all
@@ -19,16 +17,23 @@ class DiagnosticsController < ApplicationController
 
     # POST /diagnostics
     def create
-        diagnostic = Diagnostic.create(diagnostic_params)
-        render json: diagnostic, status: :created
+        diagnostic = Diagnostic.new(diagnostic_params)
+        if diagnostic.save
+            render json: diagnostic, status: :created
+        else
+            render json: { errors: diagnostic.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     # PATCH /diagnostics/:id
     def update
         diagnostic = Diagnostic.find_by(id: params[:id])
         if diagnostic
-            diagnostic.update(diagnostic_params)
-            render json: diagnostic, status: :accepted
+            if diagnostic.update(diagnostic_params)
+                render json: diagnostic, status: :accepted
+            else
+                render json: { errors: diagnostic.errors.full_messages }, status: :unprocessable_entity
+            end
         else
             render json: { error: "Diagnose not found" }, status: :not_found
         end

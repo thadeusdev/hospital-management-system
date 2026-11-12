@@ -1,3 +1,19 @@
+
+# --- keep sequences in sync with explicitly-seeded ids ---
+conn = ActiveRecord::Base.connection
+%w[
+  users doctors patients diseases medicines
+  doctor_appointments diagnostics prescriptions
+].each do |t|
+  seq = conn.select_value("SELECT pg_get_serial_sequence('#{t}', 'id')")
+  next unless seq
+  max = conn.select_value("SELECT COALESCE(MAX(id), 1) FROM #{t}").to_i
+  conn.execute("SELECT setval('#{seq}', #{max}, #{max > 1})")
+end
+puts "✅ sequences resynced"
+
+
+
 # Doctor seeds
 doctors = [
     {
@@ -205,7 +221,6 @@ medicines = [
         category: "Tablet", 
         is_acidic: true, 
         infant_safe: true, 
-        patient_id: 1,
         dosage: '500mg',
         id: 1
     },
@@ -216,7 +231,6 @@ medicines = [
         category: "Tablet", 
         is_acidic: true, 
         infant_safe: true, 
-        patient_id: 2,
         dosage: '200mg',
         id: 2
     },
@@ -227,7 +241,6 @@ medicines = [
         category: "Tablet", 
         is_acidic: true, 
         infant_safe: true, 
-        patient_id: 3,
         dosage: '1000mg',
         id: 3
     },
@@ -238,7 +251,6 @@ medicines = [
         category: "Tablet", 
         is_acidic: true, 
         infant_safe: true, 
-        patient_id: 4,
         dosage: '1000mg',
         id: 4
     },
@@ -249,7 +261,6 @@ medicines = [
         category: "Tablet", 
         is_acidic: true, 
         infant_safe: true, 
-        patient_id: 5,
         dosage: '1000mg',
         id: 5
     },
@@ -384,4 +395,33 @@ User.create!(username: "admin", role: 'admin', image: 'https://img.freepik.com/f
 
 
 puts " seeded successfully!"
+
+# --- Inventory seed (idempotent) ---
+Medicine.find_each do |m|
+  next if m.stock_batches.exists?
+  m.stock_batches.create!(
+    batch_number: "B-#{SecureRandom.hex(2).upcase}",
+    expiry_date: Date.current + 200,
+    quantity: 50,
+    received_at: Date.current
+  )
+end
+
+# A couple of expiring batches (45 days out)
+Medicine.limit(2).each_with_index do |m, i|
+  next if m.stock_batches.where("expiry_date < ?", Date.current + 90).exists?
+  m.stock_batches.create!(
+    batch_number: "B-EXP-#{i+1}",
+    expiry_date: Date.current + 45,
+    quantity: 5,
+    received_at: Date.current
+  )
+end
+
+# Make one medicine deliberately low so the "Low" badge shows
+if (m = Medicine.order(:id).first)
+  m.update!(reorder_level: 60)   # total 50 < 60 → low
+end
+
+puts "✅ inventory seeded"
 

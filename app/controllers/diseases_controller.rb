@@ -15,16 +15,23 @@ class DiseasesController < ApplicationController
 
     # POST /diseases
     def create
-        disease = Disease.create(disease_params)
-        render json: disease, status: :created
+        disease = Disease.new(disease_params)
+        if disease.save
+            render json: disease, status: :created
+        else
+            render json: { errors: disease.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     # PATCH /diseases/:id
     def update
         disease = Disease.find_by(id: params[:id])
         if disease
-            disease.update(disease_params)
-            render json: disease
+            if disease.update(disease_params)
+                render json: disease
+            else
+                render json: { errors: disease.errors.full_messages }, status: :unprocessable_entity
+            end
         else
             render json: { error: "Disease not found" }, status: :not_found
         end

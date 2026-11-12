@@ -4,4 +4,6 @@ class Diagnostic < ApplicationRecord
     belongs_to :doctor, optional: true
 
     validates :name, presence: true
+    validates :patient_id, presence: true
+    validates :disease_id, presence: true
 end
