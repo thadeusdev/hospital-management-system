@@ -21,7 +21,7 @@ module HospitalSystem
 
     if Rails.env.production?
       require_relative "../lib/spa_fallback"
-      config.middleware.insert_before ActionDispatch::Routing::RouteSet, SpaFallback
+      config.middleware.insert_before 0, SpaFallback
     end
   end
 end
